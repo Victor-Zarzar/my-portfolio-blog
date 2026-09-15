@@ -34,7 +34,7 @@ export const auth = betterAuth({
   secondaryStorage: {
     get: async (key) => {
       const value = await redis.get(key);
-      return value ? value : null;
+      return value ?? null;
     },
     set: async (key, value, ttl) => {
       if (ttl) {
@@ -45,6 +45,13 @@ export const auth = betterAuth({
     },
     delete: async (key) => {
       await redis.del(key);
+    },
+    getAndDelete: async (key) => {
+      const value = await redis.getDel(key);
+      return value ?? null;
+    },
+    increment: async (key) => {
+      return await redis.incr(key);
     },
   },
   rateLimit: {
