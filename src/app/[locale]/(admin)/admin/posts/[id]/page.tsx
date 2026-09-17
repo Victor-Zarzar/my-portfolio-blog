@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { PostForm } from "@/app/features/post-form/post-form";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth/auth";
 import { db } from "@/lib/db";
 import { posts, tags } from "@/lib/db/schema";
 

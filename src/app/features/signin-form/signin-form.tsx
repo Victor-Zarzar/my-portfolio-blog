@@ -25,7 +25,7 @@ import {
 } from "@/app/shared/ui/form";
 import { Input } from "@/app/shared/ui/input";
 import { useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import { cn } from "@/lib/utils";
 
 export default function SignInForm({

@@ -11,7 +11,9 @@
   },
   "AdminNavbar": {
     "hello": "Hola,",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "profile": "Perfil",
+    "settings": "Configuración"
   },
   "Navbar": {
     "titlenavbar": "Victor Zarzar",
@@ -270,16 +272,24 @@
   },
   "twoFactor": {
     "title": "Verificación en dos pasos",
-    "subtitle": "Introduce abajo el código de tu app Google Authenticator",
+    "subtitle": "Introduce a continuación el código de tu aplicación Google Authenticator",
     "codeLabel": "Código de Google Authenticator",
     "codeLength": "El código debe tener exactamente 6 dígitos",
     "verify": "Verificar",
     "secureNote": "Tu cuenta está protegida con autenticación de dos factores",
-    "backToLogin": "Volver al login",
-    "codeExpires": "El código expira en 30 segundos",
-    "invalidCode": "Código inválido",
-    "successVerified": "2FA verificado con éxito",
-    "onlyNumbers": "Solo se permiten números"
+    "backToLogin": "Volver al inicio de sesión",
+    "codeExpires": "El código caduca en 30 segundos",
+    "invalidCode": "Código no válido",
+    "successVerified": "2FA verificado correctamente",
+    "onlyNumbers": "Solo se permiten números",
+    "recoveryTitle": "Usar un código de recuperación",
+    "recoveryCodeLabel": "Código de recuperación",
+    "recoveryCodeRequired": "Introduce un código de recuperación",
+    "invalidRecoveryCode": "El código de recuperación no es válido o ya ha sido utilizado",
+    "verifyRecovery": "Verificar código de recuperación",
+    "useRecoveryCode": "Usar un código de recuperación",
+    "useAuthenticator": "Usar Google Authenticator",
+    "verifying": "Verificando..."
   },
   "dashboard": {
     "title": "Dashboard",

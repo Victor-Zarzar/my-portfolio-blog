@@ -44,7 +44,7 @@ beforeEach(() => {
     twoFactor: twoFactorMock,
   }));
 
-  mock.module("@/env.mjs", () => ({
+  mock.module("@/env", () => ({
     default: {
       NEXT_PUBLIC_WEBSITE_URL: "http://localhost:3000",
       BETTER_AUTH_URL: "http://localhost:3000",
@@ -75,7 +75,7 @@ beforeEach(() => {
 
 describe("auth integration", () => {
   it("wires better-auth with argon2, redis secondary storage, rate limit and plugins", async () => {
-    const { auth } = await import("@/lib/auth");
+    const { auth } = await import("@/lib/auth/auth");
 
     expect(auth).toBeDefined();
     expect(betterAuthMock).toHaveBeenCalledTimes(1);

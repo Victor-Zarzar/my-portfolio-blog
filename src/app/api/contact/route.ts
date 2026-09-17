@@ -6,7 +6,7 @@ import sanitizeHtml from "sanitize-html";
 import { z } from "zod";
 import { formatDateTimeBR } from "@/app/shared/helpers/format-date";
 import type { SlackContactPayload } from "@/app/shared/types/form/form";
-import env from "@/env.mjs";
+import env from "@/env";
 
 const contactSchema = z.object({
   name: z.string().min(1).max(100),

@@ -1,4 +1,5 @@
 import { hash, verify } from "argon2";
+import type { BetterAuthOptions } from "better-auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {
@@ -8,12 +9,12 @@ import {
   oAuthProxy,
   twoFactor,
 } from "better-auth/plugins";
-import env from "@/env.mjs";
+import env from "@/env";
 import { db } from "@/lib/db";
-import * as authSchema from "./db/auth-schema";
-import { redis } from "./redis/client";
+import * as authSchema from "@/lib/db/auth-schema";
+import { redis } from "@/lib/redis/client";
 
-export const auth = betterAuth({
+const authOptions = {
   appName: "Victor Zarzar",
   baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
   telemetry: { enabled: false },
@@ -61,7 +62,7 @@ export const auth = betterAuth({
     storage: "secondary-storage",
   },
   session: {
-    expiresIn: 60 * 60 * 24 * 1,
+    expiresIn: 60 * 60 * 24,
     updateAge: 60 * 60 * 6,
   },
   plugins: [
@@ -74,6 +75,14 @@ export const auth = betterAuth({
       provider: "google-recaptcha",
       secretKey: env.GOOGLE_RECAPTCHA_SECRET_KEY,
     }),
+  ],
+} satisfies BetterAuthOptions;
+
+export const auth = betterAuth({
+  ...authOptions,
+
+  plugins: [
+    ...(authOptions.plugins ?? []),
     customSession(async ({ user, session }) => {
       return {
         user: {
@@ -82,6 +91,6 @@ export const auth = betterAuth({
         },
         session,
       };
-    }),
+    }, authOptions),
   ],
 });

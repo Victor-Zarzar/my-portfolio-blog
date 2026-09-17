@@ -1,5 +1,5 @@
 import { createClient } from "redis";
-import env from "@/env.mjs";
+import env from "@/env";
 
 const globalForRedis = globalThis as unknown as {
   redis: ReturnType<typeof createClient>;

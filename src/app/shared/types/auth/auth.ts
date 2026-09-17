@@ -27,3 +27,12 @@ export type AuthConfigUnderTest = {
     delete: (key: string) => Promise<void>;
   };
 };
+
+export type SetupStep =
+  | "status"
+  | "password"
+  | "authenticator"
+  | "recovery"
+  | "completed";
+
+export type VerificationMode = "totp" | "recovery";

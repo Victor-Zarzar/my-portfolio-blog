@@ -11,7 +11,9 @@
   },
   "AdminNavbar": {
     "hello": "Olá,",
-    "signOut": "Sair"
+    "signOut": "Sair",
+    "profile": "Perfil",
+    "settings": "Configurações"
   },
   "Navbar": {
     "titlenavbar": "Victor Zarzar",
@@ -279,7 +281,15 @@
     "codeExpires": "O código expira em 30 segundos",
     "invalidCode": "Código inválido",
     "successVerified": "2FA verificado com sucesso",
-    "onlyNumbers": "Apenas números são permitidos"
+    "onlyNumbers": "Apenas números são permitidos",
+    "recoveryTitle": "Usar código de recuperação",
+    "recoveryCodeLabel": "Código de recuperação",
+    "recoveryCodeRequired": "Digite um código de recuperação",
+    "invalidRecoveryCode": "Código de recuperação inválido ou já utilizado",
+    "verifyRecovery": "Verificar código de recuperação",
+    "useRecoveryCode": "Usar um código de recuperação",
+    "useAuthenticator": "Usar o Google Authenticator",
+    "verifying": "Verificando..."
   },
   "dashboard": {
     "title": "Dashboard",

@@ -1,7 +1,7 @@
 "use client";
 
 import * as Sentry from "@sentry/nextjs";
-import type { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef, StockFeatures } from "@tanstack/react-table";
 import { ArrowUpDown, Loader2, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -10,10 +10,10 @@ import { toast } from "sonner";
 import type { AdminTagRow } from "@/app/shared/types/tags/tags";
 import { Button } from "@/app/shared/ui/button";
 import { deleteTag } from "./tag-actions";
+import type { TagsTableFeatures } from "./tags-table-features";
 
 function DeleteTagButton({ slug }: { slug: string }) {
   const t = useTranslations("dashboard.tags");
-
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -53,7 +53,7 @@ function DeleteTagButton({ slug }: { slug: string }) {
 
 export function getTagsColumns(
   t: ReturnType<typeof useTranslations>,
-): ColumnDef<AdminTagRow>[] {
+): ColumnDef<TagsTableFeatures, AdminTagRow>[] {
   return [
     {
       accessorKey: "name",
@@ -103,6 +103,7 @@ export function getTagsColumns(
     {
       id: "actions",
       enableHiding: false,
+      enableSorting: false,
       header: () => <div className="text-right">{t("table.actions")}</div>,
       cell: ({ row }) => (
         <div className="flex justify-end">

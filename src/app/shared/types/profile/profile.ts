@@ -17,3 +17,18 @@ export type ProfileData = {
   };
   links: ProfileLink[];
 };
+
+export type ProfileAvatarProps = {
+  name: string;
+  image?: string | null;
+  onImageChange?: (file: File) => void;
+  onImageRemove?: () => void;
+};
+
+export type ProfileFormProps = {
+  user: {
+    name: string;
+    email: string;
+    image?: string | null;
+  };
+};

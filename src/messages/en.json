@@ -11,7 +11,9 @@
   },
   "AdminNavbar": {
     "hello": "Hello,",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "profile": "Profile",
+    "settings": "Settings"
   },
   "Navbar": {
     "titlenavbar": "Victor Zarzar",
@@ -272,14 +274,22 @@
     "title": "Two-step verification",
     "subtitle": "Enter the code from your Google Authenticator app below",
     "codeLabel": "Google Authenticator code",
-    "codeLength": "Code must be exactly 6 digits",
+    "codeLength": "The code must be exactly 6 digits",
     "verify": "Verify",
     "secureNote": "Your account is protected with two-factor authentication",
     "backToLogin": "Back to login",
-    "codeExpires": "Code expires in 30 seconds",
+    "codeExpires": "The code expires in 30 seconds",
     "invalidCode": "Invalid code",
-    "successVerified": "Successfully verified 2FA",
-    "onlyNumbers": "Only numbers are allowed"
+    "successVerified": "2FA verified successfully",
+    "onlyNumbers": "Only numbers are allowed",
+    "recoveryTitle": "Use a recovery code",
+    "recoveryCodeLabel": "Recovery code",
+    "recoveryCodeRequired": "Enter a recovery code",
+    "invalidRecoveryCode": "Invalid or already used recovery code",
+    "verifyRecovery": "Verify recovery code",
+    "useRecoveryCode": "Use a recovery code",
+    "useAuthenticator": "Use Google Authenticator",
+    "verifying": "Verifying..."
   },
   "dashboard": {
     "title": "Dashboard",

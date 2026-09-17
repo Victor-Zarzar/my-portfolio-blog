@@ -62,7 +62,7 @@ mock.module("better-auth/plugins", () => ({
   twoFactor: twoFactorSpy,
 }));
 
-mock.module("@/env.mjs", () => ({
+mock.module("@/env", () => ({
   default: {
     NEXT_PUBLIC_WEBSITE_URL: "http://localhost:3000",
     BETTER_AUTH_URL: "http://localhost:3000",
@@ -91,7 +91,7 @@ mock.module("@/lib/redis/client", () => ({
   },
 }));
 
-const mod = await import("@/lib/auth");
+const mod = await import("@/lib/auth/auth");
 
 const authConfig = betterAuthSpy.mock.calls[0]?.[0] as {
   appName: string;

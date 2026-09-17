@@ -4,7 +4,7 @@ import { BookOpen, FileText, Home, Mail, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as React from "react";
 import CommandPalette from "@/app/features/command-palette/command-palette";
-import { LocaleLink } from "@/app/features/locale-link/locale-link";
+import LanguageToggle from "@/app/features/lang-toggle/lang-toggle";
 import SettingsSwitcher from "@/app/features/settings-switcher/settings-switcher";
 import { ModeToggle } from "@/app/features/toggle-mode/toggle-mode";
 import { publicCommandLinks } from "@/app/shared/constants/command-links";
@@ -114,8 +114,8 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
 
           <div className="items-center gap-3 md:hidden lg:flex">
             <CommandPalette links={publicCommandLinks} />
+            <LanguageToggle />
             <ModeToggle />
-            <LocaleLink />
           </div>
 
           <div className="md:flex lg:hidden">

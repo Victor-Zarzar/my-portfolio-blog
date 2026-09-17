@@ -1,7 +1,7 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import env from "@/env.mjs";
+import env from "@/env";
 
 const csp = [
   "default-src 'self'",
@@ -46,6 +46,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  typedRoutes: true,
+  reactCompiler: true,
   poweredByHeader: false,
   allowedDevOrigins: ["local-origin.dev", "*.local-origin.dev"],
   images: {
@@ -54,6 +56,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
