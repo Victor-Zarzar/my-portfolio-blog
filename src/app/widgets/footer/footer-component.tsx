@@ -6,6 +6,7 @@ import {
 } from "react-icons/ai";
 import { BiLogoDevTo } from "react-icons/bi";
 import { SiMedium } from "react-icons/si";
+import { SITE_NAME, SOCIAL_LINKS } from "@/app/shared/config/app-config";
 import type { SocialLink } from "@/app/shared/types/social/social";
 import { Link } from "@/i18n/navigation";
 
@@ -15,37 +16,37 @@ export default function Footer() {
   const socialLinks: SocialLink[] = [
     {
       icon: AiOutlineGithub,
-      href: "https://github.com/Victor-Zarzar",
+      href: SOCIAL_LINKS.github,
       label: "GitHub",
       size: 26,
     },
     {
       icon: BiLogoDevTo,
-      href: "https://dev.to/victorzarzar",
+      href: SOCIAL_LINKS.devto,
       label: "Dev.to",
       size: 28,
     },
     {
       icon: SiMedium,
-      href: "https://medium.com/@victorzarzar58",
+      href: SOCIAL_LINKS.medium,
       label: "Medium",
       size: 21,
     },
     {
       icon: AiOutlineLinkedin,
-      href: "https://www.linkedin.com/in/victorzarzar",
+      href: SOCIAL_LINKS.linkedin,
       label: "LinkedIn",
       size: 27,
     },
     {
       icon: AiOutlineInstagram,
-      href: "https://instagram.com/victorzarzar7",
+      href: SOCIAL_LINKS.instagram,
       label: "Instagram",
       size: 28,
     },
     {
       icon: AiOutlineFacebook,
-      href: "https://www.facebook.com/victorzarzar58",
+      href: SOCIAL_LINKS.facebook,
       label: "Facebook",
       size: 27,
     },
@@ -57,7 +58,9 @@ export default function Footer() {
 
       <div className="p-4 flex flex-col text-center md:flex-row md:justify-between">
         <div className="flex flex-row items-center justify-center space-x-1">
-          <span>© {currentYear} Victor Zarzar</span>
+          <span>
+            © {currentYear} {SITE_NAME}
+          </span>
         </div>
 
         <div className="flex flex-row items-center justify-center space-x-2 mb-1 mt-2 md:mt-0">

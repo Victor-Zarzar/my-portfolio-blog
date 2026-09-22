@@ -3,6 +3,13 @@
 import { Terminal } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import {
+  BUN_VERSION,
+  NODE_VERSION,
+  PROJECT_NAME,
+  TERMINAL,
+  TERMINAL_PROMPT,
+} from "@/app/shared/config/app-config";
 import { getCoursesData } from "@/app/shared/data/getCoursesData";
 import { Card } from "@/app/shared/ui/card";
 import BunIcon from "@/app/shared/ui/icons/bun";
@@ -38,23 +45,23 @@ export default function TerminalCourses() {
               <span className="w-3 h-3 bg-green-500 rounded-full"></span>
             </div>
             <span className="ml-3 text-sm md:text-base text-neutral-800 dark:text-neutral-200 flex items-center gap-1">
-              <Terminal size={14} /> Terminal — Portfolio
+              <Terminal size={14} /> {TERMINAL}
             </span>
           </div>
 
           <div className="px-4 py-3 text-sm md:text-base flex flex-wrap items-center gap-x-2">
             <span className="text-neutral-800 dark:text-neutral-200 font-bold">
-              🧙‍♂️victorzarzar
+              {TERMINAL_PROMPT}
             </span>
             <span className="text-neutral-600 dark:text-neutral-400">in</span>
             <span className="text-blue-700 dark:text-blue-400">
-              my-portfolio
+              {PROJECT_NAME}
             </span>
             <span className="text-yellow-700 dark:text-yellow-400 flex items-center gap-2">
-              <NodeIcon /> v24.14.1
+              <NodeIcon /> {NODE_VERSION}
             </span>
             <span className="text-yellow-700 dark:text-orange-400 flex items-center gap-2">
-              <BunIcon /> v1.3.11
+              <BunIcon /> {BUN_VERSION}
             </span>
             <span className="text-neutral-600 dark:text-neutral-400">took</span>
           </div>
