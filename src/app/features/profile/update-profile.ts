@@ -76,4 +76,11 @@ export async function updateProfileAction(formData: FormData) {
   }
 
   revalidatePath("/admin/profile");
+
+  return {
+    success: true,
+    image: imageUrl !== undefined ? imageUrl : (currentUser?.image ?? null),
+    name: parsed.name,
+    email: parsed.email,
+  };
 }

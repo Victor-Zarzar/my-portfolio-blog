@@ -1,8 +1,8 @@
 {
   "Layout": {
-    "title": "Victor Zarzar | Analista de Infraestrutura e DevOps",
-    "description": "Profissional de Infraestrutura e DevOps com experiência em Docker, Linux, Nginx, SQL, Python, observabilidade, automação e implantação de aplicações.",
-    "ogDescription": "Portfólio profissional com projetos de infraestrutura, DevOps, observabilidade, automação, banco de dados e engenharia de software."
+    "title": "Victor Zarzar | Desenvolvedor Full Stack",
+    "description": "Desenvolvedor Full Stack com experiência em React, Next.js, TypeScript, Python, FastAPI, SQL, Docker e desenvolvimento de aplicações web modernas.",
+    "ogDescription": "Portfólio profissional com projetos de desenvolvimento Full Stack, aplicações web, APIs, bancos de dados, infraestrutura e engenharia de software."
   },
   "Manifest": {
     "name": "Portfólio Victor Zarzar",
@@ -40,8 +40,8 @@
   },
   "Header": {
     "h1": "Victor Zarzar",
-    "h2": "Analista de Infraestrutura e DevOps",
-    "span": "Portfólio profissional com projetos de infraestrutura, DevOps, observabilidade, automação, banco de dados e engenharia de software."
+    "h2": "Desenvolvedor Full Stack",
+    "span": "Portfólio profissional com projetos de desenvolvimento Full Stack, aplicações web, APIs, bancos de dados, infraestrutura e engenharia de software."
   },
   "Skills": {
     "h1": "Habilidades",
@@ -50,7 +50,7 @@
   "About": {
     "title": "Victor Zarzar | Sobre",
     "h1": "Sobre",
-    "p": "Meu primeiro contato com programação foi em 2009, usando tecnologias como SQL Server 2000 e MySQL, criando, restaurando e gerenciando bancos de dados, além de desenvolver sites com PHP. Sempre buscando aprimorar meus conhecimentos diariamente, não tenho medo do desconhecido e busco evoluir todos os dias. Novos desafios são sempre bem-vindos. Amo aprender novas tecnologias e resolver problemas. Apaixonado por café, meus discos de vinil e Rock ’n’ Roll, além de ser entusiasta de guitarra.🤘🏻🎸",
+    "p": "Meu primeiro contato com programação foi em 2009, usando tecnologias como SQL Server 2000 e MySQL, criando, restaurando e gerenciando bancos de dados, além de desenvolver sites com PHP. Atualmente atuo como Desenvolvedor Full Stack, trabalhando com tecnologias modernas no front-end e back-end. Sempre buscando aprimorar meus conhecimentos diariamente, não tenho medo do desconhecido e busco evoluir todos os dias. Novos desafios são sempre bem-vindos. Amo aprender novas tecnologias e resolver problemas. Apaixonado por café, meus discos de vinil e Rock ’n’ Roll, além de ser entusiasta de guitarra.🤘🏻🎸",
     "h2": "Idioma",
     "span1": "Inglês - Técnico básico",
     "span2": "PT-BR - Nativo",
@@ -73,13 +73,13 @@
     "h1": "Serviços",
     "cardtitle1": "Desenvolvimento Web",
     "carddescription1": "Sites e aplicações web modernas e responsivas",
-    "p1": "Criação de sites e aplicações web personalizadas, com foco em performance, SEO e experiência do usuário.",
-    "cardtitle2": "Desenvolvimento Mobile Android",
-    "carddescription2": "Apps Android com React Native",
-    "p2": "Desenvolvimento de aplicações Android com React Native, garantindo uma experiência nativa e de alta performance.",
-    "cardtitle3": "Desenvolvimento Mobile iOS",
-    "carddescription3": "Apps iOS com React Native",
-    "p3": "Criação de aplicativos iOS usando React Native, aproveitando uma única base de código para múltiplas plataformas."
+    "p1": "Criação de sites e aplicações web personalizadas, com foco em performance, SEO, acessibilidade e experiência do usuário.",
+    "cardtitle2": "Desenvolvimento Back-end",
+    "carddescription2": "APIs e serviços para aplicações modernas",
+    "p2": "Desenvolvimento de APIs e serviços back-end com Python, FastAPI, TypeScript, bancos de dados SQL, Redis e integração com aplicações web.",
+    "cardtitle3": "Desenvolvimento Full Stack",
+    "carddescription3": "Aplicações completas do front-end ao back-end",
+    "p3": "Desenvolvimento de soluções Full Stack integrando interfaces modernas, APIs, autenticação, bancos de dados, Docker e implantação de aplicações."
   },
   "Experiences": {
     "h1": "Experiências Técnicas e Formação",
@@ -109,7 +109,7 @@
       "title": "Projetos Freelancer",
       "role": "Desenvolvedor Full Stack",
       "achievements": "Principais Responsabilidades e Conquistas:",
-      "description": "Atuando como desenvolvedor Full Stack em projetos freelancer, desenvolvendo soluções tanto no front-end quanto no back-end, com maior foco no desenvolvimento front-end.",
+      "description": "Atuando como Desenvolvedor Full Stack em projetos freelancer, desenvolvendo aplicações modernas no front-end e back-end, com React, Next.js, TypeScript, Python, APIs, bancos de dados e integração de serviços, mantendo maior foco no desenvolvimento front-end.",
       "local": "Novo Hamburgo, RS, Brasil · Remoto"
     },
     "ahanguera1": {
@@ -204,7 +204,7 @@
     "p": "Ler mais",
     "year": "Ano",
     "author": "Victor Zarzar",
-    "profession": "Analista de Infraestrutura e DevOps"
+    "profession": "Desenvolvedor Full Stack"
   },
   "GlobalError": {
     "title": "Erro na aplicação",
@@ -245,7 +245,7 @@
       }
     }
   },
-  "Login": {
+  "SignIn": {
     "title": "Entrar na conta Admin",
     "title-card": "Entrar na sua conta",
     "subtitle": "Digite seu e-mail abaixo para entrar na sua conta",
@@ -269,6 +269,53 @@
     "error403": "Seu acesso está bloqueado. Entre em contato com o suporte.",
     "captcha-not-ready": "captcha não está pronto",
     "captcha-failed": "captcha falhou. tente novamente."
+  },
+  "SignUp": {
+    "title": "Criar conta",
+    "subtitle": "Crie sua conta administrativa para acessar o painel.",
+    "title-card": "Cadastro",
+    "nameLabel": "Nome",
+    "emailLabel": "E-mail",
+    "passwordLabel": "Senha",
+    "confirmPasswordLabel": "Confirmar senha",
+    "submit": "Criar conta",
+    "creatingAccount": "Criando conta...",
+    "nameMin": "O nome deve conter pelo menos 2 caracteres.",
+    "nameMax": "O nome deve conter no máximo 100 caracteres.",
+    "emailRequired": "O e-mail é obrigatório.",
+    "invalidEmail": "Informe um endereço de e-mail válido.",
+    "passwordMin": "A senha deve conter pelo menos 6 caracteres.",
+    "passwordMax": "A senha deve conter no máximo 100 caracteres.",
+    "confirmPasswordRequired": "Confirme sua senha.",
+    "passwordMismatch": "As senhas não coincidem.",
+    "captcha-not-ready": "O reCAPTCHA ainda não está pronto.",
+    "captcha-failed": "Não foi possível validar o reCAPTCHA.",
+    "signupSuccess": "Conta criada com sucesso.",
+    "signupFailed": "Não foi possível criar a conta.",
+    "unexpectedError": "Ocorreu um erro inesperado ao criar a conta.",
+    "error403": "O cadastro não está disponível.",
+    "error429": "Muitas tentativas. Aguarde um momento e tente novamente.",
+    "alreadyHaveAccount": "Já possui uma conta?",
+    "signIn": "Entrar",
+    "verificationEmailSent": "Enviamos um link de verificação para o seu e-mail."
+  },
+  "VerifyEmail": {
+    "title": "Verifique seu e-mail",
+    "subtitle": "Confirme seu endereço de e-mail para continuar.",
+    "title-card": "Verificação de e-mail",
+    "description": "Enviamos um link de verificação para:",
+    "checkSpam": "Não encontrou o e-mail? Verifique também sua caixa de spam.",
+    "resend": "Reenviar e-mail",
+    "resending": "Reenviando...",
+    "resendSuccess": "E-mail de verificação reenviado com sucesso.",
+    "resendFailed": "Não foi possível reenviar o e-mail de verificação.",
+    "missingEmail": "Não foi possível identificar o endereço de e-mail.",
+    "backToSignIn": "Voltar para o login",
+    "captcha-not-ready": "O reCAPTCHA ainda não está pronto.",
+    "captcha-failed": "Não foi possível validar o reCAPTCHA.",
+    "error429": "Muitas tentativas. Aguarde um momento e tente novamente.",
+    "unexpectedError": "Ocorreu um erro inesperado. Tente novamente.",
+    "verificationEmailSent": "Enviamos um link de verificação para o seu e-mail."
   },
   "twoFactor": {
     "title": "Verificação em duas etapas",
@@ -297,6 +344,27 @@
       "totalPosts": "Total de posts",
       "published": "Publicados",
       "drafts": "Rascunhos"
+    },
+    "profile": {
+      "title": "Perfil",
+      "description": "Gerencie suas informações pessoais e sua foto de perfil.",
+      "name": "Nome",
+      "email": "E-mail",
+      "namePlaceholder": "Seu nome",
+      "changePhoto": "Alterar foto",
+      "removePhoto": "Remover",
+      "photoHint": "JPG, PNG ou WebP. Máximo de 5 MB.",
+      "saveChanges": "Salvar alterações",
+      "profileUpdated": "Perfil atualizado com sucesso.",
+      "profileUpdatedError": "Não foi possível atualizar o perfil.",
+      "validation": {
+        "nameMin": "O nome deve conter pelo menos 2 caracteres.",
+        "invalidEmail": "Digite um endereço de e-mail válido."
+      }
+    },
+    "security": {
+      "title": "Segurança",
+      "description": "Gerencie suas configurações de autenticação e recuperação de conta."
     },
     "tags": {
       "title": "Tags",

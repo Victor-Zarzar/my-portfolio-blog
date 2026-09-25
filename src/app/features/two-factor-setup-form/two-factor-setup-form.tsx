@@ -77,29 +77,17 @@ export function TwoFactorSetupForm({
 
   async function startSetup(values: z.infer<typeof passwordSchema>) {
     try {
-      /*
-       * Keep the password only while this setup flow is mounted.
-       * Never persist it in localStorage/sessionStorage.
-       */
       setPassword(values.password);
-
-      /*
-       * If TOTP is already enabled, Better Auth will not allow
-       * another enrollment. The existing authenticator must first
-       * be disabled.
-       */
       if (twoFactorEnabled) {
         const { error: disableError } = await authClient.twoFactor.disable({
           password: values.password,
         });
-
         if (disableError) {
           passwordForm.setError("root", {
             message:
               disableError.message ??
               "Unable to replace the current authenticator.",
           });
-
           toast.error("Unable to replace authenticator.");
           Sentry.captureException(disableError);
           return;
@@ -109,34 +97,28 @@ export function TwoFactorSetupForm({
       const { data, error } = await authClient.twoFactor.enable({
         password: values.password,
         method: "totp",
-        issuer: "Victor Zarzar",
+        issuer: "Portfolio Blog",
       });
-
       if (error) {
         passwordForm.setError("root", {
           message:
             error.message ?? "Unable to start two-factor authentication setup.",
         });
-
         toast.error("Unable to configure two-factor authentication.");
         Sentry.captureException(error);
         return;
       }
-
       if (!data || data.method !== "totp") {
         passwordForm.setError("root", {
           message: "Unable to create TOTP authenticator.",
         });
         return;
       }
-
       setTotpURI(data.totpURI);
       setBackupCodes(data.backupCodes);
-
       setStep("authenticator");
     } catch (error) {
       Sentry.captureException(error);
-
       toast.error(
         "An unexpected error occurred while configuring two-factor authentication.",
       );
@@ -147,12 +129,6 @@ export function TwoFactorSetupForm({
     try {
       const { error } = await authClient.twoFactor.verifyTotp({
         code: values.code,
-
-        /*
-         * Enrollment != login.
-         * We don't need to trust the browser just because
-         * the authenticator was configured here.
-         */
         trustDevice: false,
       });
 
@@ -165,17 +141,10 @@ export function TwoFactorSetupForm({
         Sentry.captureException(error);
         return;
       }
-
-      /*
-       * This verification is the point at which Better Auth
-       * marks the TOTP enrollment as verified/enabled.
-       */
       setStep("recovery");
-
       toast.success("Authenticator successfully configured.");
     } catch (error) {
       Sentry.captureException(error);
-
       toast.error(
         "An unexpected error occurred while verifying the authenticator.",
       );
@@ -185,7 +154,6 @@ export function TwoFactorSetupForm({
   async function copyBackupCodes() {
     try {
       await navigator.clipboard.writeText(backupCodes.join("\n"));
-
       toast.success("Recovery codes copied.");
     } catch (error) {
       Sentry.captureException(error);
@@ -194,16 +162,11 @@ export function TwoFactorSetupForm({
   }
 
   function finishSetup() {
-    /*
-     * Remove sensitive enrollment data from React state.
-     */
     setTotpURI(null);
     setBackupCodes([]);
     setPassword("");
-
     passwordForm.reset();
     totpForm.reset();
-
     setStep("completed");
   }
 

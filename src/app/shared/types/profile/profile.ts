@@ -32,3 +32,8 @@ export type ProfileFormProps = {
     image?: string | null;
   };
 };
+
+export type ProfileFormValues = {
+  name: string;
+  email: string;
+};

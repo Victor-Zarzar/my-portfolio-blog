@@ -12,6 +12,7 @@ import {
 import env from "@/env";
 import { db } from "@/lib/db";
 import * as authSchema from "@/lib/db/auth-schema";
+import { sendVerificationEmail } from "@/lib/email/send-verification";
 import { redis } from "@/lib/redis/client";
 
 const authOptions = {
@@ -24,9 +25,21 @@ const authOptions = {
     usePlural: false,
   }),
   trustedOrigins: [env.BETTER_AUTH_URL],
+  emailVerification: {
+    sendOnSignUp: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendVerificationEmail({
+        email: user.email,
+        name: user.name,
+        url,
+      });
+    },
+    sendOnSignIn: true,
+  },
   emailAndPassword: {
     enabled: true,
-    disableSignUp: true,
+    disableSignUp: false,
+    requireEmailVerification: true,
     password: {
       hash: async (password) => await hash(password),
       verify: async ({ hash, password }) => await verify(hash, password),
@@ -51,15 +64,33 @@ const authOptions = {
       const value = await redis.getDel(key);
       return value ?? null;
     },
-    increment: async (key) => {
-      return await redis.incr(key);
+    increment: async (key, ttl) => {
+      if (!Number.isInteger(ttl) || ttl <= 0) {
+        throw new TypeError("Redis increment TTL must be a positive integer");
+      }
+      const [value] = await redis
+        .multi()
+        .incr(key)
+        .expire(key, ttl, "NX")
+        .execTyped();
+      return value;
     },
   },
   rateLimit: {
     enabled: true,
     window: 60,
-    max: 5,
+    max: 100,
     storage: "secondary-storage",
+    customRules: {
+      "/sign-in/email": {
+        window: 60,
+        max: 5,
+      },
+      "/two-factor/*": {
+        window: 60,
+        max: 5,
+      },
+    },
   },
   session: {
     expiresIn: 60 * 60 * 24,
@@ -69,7 +100,7 @@ const authOptions = {
     oAuthProxy(),
     lastLoginMethod(),
     twoFactor({
-      issuer: "Victor Zarzar",
+      issuer: "Portfolio Blog",
     }),
     captcha({
       provider: "google-recaptcha",

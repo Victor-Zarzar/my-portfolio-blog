@@ -12,7 +12,12 @@ export async function uploadAvatar(file: File, userId: string) {
     overwrite: true,
     resource_type: "image",
     transformation: [
-      { width: 400, height: 400, crop: "fill", gravity: "face" },
+      {
+        width: 400,
+        height: 400,
+        crop: "fill",
+        gravity: "face",
+      },
     ],
   });
 
@@ -22,6 +27,6 @@ export async function uploadAvatar(file: File, userId: string) {
   };
 }
 
-export async function deleteAvatar(publicId: string) {
-  await cloudinary.uploader.destroy(publicId).catch(() => {});
+export async function deleteAvatar(userId: string) {
+  await cloudinary.uploader.destroy(`avatars/${userId}`);
 }

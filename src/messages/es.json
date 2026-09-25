@@ -1,8 +1,8 @@
 {
   "Layout": {
-    "title": "Victor Zarzar | Analista de Infraestructura y DevOps",
-    "description": "Profesional de Infraestructura y DevOps con experiencia en Docker, Linux, Nginx, SQL, Python, observabilidad, automatización y despliegue de aplicaciones.",
-    "ogDescription": "Portafolio profesional con proyectos de infraestructura, DevOps, observabilidad, automatización, bases de datos e ingeniería de software."
+    "title": "Victor Zarzar | Desarrollador Full Stack",
+    "description": "Desarrollador Full Stack con experiencia en React, Next.js, TypeScript, Python, FastAPI, SQL, Docker y desarrollo de aplicaciones web modernas.",
+    "ogDescription": "Portafolio profesional con proyectos de desarrollo Full Stack, aplicaciones web, APIs, bases de datos, infraestructura e ingeniería de software."
   },
   "Manifest": {
     "name": "Portafolio Victor Zarzar",
@@ -40,8 +40,8 @@
   },
   "Header": {
     "h1": "Victor Zarzar",
-    "h2": "Analista de Infraestructura y DevOps",
-    "span": "Portafolio profesional con proyectos de infraestructura, DevOps, observabilidad, automatización, bases de datos e ingeniería de software."
+    "h2": "Desarrollador Full Stack",
+    "span": "Portafolio profesional con proyectos de desarrollo Full Stack, aplicaciones web, APIs, bases de datos, infraestructura e ingeniería de software."
   },
   "Skills": {
     "h1": "Habilidades",
@@ -50,8 +50,8 @@
   "About": {
     "title": "Victor Zarzar | Sobre mí",
     "h1": "Sobre mí",
-    "p": "Mi primer contacto con la programación fue en 2009, usando tecnologías como SQL Server 2000 y MySQL, creando, restaurando y administrando bases de datos, además de crear sitios web con PHP. Siempre buscando mejorar mis conocimientos diariamente, no tengo miedo a lo desconocido y busco evolucionar todos los días. Los nuevos desafíos siempre son bienvenidos. Me encanta aprender nuevas tecnologías y resolver problemas. Apasionado por el café, mis discos de vinilo y el Rock ’n’ Roll, además de ser entusiasta de la guitarra.🤘🏻🎸",
-    "h2": "Idioma",
+    "p": "Mi primer contacto con la programación fue en 2009, utilizando tecnologías como SQL Server 2000 y MySQL para crear, restaurar y administrar bases de datos, además de desarrollar sitios web con PHP. Actualmente trabajo como Desarrollador Full Stack, utilizando tecnologías modernas tanto en front-end como en back-end. Busco mejorar mis conocimientos continuamente, no tengo miedo a lo desconocido y procuro evolucionar cada día. Los nuevos desafíos siempre son bienvenidos. Me encanta aprender nuevas tecnologías y resolver problemas. Apasionado por el café, mis discos de vinilo, el Rock ’n’ Roll y la guitarra. 🤘🏻🎸",
+    "h2": "Idiomas",
     "span1": "Inglés - Técnico básico",
     "span2": "PT-BR - Nativo",
     "span3": "Español - Básico"
@@ -72,17 +72,17 @@
     "title": "Victor Zarzar | Servicios",
     "h1": "Servicios",
     "cardtitle1": "Desarrollo Web",
-    "carddescription1": "Sitios web y aplicaciones web modernas y responsivas",
-    "p1": "Creación de sitios web y aplicaciones web personalizadas, con foco en rendimiento, SEO y experiencia de usuario.",
-    "cardtitle2": "Desarrollo Mobile Android",
-    "carddescription2": "Apps Android con React Native",
-    "p2": "Desarrollo de aplicaciones Android con React Native, garantizando una experiencia nativa y de alto rendimiento.",
-    "cardtitle3": "Desarrollo Mobile iOS",
-    "carddescription3": "Apps iOS con React Native",
-    "p3": "Creación de aplicaciones iOS usando React Native, aprovechando una única base de código para múltiples plataformas."
+    "carddescription1": "Sitios y aplicaciones web modernas y responsivas",
+    "p1": "Desarrollo de sitios y aplicaciones web personalizadas, con enfoque en rendimiento, SEO, accesibilidad y experiencia del usuario.",
+    "cardtitle2": "Desarrollo Back-end",
+    "carddescription2": "APIs y servicios para aplicaciones modernas",
+    "p2": "Desarrollo de APIs y servicios back-end con Python, FastAPI, TypeScript, bases de datos SQL, Redis e integración con aplicaciones web.",
+    "cardtitle3": "Desarrollo Full Stack",
+    "carddescription3": "Aplicaciones completas desde el front-end hasta el back-end",
+    "p3": "Desarrollo de soluciones Full Stack integrando interfaces modernas, APIs, autenticación, bases de datos, Docker y despliegue de aplicaciones."
   },
   "Experiences": {
-    "h1": "Experiencias Técnicas y Formación",
+    "h1": "Experiencia Técnica y Formación",
     "type": {
       "work": "trabajo",
       "education": "educación",
@@ -92,34 +92,34 @@
       "time": "Mar 2023 – Dic 2025",
       "title": "XLabs Security",
       "role": "Desarrollador de Software",
-      "achievements": "Principales demandas y logros:",
-      "description": "Desarrollé un dashboard completo con autenticación, notificaciones programadas y panel administrativo. Construí el frontend con React, TypeScript, Next.js, Tailwind, i18n y Shadcn/UI, incluyendo modo oscuro. Implementé tablas con exportación a PDF/Excel y gráficos operativos. Desarrollé una app móvil multiplataforma con Flutter (Android, iOS y Web), usando i18n, Provider, Sentry y notificaciones configurables. Construí una API REST desde cero con FastAPI, usando Docker, Nginx, HTTPS, rate limiting y Pytest. Mantuve APIs con FastAPI, MySQL y Redis, usando Alembic para migraciones de base de datos.",
+      "achievements": "Principales responsabilidades y logros:",
+      "description": "Desarrollé un dashboard completo con autenticación, notificaciones programadas y panel administrativo. Construí el frontend con React, TypeScript, Next.js, Tailwind, i18n y Shadcn/UI, incluyendo modo oscuro. Implementé tablas con exportación a PDF/Excel y gráficos operativos. Desarrollé una aplicación móvil multiplataforma con Flutter para Android, iOS y Web, utilizando i18n, Provider, Sentry y notificaciones configurables. Construí una API REST desde cero con FastAPI utilizando Docker, Nginx, HTTPS, rate limiting y Pytest. Mantuve APIs con FastAPI, MySQL y Redis, utilizando Alembic para las migraciones de bases de datos.",
       "local": "São Leopoldo, RS, Brasil · Remoto"
     },
     "freelance": {
       "time": "Dic 2022 – Mar 2023",
       "title": "Freelance",
       "role": "QA Tester",
-      "achievements": "Principales demandas y logros:",
-      "description": "Pruebas funcionales, usabilidad, carga, localización, accesibilidad y regresión.",
+      "achievements": "Principales responsabilidades y logros:",
+      "description": "Pruebas funcionales, de usabilidad, carga, localización, accesibilidad y regresión.",
       "local": "Novo Hamburgo, RS, Brasil · Remoto"
     },
     "freelance-1": {
       "time": "Mar 2026 - Actualidad",
       "title": "Proyectos Freelance",
       "role": "Desarrollador Full Stack",
-      "achievements": "Principales Responsabilidades y Logros:",
-      "description": "Trabajando como desarrollador Full Stack en proyectos freelance, desarrollando soluciones tanto de front-end como de back-end, con un mayor enfoque en el desarrollo front-end.",
+      "achievements": "Principales responsabilidades y logros:",
+      "description": "Trabajando como Desarrollador Full Stack en proyectos freelance, desarrollando aplicaciones modernas tanto en front-end como en back-end con React, Next.js, TypeScript, Python, APIs, bases de datos e integración de servicios, manteniendo un mayor enfoque en el desarrollo front-end.",
       "local": "Novo Hamburgo, RS, Brasil · Remoto"
     },
     "ahanguera1": {
       "time": "Abr 2024 – Oct 2027",
-      "title": "Facultad Anhanguera",
+      "title": "Universidad Anhanguera",
       "description": "Ingeniería de Software"
     },
     "ahanguera2": {
       "time": "Jul 2022 – Jul 2024",
-      "title": "Facultad Anhanguera",
+      "title": "Universidad Anhanguera",
       "description": "Análisis y Desarrollo de Sistemas"
     }
   },
@@ -204,7 +204,7 @@
     "p": "Leer más",
     "year": "Año",
     "author": "Victor Zarzar",
-    "profession": "Analista de Infraestructura y DevOps"
+    "profession": "Desarrollador Full Stack"
   },
   "GlobalError": {
     "title": "Error de la aplicación",
@@ -245,7 +245,7 @@
       }
     }
   },
-  "Login": {
+  "SignIn": {
     "title": "Entrar en la cuenta Admin",
     "title-card": "Entrar en tu cuenta",
     "subtitle": "Introduce tu correo electrónico abajo para entrar en tu cuenta",
@@ -269,6 +269,53 @@
     "error403": "Tu acceso está bloqueado. Contacta con soporte.",
     "captcha-not-ready": "captcha no está listo",
     "captcha-failed": "captcha falló. inténtalo de nuevo."
+  },
+  "SignUp": {
+    "title": "Crear cuenta",
+    "subtitle": "Crea tu cuenta de administrador para acceder al panel.",
+    "title-card": "Registro",
+    "nameLabel": "Nombre",
+    "emailLabel": "Correo electrónico",
+    "passwordLabel": "Contraseña",
+    "confirmPasswordLabel": "Confirmar contraseña",
+    "submit": "Crear cuenta",
+    "creatingAccount": "Creando cuenta...",
+    "nameMin": "El nombre debe contener al menos 2 caracteres.",
+    "nameMax": "El nombre debe contener como máximo 100 caracteres.",
+    "emailRequired": "El correo electrónico es obligatorio.",
+    "invalidEmail": "Introduce una dirección de correo electrónico válida.",
+    "passwordMin": "La contraseña debe contener al menos 6 caracteres.",
+    "passwordMax": "La contraseña debe contener como máximo 100 caracteres.",
+    "confirmPasswordRequired": "Confirma tu contraseña.",
+    "passwordMismatch": "Las contraseñas no coinciden.",
+    "captcha-not-ready": "reCAPTCHA aún no está listo.",
+    "captcha-failed": "No se pudo validar reCAPTCHA.",
+    "signupSuccess": "Cuenta creada correctamente.",
+    "signupFailed": "No se pudo crear la cuenta.",
+    "unexpectedError": "Ocurrió un error inesperado al crear la cuenta.",
+    "error403": "El registro no está disponible.",
+    "error429": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Iniciar sesión",
+    "verificationEmailSent": "Enviamos un enlace de verificación a tu correo electrónico."
+  },
+  "VerifyEmail": {
+    "title": "Verifica tu correo electrónico",
+    "subtitle": "Confirma tu dirección de correo electrónico para continuar.",
+    "title-card": "Verificación de correo",
+    "description": "Enviamos un enlace de verificación a:",
+    "checkSpam": "¿No encuentras el correo? Revisa también tu carpeta de spam.",
+    "resend": "Reenviar correo",
+    "resending": "Reenviando...",
+    "resendSuccess": "Correo de verificación reenviado correctamente.",
+    "resendFailed": "No se pudo reenviar el correo de verificación.",
+    "missingEmail": "No se pudo identificar la dirección de correo electrónico.",
+    "backToSignIn": "Volver al inicio de sesión",
+    "captcha-not-ready": "reCAPTCHA aún no está listo.",
+    "captcha-failed": "No se pudo validar reCAPTCHA.",
+    "error429": "Demasiados intentos. Espera un momento e inténtalo de nuevo.",
+    "unexpectedError": "Ocurrió un error inesperado. Inténtalo de nuevo.",
+    "verificationEmailSent": "Enviamos un enlace de verificación a tu correo electrónico."
   },
   "twoFactor": {
     "title": "Verificación en dos pasos",
@@ -297,6 +344,27 @@
       "totalPosts": "Total de posts",
       "published": "Publicados",
       "drafts": "Borradores"
+    },
+    "profile": {
+      "title": "Perfil",
+      "description": "Administra tu información personal y tu foto de perfil.",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "namePlaceholder": "Tu nombre",
+      "changePhoto": "Cambiar foto",
+      "removePhoto": "Eliminar",
+      "photoHint": "JPG, PNG o WebP. Máximo 5 MB.",
+      "saveChanges": "Guardar cambios",
+      "profileUpdated": "Perfil actualizado correctamente.",
+      "profileUpdatedError": "No se pudo actualizar el perfil.",
+      "validation": {
+        "nameMin": "El nombre debe contener al menos 2 caracteres.",
+        "invalidEmail": "Ingresa una dirección de correo electrónico válida."
+      }
+    },
+    "security": {
+      "title": "Seguridad",
+      "description": "Administra la configuración de autenticación y recuperación de tu cuenta."
     },
     "tags": {
       "title": "Etiquetas",

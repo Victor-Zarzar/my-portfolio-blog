@@ -2,10 +2,15 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Save } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
-import type { ProfileFormProps } from "@/app/shared/types/profile/profile";
+import type {
+  ProfileFormProps,
+  ProfileFormValues,
+} from "@/app/shared/types/profile/profile";
 import { Button } from "@/app/shared/ui/button";
 import {
   Form,
@@ -16,19 +21,21 @@ import {
   FormMessage,
 } from "@/app/shared/ui/form";
 import { Input } from "@/app/shared/ui/input";
+import { useRouter } from "@/i18n/navigation";
 import { ProfileAvatar } from "./profile-avatar";
 import { updateProfileAction } from "./update-profile";
 
-const profileSchema = z.object({
-  name: z.string().trim().min(2, "Name must contain at least 2 characters."),
-  email: z.string().email("Enter a valid email address."),
-});
-
-type ProfileFormValues = z.infer<typeof profileSchema>;
-
 export function ProfileForm({ user }: ProfileFormProps) {
+  const t = useTranslations("dashboard.profile");
+  const router = useRouter();
+
   const [image, setImage] = useState<string | null>(user.image ?? null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const profileSchema = z.object({
+    name: z.string().trim().min(2, t("validation.nameMin")),
+    email: z.email(t("validation.invalidEmail")),
+  });
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -72,7 +79,15 @@ export function ProfileForm({ user }: ProfileFormProps) {
     if (!image) {
       formData.append("removeImage", "true");
     }
-    await updateProfileAction(formData);
+    const result = await updateProfileAction(formData);
+    if (result.success) {
+      setImage(result.image);
+      setImageFile(null);
+      toast.success(t("profileUpdated"));
+      router.refresh();
+    } else {
+      toast.error(t("profileUpdatedError"));
+    }
   }
 
   return (
@@ -91,16 +106,14 @@ export function ProfileForm({ user }: ProfileFormProps) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
-
+                <FormLabel>{t("name")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Your name"
+                    placeholder={t("namePlaceholder")}
                     autoComplete="name"
                     {...field}
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -111,12 +124,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
-
+                <FormLabel>{t("email")}</FormLabel>
                 <FormControl>
                   <Input type="email" autoComplete="email" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -130,7 +141,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             ) : (
               <Save className="h-4 w-4" />
             )}
-            Save changes
+            {t("saveChanges")}
           </Button>
         </div>
       </form>

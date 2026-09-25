@@ -1,6 +1,7 @@
 "use client";
 
 import { Camera, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import type { ProfileAvatarProps } from "@/app/shared/types/profile/profile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/shared/ui/avatar";
@@ -14,6 +15,7 @@ export function ProfileAvatar({
   onImageRemove,
 }: ProfileAvatarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations("dashboard.profile");
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -43,7 +45,7 @@ export function ProfileAvatar({
             onClick={() => inputRef.current?.click()}
           >
             <Camera className="h-4 w-4" />
-            Change photo
+            {t("changePhoto")}
           </Button>
 
           {image && (
@@ -55,14 +57,12 @@ export function ProfileAvatar({
               className="text-destructive hover:text-destructive"
             >
               <Trash2 className="h-4 w-4" />
-              Remove
+              {t("removePhoto")}
             </Button>
           )}
         </div>
 
-        <p className="text-xs text-muted-foreground">
-          JPG, PNG or WebP. Maximum 5 MB.
-        </p>
+        <p className="text-xs text-muted-foreground">{t("photoHint")}</p>
       </div>
 
       <input

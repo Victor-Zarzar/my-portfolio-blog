@@ -32,7 +32,7 @@ export default function SignInForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const t = useTranslations("Login");
+  const t = useTranslations("SignIn");
   const router = useRouter();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -171,9 +171,22 @@ export default function SignInForm({
               )}
             </FieldGroup>
 
-            <CardFooter className="px-0 pt-2">
-              <Button type="submit" className="w-full">
+            <CardFooter className="px-0 pt-2 flex flex-col gap-3">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
                 {t("submit")}
+              </Button>
+
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => router.push("/auth/signup")}
+              >
+                {t("signup")}
               </Button>
             </CardFooter>
           </form>

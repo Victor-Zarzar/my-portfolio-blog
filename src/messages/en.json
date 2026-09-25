@@ -1,8 +1,8 @@
 {
   "Layout": {
-    "title": "Victor Zarzar | Infrastructure & DevOps Analyst",
-    "description": "Infrastructure and DevOps professional with experience in Docker, Linux, Nginx, SQL, Python, observability, automation, and cloud-native application deployment.",
-    "ogDescription": "Professional portfolio featuring infrastructure, DevOps, observability, automation, databases, and software engineering projects."
+    "title": "Victor Zarzar | Full Stack Developer",
+    "description": "Full Stack Developer with experience in React, Next.js, TypeScript, Python, FastAPI, SQL, Docker, and modern web application development.",
+    "ogDescription": "Professional portfolio featuring Full Stack development, web applications, APIs, databases, infrastructure, and software engineering projects."
   },
   "Manifest": {
     "name": "Victor Zarzar Portfolio",
@@ -40,8 +40,8 @@
   },
   "Header": {
     "h1": "Victor Zarzar",
-    "h2": "Infrastructure & DevOps Analyst",
-    "span": "Professional portfolio featuring infrastructure, DevOps, observability, automation, databases, and software engineering projects."
+    "h2": "Full Stack Developer",
+    "span": "Professional portfolio featuring Full Stack development, web applications, APIs, databases, infrastructure, and software engineering projects."
   },
   "Skills": {
     "h1": "Skills",
@@ -50,10 +50,10 @@
   "About": {
     "title": "Victor Zarzar | About",
     "h1": "About",
-    "p": "My first contact with programming was in 2009, using SQL Server 2000 and MySQL technologies, creating, restoring, and managing databases, as well as building websites with PHP. Always striving to improve my knowledge on a daily basis, I’m not afraid of the unknown and aim to evolve every day. New challenges are always welcome. I love learning new technologies and solving problems. Passionate about coffee, my vinyl records, and Rock ’n’ Roll, and a guitar enthusiast.🤘🏻🎸",
-    "h2": "Language",
-    "span1": "English - Basic Tech",
-    "span2": "PT-BR - Native Speaker",
+    "p": "My first contact with programming was in 2009, using technologies such as SQL Server 2000 and MySQL to create, restore, and manage databases, as well as developing websites with PHP. I currently work as a Full Stack Developer, using modern technologies across both front-end and back-end development. I continuously seek to improve my knowledge, embrace the unknown, and evolve every day. New challenges are always welcome. I love learning new technologies and solving problems. Passionate about coffee, my vinyl records, Rock ’n’ Roll, and guitar. 🤘🏻🎸",
+    "h2": "Languages",
+    "span1": "English - Basic technical proficiency",
+    "span2": "PT-BR - Native",
     "span3": "Spanish - Basic"
   },
   "Courses": {
@@ -72,17 +72,17 @@
     "title": "Victor Zarzar | Services",
     "h1": "Services",
     "cardtitle1": "Web Development",
-    "carddescription1": "Modern, responsive websites and web applications",
-    "p1": "Creation of personalized websites and web applications, focusing on performance, SEO, and user experience.",
-    "cardtitle2": "Android Mobile Development",
-    "carddescription2": "Android apps with React Native",
-    "p2": "Development of Android applications with React Native, ensuring a native and high-performance experience.",
-    "cardtitle3": "iOS Mobile Development",
-    "carddescription3": "iOS apps with React Native",
-    "p3": "Building iOS apps using React Native, leveraging a single codebase for multiple platforms."
+    "carddescription1": "Modern and responsive websites and web applications",
+    "p1": "Development of custom websites and web applications focused on performance, SEO, accessibility, and user experience.",
+    "cardtitle2": "Back-end Development",
+    "carddescription2": "APIs and services for modern applications",
+    "p2": "Development of APIs and back-end services using Python, FastAPI, TypeScript, SQL databases, Redis, and web application integrations.",
+    "cardtitle3": "Full Stack Development",
+    "carddescription3": "Complete applications from front-end to back-end",
+    "p3": "Development of Full Stack solutions integrating modern interfaces, APIs, authentication, databases, Docker, and application deployment."
   },
   "Experiences": {
-    "h1": "Tech Experiences & Education",
+    "h1": "Technical Experience and Education",
     "type": {
       "work": "work",
       "education": "education",
@@ -92,35 +92,35 @@
       "time": "Mar 2023 – Dec 2025",
       "title": "XLabs Security",
       "role": "Software Developer",
-      "achievements": "Main Demands & Achievements:",
-      "description": "Developed a complete dashboard with authentication, scheduled notifications, and an admin panel. Built the frontend with React, TypeScript, Next.js, Tailwind, i18n and Shadcn/UI, including dark mode. Implemented tables with PDF/Excel export and operational charts. Developed a cross-platform mobile app with Flutter (Android, iOS, and Web) using i18n, Provider, Sentry, and configurable notifications. Built a REST API from scratch with FastAPI, using Docker, Nginx, HTTPS, rate limiting, and Pytest. Maintained APIs with FastAPI, MySQL, and Redis, using Alembic for database migrations.",
+      "achievements": "Main responsibilities and achievements:",
+      "description": "Developed a complete dashboard with authentication, scheduled notifications, and an administrative panel. Built the frontend using React, TypeScript, Next.js, Tailwind, i18n, and Shadcn/UI, including dark mode. Implemented tables with PDF/Excel export and operational charts. Developed a cross-platform mobile application with Flutter for Android, iOS, and Web using i18n, Provider, Sentry, and configurable notifications. Built a REST API from scratch with FastAPI using Docker, Nginx, HTTPS, rate limiting, and Pytest. Maintained APIs with FastAPI, MySQL, and Redis, using Alembic for database migrations.",
       "local": "São Leopoldo, RS, Brazil · Remote"
     },
     "freelance": {
       "time": "Dec 2022 – Mar 2023",
       "title": "Freelance",
       "role": "QA Tester",
-      "achievements": "Main Demands & Achievements:",
-      "description": "Tester Functional, Usability, Load, Localization, Accessibility, Regression.",
+      "achievements": "Main responsibilities and achievements:",
+      "description": "Functional, usability, load, localization, accessibility, and regression testing.",
       "local": "Novo Hamburgo, RS, Brazil · Remote"
     },
     "freelance-1": {
       "time": "Mar 2026 - Present",
       "title": "Freelance Projects",
       "role": "Full Stack Developer",
-      "achievements": "Main Responsibilities & Achievements:",
-      "description": "Working as a freelance Full Stack Developer, developing both front-end and back-end solutions, with a stronger focus on front-end development.",
+      "achievements": "Main responsibilities and achievements:",
+      "description": "Working as a Full Stack Developer on freelance projects, building modern front-end and back-end applications using React, Next.js, TypeScript, Python, APIs, databases, and service integrations, with a stronger focus on front-end development.",
       "local": "Novo Hamburgo, RS, Brazil · Remote"
     },
     "ahanguera1": {
-      "time": "APR 2024 – OUT 2027",
-      "title": "Ahanguera College",
+      "time": "Apr 2024 – Oct 2027",
+      "title": "Anhanguera University",
       "description": "Software Engineering"
     },
     "ahanguera2": {
-      "time": "JUL 2022 – JUL 2024",
-      "title": "Ahanguera College",
-      "description": "Analysis and Systems Development"
+      "time": "Jul 2022 – Jul 2024",
+      "title": "Anhanguera University",
+      "description": "Systems Analysis and Development"
     }
   },
   "Projects": {
@@ -204,7 +204,7 @@
     "p": "Read more",
     "year": "Year",
     "author": "Victor Zarzar",
-    "profession": "Infrastructure & DevOps Analyst"
+    "profession": "Full Stack Developer"
   },
   "GlobalError": {
     "title": "Application Error",
@@ -245,7 +245,7 @@
       }
     }
   },
-  "Login": {
+  "SignIn": {
     "title": "Login in Admin account",
     "title-card": "Login to your account",
     "subtitle": "Enter your email below to login to your account",
@@ -269,6 +269,53 @@
     "error403": "Your access is blocked. Please contact support.",
     "captcha-not-ready": "captcha is not ready",
     "captcha-failed": "captcha failed. please try again."
+  },
+  "SignUp": {
+    "title": "Create account",
+    "subtitle": "Create your administrator account to access the dashboard.",
+    "title-card": "Sign up",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm password",
+    "submit": "Create account",
+    "creatingAccount": "Creating account...",
+    "nameMin": "Name must contain at least 2 characters.",
+    "nameMax": "Name must contain at most 100 characters.",
+    "emailRequired": "Email is required.",
+    "invalidEmail": "Enter a valid email address.",
+    "passwordMin": "Password must contain at least 6 characters.",
+    "passwordMax": "Password must contain at most 100 characters.",
+    "confirmPasswordRequired": "Confirm your password.",
+    "passwordMismatch": "Passwords do not match.",
+    "captcha-not-ready": "reCAPTCHA is not ready yet.",
+    "captcha-failed": "Unable to validate reCAPTCHA.",
+    "signupSuccess": "Account created successfully.",
+    "signupFailed": "Unable to create account.",
+    "unexpectedError": "An unexpected error occurred while creating the account.",
+    "error403": "Sign up is not available.",
+    "error429": "Too many attempts. Please wait and try again.",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "verificationEmailSent": "We sent a verification link to your email."
+  },
+  "VerifyEmail": {
+    "title": "Verify your email",
+    "subtitle": "Confirm your email address to continue.",
+    "title-card": "Email verification",
+    "description": "We sent a verification link to:",
+    "checkSpam": "Can't find the email? Check your spam folder as well.",
+    "resend": "Resend email",
+    "resending": "Resending...",
+    "resendSuccess": "Verification email resent successfully.",
+    "resendFailed": "Unable to resend the verification email.",
+    "missingEmail": "Unable to identify the email address.",
+    "backToSignIn": "Back to sign in",
+    "captcha-not-ready": "reCAPTCHA is not ready yet.",
+    "captcha-failed": "Unable to validate reCAPTCHA.",
+    "error429": "Too many attempts. Please wait and try again.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "verificationEmailSent": "We sent a verification link to your email."
   },
   "twoFactor": {
     "title": "Two-step verification",
@@ -297,6 +344,27 @@
       "totalPosts": "Total posts",
       "published": "Published",
       "drafts": "Drafts"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your personal information and profile photo.",
+      "name": "Name",
+      "email": "Email",
+      "namePlaceholder": "Your name",
+      "changePhoto": "Change photo",
+      "removePhoto": "Remove",
+      "photoHint": "JPG, PNG or WebP. Maximum 5 MB.",
+      "saveChanges": "Save changes",
+      "profileUpdated": "Profile updated successfully.",
+      "profileUpdatedError": "Unable to update profile.",
+      "validation": {
+        "nameMin": "Name must contain at least 2 characters.",
+        "invalidEmail": "Enter a valid email address."
+      }
+    },
+    "security": {
+      "title": "Security",
+      "description": "Manage your authentication and account recovery settings."
     },
     "tags": {
       "title": "Tags",
