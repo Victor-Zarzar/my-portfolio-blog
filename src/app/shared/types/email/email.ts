@@ -21,3 +21,21 @@ export type VerifyEmailPageProps = {
 export type VerifyEmailFormProps = {
   email: string;
 };
+
+export type SendResetPasswordEmailOptions = {
+  email: string;
+  name: string;
+  url: string;
+};
+
+export type ResetPasswordPageProps = {
+  searchParams: Promise<{
+    token?: string;
+    error?: string;
+  }>;
+};
+
+export type ResetPasswordFormProps = {
+  token: string;
+  invalidToken?: boolean;
+};

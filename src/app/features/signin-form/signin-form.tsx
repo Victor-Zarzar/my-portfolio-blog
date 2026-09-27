@@ -130,7 +130,7 @@ export default function SignInForm({
                       <FormControl>
                         <Input
                           id="email"
-                          type="text"
+                          type="email"
                           autoComplete="email"
                           {...field}
                         />
@@ -147,9 +147,21 @@ export default function SignInForm({
                 render={({ field }) => (
                   <FormItem>
                     <Field>
-                      <FieldLabel htmlFor="password">
-                        {t("passwordLabel")}
-                      </FieldLabel>
+                      <div className="flex items-center justify-between gap-4">
+                        <FieldLabel htmlFor="password">
+                          {t("passwordLabel")}
+                        </FieldLabel>
+
+                        <Button
+                          type="button"
+                          variant="link"
+                          className="h-auto p-0 text-xs font-normal"
+                          onClick={() => router.push("/auth/forgot-password")}
+                        >
+                          {t("forgotPassword")}
+                        </Button>
+                      </div>
+
                       <FormControl>
                         <Input
                           id="password"

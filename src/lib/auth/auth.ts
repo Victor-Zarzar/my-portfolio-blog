@@ -14,6 +14,7 @@ import { db } from "@/lib/db";
 import * as authSchema from "@/lib/db/auth-schema";
 import { sendVerificationEmail } from "@/lib/email/send-verification";
 import { redis } from "@/lib/redis/client";
+import { sendResetPasswordEmail } from "../email/send-reset-password";
 
 const authOptions = {
   appName: "Victor Zarzar",
@@ -27,6 +28,7 @@ const authOptions = {
   trustedOrigins: [env.BETTER_AUTH_URL],
   emailVerification: {
     sendOnSignUp: true,
+    expiresIn: 60 * 15,
     sendVerificationEmail: async ({ user, url }) => {
       await sendVerificationEmail({
         email: user.email,
@@ -40,6 +42,15 @@ const authOptions = {
     enabled: true,
     disableSignUp: false,
     requireEmailVerification: true,
+    resetPasswordTokenExpiresIn: 60 * 15,
+    revokeSessionsOnPasswordReset: true,
+    sendResetPassword: async ({ user, url }) => {
+      await sendResetPasswordEmail({
+        email: user.email,
+        name: user.name,
+        url,
+      });
+    },
     password: {
       hash: async (password) => await hash(password),
       verify: async ({ hash, password }) => await verify(hash, password),
@@ -83,6 +94,14 @@ const authOptions = {
     storage: "secondary-storage",
     customRules: {
       "/sign-in/email": {
+        window: 60,
+        max: 5,
+      },
+      "/request-password-reset": {
+        window: 60,
+        max: 3,
+      },
+      "/reset-password": {
         window: 60,
         max: 5,
       },
