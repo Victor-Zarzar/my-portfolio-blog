@@ -1,7 +1,6 @@
 "use client";
 
 import { Terminal } from "lucide-react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import {
   BUN_VERSION,
@@ -76,13 +75,14 @@ export default function TerminalCourses() {
             <ul className="space-y-1 text-xs md:text-base">
               {courses.map((course, index) => (
                 <li key={index}>
-                  <Link
+                  <a
                     href={course.url}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:underline transition-colors"
                   >
                     {`[${index + 1}]`} {course.title}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

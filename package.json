@@ -13,7 +13,7 @@
     "start": "next start",
     "check": "bun typegen && bun typecheck && bun lint",
     "check:commit": "bun check && bun test:unit && bun test:integration",
-    "check:push": "bun test:e2e",
+    "check:push": "bun install:e2e && bun test:e2e",
     "lint": "biome check .",
     "lint:fix": "biome check . --write",
     "format": "biome format . --write",

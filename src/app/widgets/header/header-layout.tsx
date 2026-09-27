@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiArrowCircleDown } from "react-icons/hi";
@@ -61,11 +60,11 @@ export default function Header() {
                 const Icon = ICON_MAP[link.icon];
 
                 return (
-                  <Link
+                  <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="w-32"
                   >
                     <Button
@@ -75,7 +74,7 @@ export default function Header() {
                       <Icon className="mr-1 text-white" />
                       {link.label}
                     </Button>
-                  </Link>
+                  </a>
                 );
               })}
             </nav>
