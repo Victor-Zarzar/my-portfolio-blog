@@ -1,26 +1,28 @@
 "use server";
 
-import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { z } from "zod";
 import { auth } from "@/lib/auth/auth";
 import { deleteAvatar, uploadAvatar } from "@/lib/cloudinary/upload-avatar";
-import { db } from "@/lib/db";
-import { user } from "@/lib/db/auth-schema";
 
 const profileSchema = z.object({
-  name: z.string().trim().min(2, "Nome deve ter ao menos 2 caracteres."),
-  email: z.email("E-mail inválido."),
+  name: z.string().trim().min(2, "Name must be at least 2 characters long."),
+  email: z.email("Invalid email address."),
 });
 
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp"];
 const MAX_SIZE = 5 * 1024 * 1024;
 
 export async function updateProfileAction(formData: FormData) {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const requestHeaders = await headers();
+
+  const session = await auth.api.getSession({
+    headers: requestHeaders,
+  });
+
   if (!session) {
-    throw new Error("Não autenticado");
+    throw new Error("Not authenticated");
   }
 
   const parsed = profileSchema.parse({
@@ -31,56 +33,40 @@ export async function updateProfileAction(formData: FormData) {
   const file = formData.get("image") as File | null;
   const removeImage = formData.get("removeImage") === "true";
 
-  const [currentUser] = await db
-    .select({ image: user.image })
-    .from(user)
-    .where(eq(user.id, session.user.id));
-
   let imageUrl: string | null | undefined;
 
   if (file && file.size > 0) {
     if (!ALLOWED_TYPES.includes(file.type)) {
-      throw new Error("Formato de imagem inválido. Use PNG, JPEG ou WEBP.");
+      throw new Error("Invalid image format. Use PNG, JPEG, or WEBP.");
     }
+
     if (file.size > MAX_SIZE) {
-      throw new Error("Imagem excede o tamanho máximo de 5MB.");
+      throw new Error("Image exceeds the maximum size of 5 MB.");
     }
 
     const uploaded = await uploadAvatar(file, session.user.id);
+
     imageUrl = uploaded.url;
-  } else if (removeImage && currentUser?.image) {
+  } else if (removeImage && session.user.image) {
     await deleteAvatar(session.user.id);
+
     imageUrl = null;
   }
 
-  try {
-    await db
-      .update(user)
-      .set({
-        name: parsed.name,
-        email: parsed.email,
-        ...(imageUrl !== undefined ? { image: imageUrl } : {}),
-        updatedAt: new Date(),
-      })
-      .where(eq(user.id, session.user.id));
-  } catch (err: unknown) {
-    if (
-      err &&
-      typeof err === "object" &&
-      "code" in err &&
-      err.code === "23505"
-    ) {
-      throw new Error("Este e-mail já está em uso.");
-    }
-    throw err;
-  }
+  await auth.api.updateUser({
+    body: {
+      name: parsed.name,
+      ...(imageUrl !== undefined ? { image: imageUrl } : {}),
+    },
+    headers: requestHeaders,
+  });
 
   revalidatePath("/admin/profile");
 
   return {
     success: true,
-    image: imageUrl !== undefined ? imageUrl : (currentUser?.image ?? null),
+    image: imageUrl !== undefined ? imageUrl : (session.user.image ?? null),
     name: parsed.name,
-    email: parsed.email,
+    email: session.user.email,
   };
 }

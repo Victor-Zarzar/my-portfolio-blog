@@ -10,6 +10,7 @@ export async function uploadAvatar(file: File, userId: string) {
     folder: "avatars",
     public_id: userId,
     overwrite: true,
+    invalidate: true,
     resource_type: "image",
     transformation: [
       {
@@ -28,5 +29,7 @@ export async function uploadAvatar(file: File, userId: string) {
 }
 
 export async function deleteAvatar(userId: string) {
-  await cloudinary.uploader.destroy(`avatars/${userId}`);
+  await cloudinary.uploader.destroy(`avatars/${userId}`, {
+    invalidate: true,
+  });
 }
