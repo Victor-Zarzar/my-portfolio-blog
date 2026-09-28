@@ -376,6 +376,62 @@
     "useAuthenticator": "Usar o Google Authenticator",
     "verifying": "Verificando..."
   },
+  "twoFactorSetup": {
+    "passwordMinLength": "A senha deve conter pelo menos 6 caracteres.",
+    "passwordMaxLength": "A senha é muito longa.",
+    "codeLength": "O código deve conter 6 dígitos.",
+    "onlyNumbers": "O código deve conter apenas números.",
+    "status": {
+      "title": "Autenticação de dois fatores",
+      "enabled": "Ativada",
+      "disabled": "Desativada",
+      "enabledDescription": "Sua conta está protegida com um aplicativo autenticador.",
+      "disabledDescription": "Proteja sua conta de administrador com um aplicativo autenticador.",
+      "replaceAuthenticator": "Substituir autenticador",
+      "enable": "Ativar autenticação de dois fatores"
+    },
+    "password": {
+      "title": "Confirme sua senha",
+      "label": "Senha"
+    },
+    "authenticator": {
+      "title": "Configurar autenticador",
+      "scanDescription": "Escaneie este código QR com seu aplicativo autenticador.",
+      "codeLabel": "Código do autenticador"
+    },
+    "recovery": {
+      "title": "Salve seus códigos de recuperação",
+      "description": "Guarde estes códigos em um local seguro. Cada código de recuperação pode ser usado apenas uma vez.",
+      "copy": "Copiar códigos de recuperação",
+      "saved": "Salvei meus códigos de recuperação"
+    },
+    "completed": {
+      "title": "Autenticação de dois fatores configurada",
+      "description": "Seu autenticador está pronto para proteger sua conta de administrador."
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "continue": "Continuar",
+      "preparing": "Preparando...",
+      "verifying": "Verificando...",
+      "verifyAuthenticator": "Verificar autenticador",
+      "done": "Concluir"
+    },
+    "errors": {
+      "replaceAuthenticator": "Não foi possível substituir o autenticador atual.",
+      "startSetup": "Não foi possível iniciar a configuração da autenticação de dois fatores.",
+      "configure": "Não foi possível configurar a autenticação de dois fatores.",
+      "createTotp": "Não foi possível criar o autenticador TOTP.",
+      "unexpectedSetup": "Ocorreu um erro inesperado ao configurar a autenticação de dois fatores.",
+      "invalidAuthenticatorCode": "O código do autenticador é inválido.",
+      "unexpectedVerification": "Ocorreu um erro inesperado ao verificar o autenticador.",
+      "copyRecoveryCodes": "Não foi possível copiar os códigos de recuperação."
+    },
+    "success": {
+      "authenticatorConfigured": "Autenticador configurado com sucesso.",
+      "recoveryCodesCopied": "Códigos de recuperação copiados."
+    }
+  },
   "dashboard": {
     "title": "Dashboard",
     "stats": {

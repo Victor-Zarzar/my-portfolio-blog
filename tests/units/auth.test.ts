@@ -151,7 +151,7 @@ describe("auth config", () => {
 
     expect(authConfig.emailAndPassword).toEqual({
       enabled: true,
-      disableSignUp: false,
+      disableSignUp: true,
       requireEmailVerification: true,
       resetPasswordTokenExpiresIn: 60 * 15,
       revokeSessionsOnPasswordReset: true,

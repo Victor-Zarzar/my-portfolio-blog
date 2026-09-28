@@ -3,12 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Sentry from "@sentry/nextjs";
 import { Check, Copy, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import QRCode from "react-qr-code";
 import { toast } from "sonner";
 import * as z from "zod";
 import type { SetupStep } from "@/app/shared/types/auth/auth";
+import type { TwoFactorSetupFormProps } from "@/app/shared/types/form/form";
 import { Button } from "@/app/shared/ui/button";
 import {
   Card,
@@ -35,13 +37,10 @@ import {
 } from "@/app/shared/ui/input-otp";
 import { authClient } from "@/lib/auth/auth-client";
 
-interface TwoFactorSetupFormProps {
-  twoFactorEnabled: boolean;
-}
-
 export function TwoFactorSetupForm({
   twoFactorEnabled,
 }: TwoFactorSetupFormProps) {
+  const t = useTranslations("twoFactorSetup");
   const [step, setStep] = useState<SetupStep>("status");
   const [totpURI, setTotpURI] = useState<string | null>(null);
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
@@ -50,15 +49,15 @@ export function TwoFactorSetupForm({
   const passwordSchema = z.object({
     password: z
       .string()
-      .min(6, "Password must contain at least 6 characters.")
-      .max(100, "Password is too long."),
+      .min(6, t("passwordMinLength"))
+      .max(100, t("passwordMaxLength")),
   });
 
   const totpSchema = z.object({
     code: z
       .string()
-      .length(6, "The code must contain 6 digits.")
-      .regex(/^\d+$/, "The code must contain only numbers."),
+      .length(6, t("codeLength"))
+      .regex(/^\d+$/, t("onlyNumbers")),
   });
 
   const passwordForm = useForm<z.infer<typeof passwordSchema>>({
@@ -84,16 +83,13 @@ export function TwoFactorSetupForm({
         });
         if (disableError) {
           passwordForm.setError("root", {
-            message:
-              disableError.message ??
-              "Unable to replace the current authenticator.",
+            message: disableError.message ?? t("errors.replaceAuthenticator"),
           });
-          toast.error("Unable to replace authenticator.");
+          toast.error(t("errors.replaceAuthenticator"));
           Sentry.captureException(disableError);
           return;
         }
       }
-
       const { data, error } = await authClient.twoFactor.enable({
         password: values.password,
         method: "totp",
@@ -101,16 +97,15 @@ export function TwoFactorSetupForm({
       });
       if (error) {
         passwordForm.setError("root", {
-          message:
-            error.message ?? "Unable to start two-factor authentication setup.",
+          message: error.message ?? t("errors.startSetup"),
         });
-        toast.error("Unable to configure two-factor authentication.");
+        toast.error(t("errors.configure"));
         Sentry.captureException(error);
         return;
       }
       if (!data || data.method !== "totp") {
         passwordForm.setError("root", {
-          message: "Unable to create TOTP authenticator.",
+          message: t("errors.createTotp"),
         });
         return;
       }
@@ -119,9 +114,7 @@ export function TwoFactorSetupForm({
       setStep("authenticator");
     } catch (error) {
       Sentry.captureException(error);
-      toast.error(
-        "An unexpected error occurred while configuring two-factor authentication.",
-      );
+      toast.error(t("errors.unexpectedSetup"));
     }
   }
 
@@ -131,33 +124,29 @@ export function TwoFactorSetupForm({
         code: values.code,
         trustDevice: false,
       });
-
       if (error) {
         totpForm.setError("root", {
-          message: error.message ?? "The authenticator code is invalid.",
+          message: error.message ?? t("errors.invalidAuthenticatorCode"),
         });
-
-        toast.error("Invalid authenticator code.");
+        toast.error(t("errors.invalidAuthenticatorCode"));
         Sentry.captureException(error);
         return;
       }
       setStep("recovery");
-      toast.success("Authenticator successfully configured.");
+      toast.success(t("success.authenticatorConfigured"));
     } catch (error) {
       Sentry.captureException(error);
-      toast.error(
-        "An unexpected error occurred while verifying the authenticator.",
-      );
+      toast.error(t("errors.unexpectedVerification"));
     }
   }
 
   async function copyBackupCodes() {
     try {
       await navigator.clipboard.writeText(backupCodes.join("\n"));
-      toast.success("Recovery codes copied.");
+      toast.success(t("success.recoveryCodesCopied"));
     } catch (error) {
       Sentry.captureException(error);
-      toast.error("Unable to copy recovery codes.");
+      toast.error(t("errors.copyRecoveryCodes"));
     }
   }
 
@@ -176,7 +165,7 @@ export function TwoFactorSetupForm({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <ShieldCheck className="size-5" />
-            Two-factor authentication
+            {t("status.title")}
           </CardTitle>
         </CardHeader>
 
@@ -189,22 +178,22 @@ export function TwoFactorSetupForm({
             />
 
             <span className="font-medium">
-              {twoFactorEnabled ? "Enabled" : "Disabled"}
+              {twoFactorEnabled ? t("status.enabled") : t("status.disabled")}
             </span>
           </div>
 
           <p className="text-sm text-muted-foreground">
             {twoFactorEnabled
-              ? "Your account is protected with an authenticator app."
-              : "Protect your administrator account with an authenticator app."}
+              ? t("status.enabledDescription")
+              : t("status.disabledDescription")}
           </p>
         </CardContent>
 
         <CardFooter>
           <Button onClick={() => setStep("password")}>
             {twoFactorEnabled
-              ? "Replace authenticator"
-              : "Enable two-factor authentication"}
+              ? t("status.replaceAuthenticator")
+              : t("status.enable")}
           </Button>
         </CardFooter>
       </Card>
@@ -215,7 +204,7 @@ export function TwoFactorSetupForm({
     return (
       <Card className="w-full max-w-md border-black dark:border-gray-400">
         <CardHeader>
-          <CardTitle>Confirm your password</CardTitle>
+          <CardTitle>{t("password.title")}</CardTitle>
         </CardHeader>
 
         <CardContent>
@@ -232,7 +221,9 @@ export function TwoFactorSetupForm({
                   render={({ field }) => (
                     <FormItem>
                       <Field>
-                        <FieldLabel htmlFor="password">Password</FieldLabel>
+                        <FieldLabel htmlFor="password">
+                          {t("password.label")}
+                        </FieldLabel>
 
                         <FormControl>
                           <Input
@@ -266,7 +257,7 @@ export function TwoFactorSetupForm({
             variant="outline"
             onClick={() => setStep("status")}
           >
-            Cancel
+            {t("actions.cancel")}
           </Button>
 
           <Button
@@ -274,7 +265,9 @@ export function TwoFactorSetupForm({
             form="two-factor-password-form"
             disabled={passwordForm.formState.isSubmitting}
           >
-            {passwordForm.formState.isSubmitting ? "Preparing..." : "Continue"}
+            {passwordForm.formState.isSubmitting
+              ? t("actions.preparing")
+              : t("actions.continue")}
           </Button>
         </CardFooter>
       </Card>
@@ -285,13 +278,13 @@ export function TwoFactorSetupForm({
     return (
       <Card className="w-full max-w-md border-black dark:border-gray-400">
         <CardHeader className="text-center">
-          <CardTitle>Set up authenticator</CardTitle>
+          <CardTitle>{t("authenticator.title")}</CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-8">
           <div className="space-y-3 text-center">
             <p className="text-sm text-muted-foreground">
-              Scan this QR code with your authenticator app.
+              {t("authenticator.scanDescription")}
             </p>
 
             <div className="flex justify-center">
@@ -313,7 +306,7 @@ export function TwoFactorSetupForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="block text-center">
-                      Authenticator code
+                      {t("authenticator.codeLabel")}
                     </FormLabel>
 
                     <FormControl>
@@ -360,8 +353,8 @@ export function TwoFactorSetupForm({
             disabled={totpForm.formState.isSubmitting}
           >
             {totpForm.formState.isSubmitting
-              ? "Verifying..."
-              : "Verify authenticator"}
+              ? t("actions.verifying")
+              : t("actions.verifyAuthenticator")}
           </Button>
         </CardFooter>
       </Card>
@@ -372,15 +365,13 @@ export function TwoFactorSetupForm({
     return (
       <Card className="w-full max-w-md border-black dark:border-gray-400">
         <CardHeader>
-          <CardTitle>Save your recovery codes</CardTitle>
+          <CardTitle>{t("recovery.title")}</CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-6">
           <p className="text-sm text-muted-foreground">
-            Store these codes somewhere safe. Each recovery code can only be
-            used once.
+            {t("recovery.description")}
           </p>
-
           <div className="grid grid-cols-2 gap-2 rounded-lg border p-4">
             {backupCodes.map((code) => (
               <code key={code} className="text-center text-sm">
@@ -396,13 +387,12 @@ export function TwoFactorSetupForm({
             onClick={copyBackupCodes}
           >
             <Copy className="mr-2 size-4" />
-            Copy recovery codes
+            {t("recovery.copy")}
           </Button>
         </CardContent>
-
         <CardFooter>
           <Button type="button" className="w-full" onClick={finishSetup}>
-            I saved my recovery codes
+            {t("recovery.saved")}
           </Button>
         </CardFooter>
       </Card>
@@ -415,12 +405,9 @@ export function TwoFactorSetupForm({
         <Check className="size-10" />
 
         <div>
-          <h2 className="text-xl font-semibold">
-            Two-factor authentication configured
-          </h2>
-
+          <h2 className="text-xl font-semibold">{t("completed.title")}</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Your authenticator is ready to protect your administrator account.
+            {t("completed.description")}
           </p>
         </div>
       </CardContent>
@@ -431,7 +418,7 @@ export function TwoFactorSetupForm({
           className="w-full"
           onClick={() => window.location.reload()}
         >
-          Done
+          {t("actions.done")}
         </Button>
       </CardFooter>
     </Card>

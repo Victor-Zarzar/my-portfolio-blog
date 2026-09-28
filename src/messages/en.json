@@ -376,6 +376,62 @@
     "useAuthenticator": "Use Google Authenticator",
     "verifying": "Verifying..."
   },
+  "twoFactorSetup": {
+    "passwordMinLength": "Password must contain at least 6 characters.",
+    "passwordMaxLength": "Password is too long.",
+    "codeLength": "The code must contain 6 digits.",
+    "onlyNumbers": "The code must contain only numbers.",
+    "status": {
+      "title": "Two-factor authentication",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "enabledDescription": "Your account is protected with an authenticator app.",
+      "disabledDescription": "Protect your administrator account with an authenticator app.",
+      "replaceAuthenticator": "Replace authenticator",
+      "enable": "Enable two-factor authentication"
+    },
+    "password": {
+      "title": "Confirm your password",
+      "label": "Password"
+    },
+    "authenticator": {
+      "title": "Set up authenticator",
+      "scanDescription": "Scan this QR code with your authenticator app.",
+      "codeLabel": "Authenticator code"
+    },
+    "recovery": {
+      "title": "Save your recovery codes",
+      "description": "Store these codes somewhere safe. Each recovery code can only be used once.",
+      "copy": "Copy recovery codes",
+      "saved": "I saved my recovery codes"
+    },
+    "completed": {
+      "title": "Two-factor authentication configured",
+      "description": "Your authenticator is ready to protect your administrator account."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "preparing": "Preparing...",
+      "verifying": "Verifying...",
+      "verifyAuthenticator": "Verify authenticator",
+      "done": "Done"
+    },
+    "errors": {
+      "replaceAuthenticator": "Unable to replace the current authenticator.",
+      "startSetup": "Unable to start two-factor authentication setup.",
+      "configure": "Unable to configure two-factor authentication.",
+      "createTotp": "Unable to create TOTP authenticator.",
+      "unexpectedSetup": "An unexpected error occurred while configuring two-factor authentication.",
+      "invalidAuthenticatorCode": "The authenticator code is invalid.",
+      "unexpectedVerification": "An unexpected error occurred while verifying the authenticator.",
+      "copyRecoveryCodes": "Unable to copy recovery codes."
+    },
+    "success": {
+      "authenticatorConfigured": "Authenticator successfully configured.",
+      "recoveryCodesCopied": "Recovery codes copied."
+    }
+  },
   "dashboard": {
     "title": "Dashboard",
     "stats": {
