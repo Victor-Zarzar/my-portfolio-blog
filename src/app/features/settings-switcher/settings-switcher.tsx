@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FaArrowRight, FaLaptopCode } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
-import LangToggler from "@/app/features/lang-toggle/lang-toggle";
+import LangToggleModal from "@/app/features/lang-toggle/lang-toggle-modal";
 import { Button } from "@/app/shared/ui/button";
 import {
   Dialog,
@@ -91,7 +91,7 @@ export default function SettingsSwitcher() {
             </div>
             <div className="flex items-center justify-between">
               <span>{t("language")}</span>
-              <LangToggler />
+              <LangToggleModal />
             </div>
           </div>
           <DialogFooter>

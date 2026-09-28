@@ -1,6 +1,6 @@
-# Makefile - My-Portfolio
-DOCKER_IMAGE_NAME = my-portfolio
-DOCKER_CONTAINER_NAME = my-portfolio
+# Makefile - My-Portfolio-Blog
+DOCKER_IMAGE_NAME = my-portfolio-blog
+DOCKER_CONTAINER_NAME = my-portfolio-blog
 PORT = 3000
 DE = docker exec -it
 DL = docker logs -f

@@ -1,21 +1,8 @@
 "use client";
 
-import type {
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-} from "@tanstack/react-table";
-import {
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { flexRender, useTable } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import type { TagsDataTableProps } from "@/app/shared/types/tags/tags";
 import { Button } from "@/app/shared/ui/button";
 import {
@@ -34,31 +21,17 @@ import {
   TableRow,
 } from "@/app/shared/ui/table";
 import { getTagsColumns } from "./tags-columns";
+import { tagsTableFeatures } from "./tags-table-features";
 
 export function TagsDataTable({ data }: TagsDataTableProps) {
   const t = useTranslations("dashboard.tags");
 
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-
   const columns = getTagsColumns(t);
 
-  const table = useReactTable({
+  const table = useTable({
     data,
     columns,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-    },
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    features: tagsTableFeatures,
   });
 
   return (
@@ -148,9 +121,9 @@ export function TagsDataTable({ data }: TagsDataTableProps) {
 
       <div className="flex items-center justify-between gap-2">
         <select
-          value={table.getState().pagination.pageSize}
+          value={table.state.pagination.pageSize}
           onChange={(event) => table.setPageSize(Number(event.target.value))}
-          className="rounded border px-2 py-1 text-sm"
+          className="rounded border px-2 py-1 text-sm bg-card"
         >
           {[10, 20, 30, 50].map((size) => (
             <option key={size} value={size}>

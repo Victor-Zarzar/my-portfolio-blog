@@ -2,8 +2,8 @@ import { getTranslations } from "next-intl/server";
 import SignInForm from "@/app/features/signin-form/signin-form";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 
-export default async function LoginPage() {
-  const t = await getTranslations("Login");
+export default async function SignInPage() {
+  const t = await getTranslations("SignIn");
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">

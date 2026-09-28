@@ -7,7 +7,6 @@ import { ArrowUpDown, Edit, Eye, EyeOff, Loader2, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { toast } from "sonner";
-
 import type { PostRow } from "@/app/shared/types/post/post";
 import {
   AlertDialog,
@@ -24,6 +23,7 @@ import { Badge } from "@/app/shared/ui/badge";
 import { Button } from "@/app/shared/ui/button";
 import { Link } from "@/i18n/navigation";
 import { deletePost, togglePublish } from "../post-form/post-actions";
+import type { PostsTableFeatures } from "./posts-table-features";
 
 function PostRowActions({ post }: { post: PostRow }) {
   const [isPending, startTransition] = useTransition();
@@ -110,7 +110,7 @@ function PostRowActions({ post }: { post: PostRow }) {
 
 export function getPostsColumns(
   t: ReturnType<typeof useTranslations>,
-): ColumnDef<PostRow>[] {
+): ColumnDef<PostsTableFeatures, PostRow>[] {
   return [
     {
       accessorKey: "title",

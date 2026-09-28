@@ -18,11 +18,11 @@ function restoreRuntime(): void {
   g.navigator = originalNavigator;
 }
 
-async function importFreshEnv(): Promise<typeof import("@/env.mjs")> {
-  return import(`@/env.mjs?test=${crypto.randomUUID()}`);
+async function importFreshEnv(): Promise<typeof import("@/env")> {
+  return import(`@/env?test=${crypto.randomUUID()}`);
 }
 
-describe("env.mjs loading .env", () => {
+describe("env loading .env", () => {
   beforeEach(() => {
     forceServerRuntime();
   });

@@ -4,7 +4,7 @@ import type {
   RepoResponse,
   StatsResponse,
 } from "@/app/shared/types/github/github";
-import env from "@/env.mjs";
+import env from "@/env";
 import { cacheWithRedis } from "./redis/cache";
 import { cacheKeys } from "./redis/keys";
 

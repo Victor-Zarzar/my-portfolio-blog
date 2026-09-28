@@ -25,14 +25,14 @@ import {
 } from "@/app/shared/ui/form";
 import { Input } from "@/app/shared/ui/input";
 import { useRouter } from "@/i18n/navigation";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import { cn } from "@/lib/utils";
 
 export default function SignInForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const t = useTranslations("Login");
+  const t = useTranslations("SignIn");
   const router = useRouter();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -130,7 +130,7 @@ export default function SignInForm({
                       <FormControl>
                         <Input
                           id="email"
-                          type="text"
+                          type="email"
                           autoComplete="email"
                           {...field}
                         />
@@ -147,9 +147,21 @@ export default function SignInForm({
                 render={({ field }) => (
                   <FormItem>
                     <Field>
-                      <FieldLabel htmlFor="password">
-                        {t("passwordLabel")}
-                      </FieldLabel>
+                      <div className="flex items-center justify-between gap-4">
+                        <FieldLabel htmlFor="password">
+                          {t("passwordLabel")}
+                        </FieldLabel>
+
+                        <Button
+                          type="button"
+                          variant="link"
+                          className="h-auto p-0 text-xs font-normal"
+                          onClick={() => router.push("/auth/forgot-password")}
+                        >
+                          {t("forgotPassword")}
+                        </Button>
+                      </div>
+
                       <FormControl>
                         <Input
                           id="password"
@@ -171,9 +183,22 @@ export default function SignInForm({
               )}
             </FieldGroup>
 
-            <CardFooter className="px-0 pt-2">
-              <Button type="submit" className="w-full">
+            <CardFooter className="px-0 pt-2 flex flex-col gap-3">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
                 {t("submit")}
+              </Button>
+
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => router.push("/auth/signup")}
+              >
+                {t("signup")}
               </Button>
             </CardFooter>
           </form>

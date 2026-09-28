@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import SignInLayoutWrapper from "@/app/shared/wrapper/signin-wrapper";
+import AuthWrapper from "@/app/shared/wrapper/auth-wrapper";
 
 export default function SignInLayout({ children }: { children: ReactNode }) {
-  return <SignInLayoutWrapper>{children}</SignInLayoutWrapper>;
+  return <AuthWrapper>{children}</AuthWrapper>;
 }

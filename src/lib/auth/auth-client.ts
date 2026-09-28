@@ -4,8 +4,8 @@ import {
   twoFactorClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-import env from "@/env.mjs";
-import type { auth } from "@/lib/auth";
+import env from "@/env";
+import type { auth } from "@/lib/auth/auth";
 
 export const authClient = createAuthClient({
   baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
