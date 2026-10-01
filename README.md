@@ -107,8 +107,8 @@ Before starting, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Victor-Zarzar/my-portfolio
-cd my-portfolio
+git clone https://github.com/Victor-Zarzar/my-portfolio-blog
+cd my-portfolio-blog
 ```
 
 ### 2. Open in your editor (example: Zed Editor)
@@ -219,35 +219,45 @@ Neon Project
 
 <h2 id="testing">Testing</h2>
 
-This My Portfolio uses Bun's built-in test runner with React Testing Library:
+Unit and integration tests use Bun's built-in test runner with React Testing Library
+and Happy DOM. End-to-end (E2E) tests use [Playwright](https://playwright.dev/) with Chromium.
 
-Manual with Bun:
-
-```bash
-bun test-unit
-```
-
-```bash
-bun test-e2e
-```
-
-```bash
-bun test-integration
-```
-
-Automated (Isolated Docker container):
+### Automated (Isolated Docker container) — Recommended
 
 ```bash
 make test-unit
-```
-
-```bash
+make test-integration
 make test-e2e
 ```
 
+#### E2E tests in an isolated container (OS-independent)
+
+`make test-e2e` builds a dedicated image from `Dockerfile.test`
+(`oven/bun` + project dependencies + Playwright Chromium with all system libraries)
+and runs the suite inside it, connected to a Redis container on the
+`my-portfolio-network` Docker network.
+
+Because the browser and every system dependency live inside the image, the
+results **do not depend on your host operating system** — the same command runs
+the same way on Linux, macOS and Windows, as long as Docker is available.
+Nothing needs to be installed on your machine besides Docker and Make.
+
+> **Windows note:** run `make` from **WSL2** (recommended) or Git Bash with
+> Docker Desktop running. The Makefile uses `$(PWD)` and POSIX shell syntax,
+> which are not available in plain `cmd`/PowerShell.
+
+### Manual with Bun (local machine)
+
 ```bash
-make test-integration
+bun run test:unit
+bun run test:integration
+
+make install-e2e     # first time only: installs Playwright browsers locally
+bun run test:e2e
 ```
+
+> Local E2E runs use your host's browser installation and OS libraries, so
+> results may vary between machines. Use `make test-e2e` for reproducible runs.
 
 Add your tests in the `tests/` directory or colocate them with your components.
 

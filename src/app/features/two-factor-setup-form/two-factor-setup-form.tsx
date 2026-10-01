@@ -210,6 +210,7 @@ export function TwoFactorSetupForm({
         <CardContent>
           <Form {...passwordForm}>
             <form
+              noValidate
               id="two-factor-password-form"
               onSubmit={passwordForm.handleSubmit(startSetup)}
               className="space-y-6"

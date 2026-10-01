@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import {
   AiOutlineGithub,
   AiOutlineInstagram,
@@ -22,16 +22,15 @@ import {
   CardHeader,
 } from "@/app/shared/ui/card";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/app/shared/ui/form";
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/app/shared/ui/field";
 import { Input } from "@/app/shared/ui/input";
 import { Textarea } from "@/app/shared/ui/textarea";
 import { contactService } from "@/lib/contact";
+import { cn } from "@/lib/utils";
 
 export default function ContactForm({
   className,
@@ -41,19 +40,21 @@ export default function ContactForm({
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const formSchema = z.object({
-    name: z.string().min(1, t("namerequired")),
+    name: z.string().trim().min(1, t("namerequired")),
     email: z
       .string()
       .trim()
       .toLowerCase()
       .min(1, t("emailrequired"))
       .email(t("invalidemail")),
-    subject: z.string().min(1, t("subjectrequired")),
-    message: z.string().min(1, t("messagerequired")),
+    subject: z.string().trim().min(1, t("subjectrequired")),
+    message: z.string().trim().min(1, t("messagerequired")),
     company: z.string().optional(),
   });
 
-  const form = useForm({
+  type ContactFormValues = z.infer<typeof formSchema>;
+
+  const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -64,20 +65,19 @@ export default function ContactForm({
     },
   });
 
-  async function handleSubmit(values: z.infer<typeof formSchema>) {
+  async function handleSubmit(values: ContactFormValues) {
     try {
       if (!executeRecaptcha) {
         toast.error(t("captcha-not-ready"));
+        Sentry.captureMessage(t("captcha-not-ready"), "warning");
         return;
       }
-
       const captchaToken = await executeRecaptcha("contact_form");
-
       if (!captchaToken) {
         toast.error(t("captcha-failed"));
+        Sentry.captureMessage(t("captcha-failed"), "error");
         return;
       }
-
       const success = await contactService.sendContactForm(
         values,
         {
@@ -87,7 +87,6 @@ export default function ContactForm({
         },
         captchaToken,
       );
-
       if (success) {
         form.reset();
       }
@@ -100,7 +99,7 @@ export default function ContactForm({
   return (
     <Card
       className="w-full mx-auto transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg
-            dark:hover:shadow-stone-600 border-black dark:border-gray-400"
+        dark:hover:shadow-stone-600 border-black dark:border-gray-400"
     >
       <CardHeader className="pb-4">
         <CardDescription className="text-sm md:text-base">
@@ -113,6 +112,7 @@ export default function ContactForm({
           <span className="text-xs md:text-sm text-muted-foreground">
             {t("socialText")}
           </span>
+
           <div className="flex gap-3">
             <Link
               href="https://github.com/Victor-Zarzar"
@@ -134,119 +134,128 @@ export default function ContactForm({
             </Link>
             <Link
               href="https://www.instagram.com/victorzarzar7/"
-              aria-label="Instagram"
               target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
               className="p-2 rounded-md border border-black dark:border-gray-200 hover:bg-accent/10 transition-colors"
             >
               <AiOutlineInstagram className="h-4 w-4" />
             </Link>
           </div>
         </div>
-
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleSubmit)}
-            className="flex flex-col gap-4"
-            {...props}
-          >
-            <FormField
-              control={form.control}
+        <form
+          noValidate
+          className={cn("flex flex-col gap-4", className)}
+          onSubmit={form.handleSubmit(handleSubmit)}
+          {...props}
+        >
+          <FieldGroup>
+            <Controller
               name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("name")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("name")}
-                      {...field}
-                      className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
-                      autoComplete="name"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("name")}</FieldLabel>
+                  <Input
+                    {...field}
+                    id={field.name}
+                    type="text"
+                    autoComplete="name"
+                    placeholder={t("name")}
+                    aria-invalid={fieldState.invalid}
+                    className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
             />
-
             <input
               type="text"
-              name="company"
-              style={{ display: "none" }}
+              {...form.register("company")}
+              className="hidden"
+              tabIndex={-1}
               autoComplete="off"
+              aria-hidden="true"
             />
-
-            <FormField
-              control={form.control}
+            <Controller
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("email")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("email")}
-                      type="text"
-                      inputMode="email"
-                      {...field}
-                      className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
-                      autoComplete="email"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("email")}</FieldLabel>
+                  <Input
+                    {...field}
+                    id={field.name}
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    placeholder={t("email")}
+                    aria-invalid={fieldState.invalid}
+                    className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
             />
-
-            <FormField
-              control={form.control}
+            <Controller
               name="subject"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("subject")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("subject")}
-                      {...field}
-                      className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
-                      autoComplete="subject"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
               control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("message")}</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder={t("message")}
-                      {...field}
-                      className="min-h-32 dark:bg-stone-950 dark:border-b dark:border-stone-600"
-                      autoComplete="off"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("subject")}</FieldLabel>
+                  <Input
+                    {...field}
+                    id={field.name}
+                    type="text"
+                    autoComplete="off"
+                    placeholder={t("subject")}
+                    aria-invalid={fieldState.invalid}
+                    className="dark:bg-stone-950 dark:border-b dark:border-stone-600"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
               )}
             />
-
-            <CardFooter className="px-0 pt-2">
-              <Button
-                type="submit"
-                className="w-full font-medium border border-black dark:border-gray-400
-                                transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg
-                                dark:hover:shadow-stone-600 hover:text-accent-foreground"
-                variant="outline"
-              >
-                {t("submit")}
-              </Button>
-            </CardFooter>
-          </form>
-        </Form>
+            <Controller
+              name="message"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("message")}</FieldLabel>
+                  <Textarea
+                    {...field}
+                    id={field.name}
+                    autoComplete="off"
+                    placeholder={t("message")}
+                    aria-invalid={fieldState.invalid}
+                    className="min-h-32 dark:bg-stone-950 dark:border-b dark:border-stone-600"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+          </FieldGroup>
+          <CardFooter className="px-0 pt-2">
+            <Button
+              type="submit"
+              disabled={form.formState.isSubmitting}
+              className="w-full font-medium border border-black dark:border-gray-400
+                transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg
+                dark:hover:shadow-stone-600 hover:text-accent-foreground"
+              variant="outline"
+            >
+              {form.formState.isSubmitting ? t("loading") : t("submit")}
+            </Button>
+          </CardFooter>
+        </form>
       </CardContent>
     </Card>
   );

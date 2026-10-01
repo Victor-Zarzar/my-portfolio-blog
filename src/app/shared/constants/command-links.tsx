@@ -1,4 +1,5 @@
 import {
+  BarChart,
   BookOpen,
   FolderKanban,
   Home,
@@ -76,5 +77,11 @@ export const adminCommandLinks: CommandLink[] = [
     labelKey: "nav.tags.new",
     href: "/admin/tags/new",
     icon: <FolderKanban className={iconClass} />,
+  },
+  {
+    id: "analytics",
+    labelKey: "nav.analytics",
+    href: "/admin/analytics",
+    icon: <BarChart className={iconClass} />,
   },
 ];

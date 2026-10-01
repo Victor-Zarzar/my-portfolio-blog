@@ -242,7 +242,8 @@
       },
       "tags": {
         "new": "Nueva tag"
-      }
+      },
+      "analytics": "Análisis"
     }
   },
   "SignIn": {
@@ -268,7 +269,8 @@
     "error401": "Correo electrónico o contraseña incorrectos.",
     "error403": "Tu acceso está bloqueado. Contacta con soporte.",
     "captcha-not-ready": "captcha no está listo",
-    "captcha-failed": "captcha falló. inténtalo de nuevo."
+    "captcha-failed": "captcha falló. inténtalo de nuevo.",
+    "loading": "Cargando..."
   },
   "SignUp": {
     "title": "Crear cuenta",
@@ -438,6 +440,24 @@
       "totalPosts": "Total de posts",
       "published": "Publicados",
       "drafts": "Borradores"
+    },
+    "analytics": {
+      "title": "Analíticas",
+      "description": "Resumen del contenido y las publicaciones del blog.",
+      "cards": {
+        "totalPosts": "Total de posts",
+        "publishedPosts": "Publicados",
+        "draftPosts": "Borradores",
+        "totalTags": "Etiquetas"
+      },
+      "tags": {
+        "title": "Principales etiquetas",
+        "description": "Etiquetas más utilizadas en los posts publicados."
+      },
+      "translations": {
+        "title": "Traducciones",
+        "description": "Traducciones disponibles agrupadas por idioma."
+      }
     },
     "profile": {
       "title": "Perfil",

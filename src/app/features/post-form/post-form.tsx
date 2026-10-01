@@ -104,6 +104,7 @@ export function PostForm({
 
   return (
     <form
+      noValidate
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-8 max-w-4xl mx-auto py-8"
     >

@@ -15,6 +15,7 @@ export default async function SignInPage() {
           {t("subtitle")}
         </p>
       </div>
+
       <SignInForm />
     </section>
   );
