@@ -26,7 +26,10 @@ import { cn } from "@/lib/utils";
 
 const iconClass = "mr-0.5 h-4 w-4";
 
-export default function CommandPalette({ links }: CommandPaletteProps) {
+export default function CommandPalette({
+  links,
+  showSettings = true,
+}: CommandPaletteProps) {
   const t = useTranslations("CommandPalette");
   const router = useRouter();
 
@@ -99,20 +102,24 @@ export default function CommandPalette({ links }: CommandPaletteProps) {
                   </CommandItem>
                 ))}
               </CommandGroup>
-
-              <CommandSeparator />
-
-              <CommandGroup heading={t("command.settings")}>
-                <CommandItem
-                  onSelect={() => {
-                    setIsOpen(false);
-                    window.dispatchEvent(new CustomEvent("app:open-settings"));
-                  }}
-                >
-                  <Settings className={iconClass} />
-                  <span>{t("nav.settings")}</span>
-                </CommandItem>
-              </CommandGroup>
+              {showSettings && (
+                <>
+                  <CommandSeparator />
+                  <CommandGroup heading={t("command.settings")}>
+                    <CommandItem
+                      onSelect={() => {
+                        setIsOpen(false);
+                        window.dispatchEvent(
+                          new CustomEvent("app:open-settings"),
+                        );
+                      }}
+                    >
+                      <Settings className={iconClass} />
+                      <span>{t("nav.settings")}</span>
+                    </CommandItem>
+                  </CommandGroup>
+                </>
+              )}
             </CommandList>
           </Command>
         </DialogContent>

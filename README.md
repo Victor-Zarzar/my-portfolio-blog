@@ -273,6 +273,17 @@ bun run lint:fix          # Format errors code
 bun run format            # Format code
 ```
 
+### 6. Git Hooks with Lefthook
+
+This project uses **Lefthook** to automatically run quality checks before commits and pushes, keeping the local development workflow consistent and preventing broken code from being pushed.
+
+The hooks are configured in `lefthook.yml`:
+
+- **Pre-commit** — runs type checking, linting, unit tests, and integration tests.
+- **Pre-push** — runs the full E2E test suite inside an isolated Docker container, ensuring consistent results across operating systems.
+
+Hooks are installed automatically with the project dependencies and run as part of the normal Git workflow. No manual test command is required before committing or pushing.
+
 ---
 
 <h2 id="database">Database</h2>

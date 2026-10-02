@@ -13,7 +13,8 @@
     "hello": "Hello,",
     "signOut": "Sign out",
     "profile": "Profile",
-    "settings": "Settings"
+    "settings": "Settings",
+    "security": "Security"
   },
   "Navbar": {
     "titlenavbar": "Victor Zarzar",
@@ -217,6 +218,7 @@
     "description": "An unexpected error occurred while loading this page. Don't worry — we've been notified and you can continue browsing normally.",
     "return-home": "Back to Homepage"
   },
+
   "CommandPalette": {
     "searchPlaceholder": "Search pages...",
     "pressToNavigate": "Press ⌘K to navigate",
@@ -224,7 +226,8 @@
       "navigate": "Navigation",
       "settings": "Settings",
       "empty": "No results found",
-      "description": "Page description"
+      "description": "Page description",
+      "navigation": "Navigation"
     },
     "nav": {
       "home": "Home",
@@ -243,7 +246,12 @@
       "tags": {
         "new": "New tag"
       },
-      "analytics": "Analytics"
+      "analytics": {
+        "title": "Analytics",
+        "overview": "Overview",
+        "traffic": "Traffic",
+        "security": "Security"
+      }
     }
   },
   "SignIn": {
@@ -436,6 +444,8 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "description": "Overview of your blog content and publishing activity.",
+    "logout": "Logout",
     "stats": {
       "totalPosts": "Total posts",
       "published": "Published",
@@ -483,6 +493,50 @@
     "security": {
       "title": "Security",
       "description": "Manage your authentication and account recovery settings."
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Customize the appearance and preferences of the admin dashboard.",
+      "preferences": {
+        "title": "Preferences",
+        "description": "Customize your admin dashboard experience."
+      },
+      "theme": {
+        "title": "Theme",
+        "description": "Choose the application appearance.",
+        "options": {
+          "system": {
+            "title": "System",
+            "description": "Use system preference"
+          },
+          "light": {
+            "title": "Light",
+            "description": "Use light theme"
+          },
+          "dark": {
+            "title": "Dark",
+            "description": "Use dark theme"
+          }
+        }
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose the language used by the application.",
+        "options": {
+          "pt": {
+            "title": "Portuguese",
+            "description": "Português"
+          },
+          "en": {
+            "title": "English",
+            "description": "English"
+          },
+          "es": {
+            "title": "Spanish",
+            "description": "Español"
+          }
+        }
+      }
     },
     "tags": {
       "title": "Tags",

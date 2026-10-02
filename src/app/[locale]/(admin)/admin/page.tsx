@@ -1,5 +1,7 @@
 import { desc } from "drizzle-orm";
+import { FileCheck2, FileText, Text } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
@@ -24,16 +26,49 @@ export default async function AdminDashboardPage() {
   const drafts = allPosts.length - published;
   const t = await getTranslations("dashboard");
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <FadeWrapper>
-        <h1 className="text-center text-2xl font-bold mb-8">{t("title")}</h1>
-      </FadeWrapper>
+  const cards = [
+    {
+      title: t("stats.totalPosts"),
+      value: allPosts.length,
+      icon: FileText,
+    },
+    {
+      title: t("stats.published"),
+      value: published,
+      icon: FileCheck2,
+    },
+    {
+      title: t("stats.drafts"),
+      value: drafts,
+      icon: Text,
+    },
+  ];
 
+  return (
+    <div className="mx-auto max-w-7xl px-6 py-12">
+      <div className="text-center mb-8">
+        <FadeWrapper>
+          <h1 className=" text-2xl font-bold">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("description")}</p>
+        </FadeWrapper>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-        <StatCard label={t("stats.totalPosts")} value={allPosts.length} />
-        <StatCard label={t("stats.published")} value={published} />
-        <StatCard label={t("stats.drafts")} value={drafts} />
+        {cards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <Card key={card.title}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {card.title}
+                </CardTitle>
+                <Icon className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{card.value}</div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
       <div className="mb-6 flex items-center justify-between">
@@ -57,15 +92,6 @@ export default async function AdminDashboardPage() {
           </li>
         ))}
       </ul>
-    </div>
-  );
-}
-
-function StatCard({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-lg border bg-card p-4">
-      <p className="text-sm text-muted-foreground">{label}</p>
-      <p className="text-3xl font-bold mt-1">{value}</p>
     </div>
   );
 }

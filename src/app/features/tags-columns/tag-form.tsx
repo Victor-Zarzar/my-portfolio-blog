@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/app/shared/ui/button";
+import { Card, CardContent } from "@/app/shared/ui/card";
 import { Input } from "@/app/shared/ui/input";
 import { Label } from "@/app/shared/ui/label";
 import { useRouter } from "@/i18n/navigation";
@@ -57,57 +58,55 @@ export function TagForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto max-w-xl space-y-6 py-8"
-    >
-      <div className="space-y-2">
-        <Label htmlFor="name">{t("name")}</Label>
-        <Input
-          id="name"
-          type="text"
-          placeholder={t("namePlaceholder")}
-          {...register("name")}
-        />
-        {errors.name && (
-          <p className="text-sm text-destructive">{errors.name.message}</p>
-        )}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="slug">{t("slug")}</Label>
-        <Input
-          id="slug"
-          type="text"
-          placeholder={t("slugPlaceholder")}
-          {...register("slug")}
-        />
-        {errors.slug && (
-          <p className="text-sm text-destructive">{errors.slug.message}</p>
-        )}
-      </div>
-
-      <div className="flex justify-end gap-3">
-        <Button
-          type="button"
-          onClick={() => router.back()}
-          disabled={isPending}
-          className="border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
-          variant="secondary"
-        >
-          {t("cancel")}
-        </Button>
-
-        <Button
-          type="submit"
-          disabled={isPending}
-          className="border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
-          variant="secondary"
-        >
-          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {t("create")}
-        </Button>
-      </div>
-    </form>
+    <Card>
+      <CardContent className="pt-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="name">{t("name")}</Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder={t("namePlaceholder")}
+              {...register("name")}
+            />
+            {errors.name && (
+              <p className="text-sm text-destructive">{errors.name.message}</p>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="slug">{t("slug")}</Label>
+            <Input
+              id="slug"
+              type="text"
+              placeholder={t("slugPlaceholder")}
+              {...register("slug")}
+            />
+            {errors.slug && (
+              <p className="text-sm text-destructive">{errors.slug.message}</p>
+            )}
+          </div>
+          <div className="flex justify-end gap-3">
+            <Button
+              type="button"
+              onClick={() => router.back()}
+              disabled={isPending}
+              className="border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
+              variant="secondary"
+            >
+              {t("cancel")}
+            </Button>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
+              variant="secondary"
+            >
+              {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {t("create")}
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

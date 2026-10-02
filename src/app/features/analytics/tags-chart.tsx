@@ -28,20 +28,22 @@ export function TagsChart({ data }: TagsChartProps) {
   const t = useTranslations("dashboard.analytics");
 
   return (
-    <Card>
+    <Card className="min-w-0">
       <CardHeader>
         <CardTitle>{t("tags.title")}</CardTitle>
         <CardDescription>{t("tags.description")}</CardDescription>
       </CardHeader>
-
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-75 w-full">
+      <CardContent className="min-w-0">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-55 min-w-0 w-full sm:h-65 xl:h-75"
+        >
           <BarChart
             accessibilityLayer
             data={data}
             margin={{
-              left: 12,
-              right: 12,
+              left: 0,
+              right: 8,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -51,9 +53,15 @@ export function TagsChart({ data }: TagsChartProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              minTickGap={12}
             />
 
-            <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
+            <YAxis
+              allowDecimals={false}
+              tickLine={false}
+              axisLine={false}
+              width={28}
+            />
 
             <ChartTooltip
               cursor={false}

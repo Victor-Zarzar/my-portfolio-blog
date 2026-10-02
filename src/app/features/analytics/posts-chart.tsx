@@ -28,40 +28,43 @@ export function PostsChart({ data }: PostsChartProps) {
   const t = useTranslations("dashboard.analytics");
 
   return (
-    <Card>
+    <Card className="min-w-0">
       <CardHeader>
         <CardTitle>{t("posts.title")}</CardTitle>
         <CardDescription>{t("posts.description")}</CardDescription>
       </CardHeader>
-
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-75 w-full">
+      <CardContent className="min-w-0">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-55 min-w-0 w-full sm:h-65 xl:h-75"
+        >
           <LineChart
             accessibilityLayer
             data={data}
             margin={{
-              left: 12,
-              right: 12,
+              left: 0,
+              right: 8,
             }}
           >
             <CartesianGrid vertical={false} />
-
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-
-            <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
-
+            <YAxis
+              allowDecimals={false}
+              tickLine={false}
+              axisLine={false}
+              width={28}
+            />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent className="border-border bg-popover text-popover-foreground shadow-md" />
               }
             />
-
             <Line
               dataKey="posts"
               type="monotone"

@@ -1,11 +1,19 @@
+import type { ReactNode } from "react";
+
 export type CommandLink = {
   id: string;
   labelKey: string;
   href: string;
-  keywords?: string;
-  icon?: React.ReactNode;
+  icon: ReactNode;
 };
 
-export type CommandPaletteProps = {
-  links: CommandLink[];
+export type AdminNavLink = CommandLink;
+
+export type AdminNavCollapsible = {
+  id: string;
+  labelKey: string;
+  icon: ReactNode;
+  items: CommandLink[];
 };
+
+export type AdminNavItem = AdminNavLink | AdminNavCollapsible;
