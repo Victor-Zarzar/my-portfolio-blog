@@ -2,7 +2,6 @@
 
 import { ChevronRight, LayoutDashboard } from "lucide-react";
 import { useTranslations } from "next-intl";
-
 import { AdminUserMenu } from "@/app/features/admin-user-menu/admin-user-menu";
 import { adminNavigation } from "@/app/shared/constants/command-links";
 import type { AdminSidebarProps } from "@/app/shared/types/admin/admin";

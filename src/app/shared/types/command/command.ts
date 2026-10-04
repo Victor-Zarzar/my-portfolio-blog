@@ -2,9 +2,15 @@ import type { ReactNode } from "react";
 
 export type CommandLink = {
   id: string;
-  labelKey: string;
   href: string;
-  icon: ReactNode;
+  labelKey: string;
+  keywords?: string;
+  icon?: ReactNode;
+};
+
+export type CommandPaletteProps = {
+  links: CommandLink[];
+  showSettings?: boolean;
 };
 
 export type AdminNavLink = CommandLink;

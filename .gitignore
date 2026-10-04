@@ -53,6 +53,3 @@ dump.rdb
 /test-results/
 /playwright-report/
 /playwright/.cache/
-
-# FVM Version Cache
-.fvm/

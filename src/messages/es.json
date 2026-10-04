@@ -1,19 +1,19 @@
 {
   "Layout": {
     "title": "Victor Zarzar | Desarrollador Full Stack",
-    "description": "Desarrollador Full Stack con experiencia en React, Next.js, TypeScript, Python, FastAPI, SQL, Docker y desarrollo moderno de aplicaciones web.",
+    "description": "Desarrollador Full Stack con experiencia en React, Next.js, TypeScript, Python, FastAPI, SQL, Docker y desarrollo de aplicaciones web modernas.",
     "ogDescription": "Portfolio profesional con desarrollo Full Stack, aplicaciones web, APIs, bases de datos, infraestructura y proyectos de ingeniería de software."
   },
   "Manifest": {
     "name": "Portfolio de Victor Zarzar",
-    "shortName": "Victor Portfolio",
+    "shortName": "Portfolio de Victor",
     "description": "Portfolio profesional con proyectos modernos y tecnologías actualizadas."
   },
   "AdminNavbar": {
     "hello": "Hola,",
     "signOut": "Cerrar sesión",
     "profile": "Perfil",
-    "settings": "Configuración",
+    "settings": "Ajustes",
     "security": "Seguridad"
   },
   "Navbar": {
@@ -29,15 +29,15 @@
     "english": "Inglés",
     "portuguese": "Portugués",
     "spanish": "Español",
-    "settings": "Configuración",
+    "settings": "Ajustes",
     "dialog-description": "Personaliza tu experiencia.",
-    "dark-mode": "Modo Oscuro",
+    "dark-mode": "Modo oscuro",
     "toggle-theme": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
     "system": "Sistema",
     "close": "Cerrar",
-    "open-settings": "Abrir configuración"
+    "open-settings": "Abrir ajustes"
   },
   "Header": {
     "h1": "Victor Zarzar",
@@ -46,23 +46,23 @@
   },
   "Skills": {
     "h1": "Habilidades",
-    "p": "Algunas de las tecnologías que utilizo en mi día a día..."
+    "p": "Algunas de las tecnologías que uso en mi día a día..."
   },
   "About": {
     "title": "Victor Zarzar | Sobre mí",
     "h1": "Sobre mí",
-    "p": "Mi primer contacto con la programación fue en 2009, utilizando tecnologías como SQL Server 2000 y MySQL para crear, restaurar y administrar bases de datos, además de desarrollar sitios web con PHP. Actualmente trabajo como Desarrollador Full Stack, utilizando tecnologías modernas tanto en el desarrollo front-end como back-end. Busco continuamente mejorar mis conocimientos, explorar lo desconocido y evolucionar cada día. Los nuevos desafíos siempre son bienvenidos. Me encanta aprender nuevas tecnologías y resolver problemas. Apasionado por el café, mis discos de vinilo, el Rock ’n’ Roll y la guitarra. 🤘🏻🎸",
+    "p": "Mi primer contacto con la programación fue en 2009, utilizando tecnologías como SQL Server 2000 y MySQL para crear, restaurar y gestionar bases de datos, además de desarrollar sitios web con PHP. Actualmente trabajo como Desarrollador Full Stack, utilizando tecnologías modernas tanto en el front-end como en el back-end. Busco constantemente mejorar mis conocimientos, abrazar lo desconocido y evolucionar cada día. Los nuevos retos siempre son bienvenidos. Me encanta aprender nuevas tecnologías y resolver problemas. Apasionado del café, de mis discos de vinilo, del Rock ’n’ Roll y de la guitarra. 🤘🏻🎸",
     "h2": "Idiomas",
-    "span1": "Inglés - Competencia técnica básica",
+    "span1": "Inglés - Nivel técnico básico",
     "span2": "PT-BR - Nativo",
     "span3": "Español - Básico"
   },
   "Courses": {
     "h1": "Cursos",
-    "p": "ls cursos/",
+    "p": "ls courses/",
     "course1": "De Cero a Programador en solo 14 clases. Dart y Flutter",
-    "course2": "TypeScript desde básico hasta avanzado (con React, Express)",
-    "course3": "Base de Datos SQL desde CERO hasta Avanzado 2023",
+    "course2": "TypeScript de básico a avanzado (con React, Express)",
+    "course3": "Base de datos SQL de CERO a Avanzado 2023",
     "course4": "SwiftUI Masterclass 2023 - Desarrollo de Apps iOS y Swift",
     "course5": "Apps iOS 12 con Swift 5 y Xcode 10 - Básico",
     "course6": "Curso de Diseño Web: HTML5, CSS3 y JS + 5 Proyectos",
@@ -74,13 +74,13 @@
     "h1": "Servicios",
     "cardtitle1": "Desarrollo Web",
     "carddescription1": "Sitios y aplicaciones web modernos y responsivos",
-    "p1": "Desarrollo de sitios y aplicaciones web personalizados con enfoque en rendimiento, SEO, accesibilidad y experiencia de usuario.",
+    "p1": "Desarrollo de sitios y aplicaciones web a medida, centrados en el rendimiento, el SEO, la accesibilidad y la experiencia de usuario.",
     "cardtitle2": "Desarrollo Back-end",
     "carddescription2": "APIs y servicios para aplicaciones modernas",
-    "p2": "Desarrollo de APIs y servicios back-end utilizando Python, FastAPI, TypeScript, bases de datos SQL, Redis e integraciones con aplicaciones web.",
+    "p2": "Desarrollo de APIs y servicios de back-end con Python, FastAPI, TypeScript, bases de datos SQL, Redis e integraciones con aplicaciones web.",
     "cardtitle3": "Desarrollo Full Stack",
-    "carddescription3": "Aplicaciones completas desde el front-end hasta el back-end",
-    "p3": "Desarrollo de soluciones Full Stack integrando interfaces modernas, APIs, autenticación, bases de datos, Docker y despliegue de aplicaciones."
+    "carddescription3": "Aplicaciones completas, del front-end al back-end",
+    "p3": "Desarrollo de soluciones Full Stack que integran interfaces modernas, APIs, autenticación, bases de datos, Docker y despliegue de aplicaciones."
   },
   "Experiences": {
     "h1": "Experiencia Técnica y Formación",
@@ -94,15 +94,15 @@
       "title": "XLabs Security",
       "role": "Desarrollador de Software",
       "achievements": "Principales responsabilidades y logros:",
-      "description": "Desarrollé un dashboard completo con autenticación, notificaciones programadas y panel administrativo. Construí el frontend utilizando React, TypeScript, Next.js, Tailwind, i18n y Shadcn/UI, incluyendo modo oscuro. Implementé tablas con exportación a PDF/Excel y gráficos operativos. Desarrollé una aplicación móvil multiplataforma con Flutter para Android, iOS y Web utilizando i18n, Provider, Sentry y notificaciones configurables. Desarrollé desde cero una API REST con FastAPI utilizando Docker, Nginx, HTTPS, rate limiting y Pytest. Realicé mantenimiento de APIs con FastAPI, MySQL y Redis, utilizando Alembic para migraciones de base de datos.",
+      "description": "Desarrollé un dashboard completo con autenticación, notificaciones programadas y panel administrativo. Construí el front-end con React, TypeScript, Next.js, Tailwind, i18n y Shadcn/UI, incluyendo modo oscuro. Implementé tablas con exportación a PDF/Excel y gráficos operativos. Desarrollé una aplicación móvil multiplataforma con Flutter para Android, iOS y Web, utilizando i18n, Provider, Sentry y notificaciones configurables. Construí una API REST desde cero con FastAPI utilizando Docker, Nginx, HTTPS, rate limiting y Pytest. Mantuve APIs con FastAPI, MySQL y Redis, utilizando Alembic para las migraciones de base de datos.",
       "local": "São Leopoldo, RS, Brasil · Remoto"
     },
     "freelance": {
       "time": "Dic 2022 – Mar 2023",
       "title": "Freelance",
-      "role": "QA Tester",
+      "role": "Tester de QA",
       "achievements": "Principales responsabilidades y logros:",
-      "description": "Pruebas funcionales, de usabilidad, carga, localización, accesibilidad y regresión.",
+      "description": "Pruebas funcionales, de usabilidad, de carga, de localización, de accesibilidad y de regresión.",
       "local": "Novo Hamburgo, RS, Brasil · Remoto"
     },
     "freelance-1": {
@@ -110,7 +110,7 @@
       "title": "Proyectos Freelance",
       "role": "Desarrollador Full Stack",
       "achievements": "Principales responsabilidades y logros:",
-      "description": "Trabajo como Desarrollador Full Stack en proyectos freelance, desarrollando aplicaciones modernas de front-end y back-end utilizando React, Next.js, TypeScript, Python, APIs, bases de datos e integraciones de servicios, con mayor enfoque en el desarrollo front-end.",
+      "description": "Trabajo como Desarrollador Full Stack en proyectos freelance, construyendo aplicaciones modernas de front-end y back-end con React, Next.js, TypeScript, Tanstack, Flutter, Dart, Docker, PostgreSQL, MySQL, Python, APIs, bases de datos e integraciones de servicios, con mayor enfoque en el desarrollo front-end.",
       "local": "Novo Hamburgo, RS, Brasil · Remoto"
     },
     "ahanguera1": {
@@ -134,29 +134,29 @@
     "totalCommits": "Total de Commits",
     "totalPrs": "Total de PRs",
     "totalIssues": "Total de Issues",
-    "contributedTo": "Contribuciones",
-    "topLanguages": "Principales Lenguajes",
+    "contributedTo": "Ha contribuido a",
+    "topLanguages": "Lenguajes Principales",
     "repo": "Sitio web"
   },
   "PrivacyPolicy": {
     "title": "Victor Zarzar | Política de Privacidad",
     "h1": "Política de Privacidad",
-    "p": "Cómo recopilamos, utilizamos y protegemos tu información.",
+    "p": "Cómo recopilamos, usamos y protegemos tu información.",
     "h2": "Última actualización: marzo de 2026",
     "informationCollectedTitle": "01. Información que Recopilamos",
-    "informationCollectedDescription": "Solo recopilamos la información que proporcionas voluntariamente, como tu nombre, dirección de correo electrónico y mensaje al contactarnos mediante el formulario de contacto de este sitio web. También podemos recopilar datos anónimos de navegación, como las páginas visitadas y el tiempo de permanencia, con fines de análisis y mejora de la experiencia.",
-    "howWeUseTitle": "02. Cómo Utilizamos tu Información",
-    "howWeUseDescription": "La información recopilada se utiliza exclusivamente para responder a tus mensajes, mejorar la experiencia de navegación en este sitio web y, cuando corresponda, enviar comunicaciones relevantes con tu consentimiento.",
+    "informationCollectedDescription": "Solo recopilamos la información que proporcionas voluntariamente, como tu nombre, dirección de correo electrónico y mensaje al contactarnos a través del formulario de contacto de este sitio web. También podemos recopilar datos anónimos de navegación, como las páginas visitadas y el tiempo de permanencia, con fines de análisis y mejora de la experiencia.",
+    "howWeUseTitle": "02. Cómo Usamos tu Información",
+    "howWeUseDescription": "La información recopilada se utiliza únicamente para responder a tus mensajes, mejorar la experiencia de navegación en este sitio web y, cuando corresponda, enviar comunicaciones relevantes con tu consentimiento.",
     "dataSharingTitle": "03. Compartición de Datos",
-    "dataSharingDescription": "Tus datos personales no se venden, comercializan ni transfieren a terceros, excepto cuando sea necesario para operar el sitio web mediante proveedores de servicios de confianza, quienes también están obligados a mantener dicha información confidencial.",
+    "dataSharingDescription": "Tus datos personales no se venden, intercambian ni transfieren a terceros, salvo cuando sea necesario para el funcionamiento del sitio web a través de proveedores de servicios de confianza, que también están obligados a mantener dicha información de forma confidencial.",
     "cookiesTitle": "04. Cookies",
-    "cookiesDescription": "Este sitio web puede utilizar cookies para mejorar tu experiencia de navegación y comprender cómo se utiliza el contenido. Puedes desactivar las cookies en la configuración de tu navegador, aunque esto puede afectar algunas funcionalidades.",
+    "cookiesDescription": "Este sitio web puede utilizar cookies para mejorar tu experiencia de navegación y comprender cómo se utiliza el contenido. Puedes desactivar las cookies en la configuración de tu navegador, aunque esto podría afectar a algunas funcionalidades.",
     "rightsTitle": "05. Tus Derechos",
-    "rightsDescription": "Puedes solicitar acceso, corrección o eliminación de tus datos personales en cualquier momento, cuando corresponda conforme a la legislación vigente. Para ello, utiliza los canales de contacto disponibles en este sitio web.",
+    "rightsDescription": "Puedes solicitar el acceso, la rectificación o la eliminación de tus datos personales en cualquier momento, conforme a la legislación vigente. Para ello, utiliza los canales de contacto disponibles en este sitio web.",
     "changesTitle": "06. Cambios en esta Política",
-    "changesDescription": "Esta Política de Privacidad puede actualizarse periódicamente para reflejar cambios en este sitio web, sus servicios u obligaciones legales. Recomendamos revisar esta página cuando sea necesario.",
+    "changesDescription": "Esta Política de Privacidad puede actualizarse periódicamente para reflejar cambios en este sitio web, en sus servicios o en obligaciones legales. Te recomendamos revisar esta página siempre que sea necesario.",
     "contactTitle": "07. Contacto",
-    "contactDescription": "Si tienes alguna pregunta sobre esta Política de Privacidad o sobre cómo se trata tu información, ponte en contacto mediante el formulario disponible en este sitio web."
+    "contactDescription": "Si tienes alguna pregunta sobre esta Política de Privacidad o sobre cómo se trata tu información, ponte en contacto a través del formulario de contacto disponible en este sitio web."
   },
   "Contact": {
     "title": "Victor Zarzar | Contacto",
@@ -166,31 +166,31 @@
     "subject": "Asunto",
     "message": "Mensaje",
     "submit": "Enviar",
-    "namerequired": "El nombre es obligatorio",
-    "subjectrequired": "El asunto es obligatorio",
-    "messagerequired": "El mensaje es obligatorio",
-    "emailerror": "Error al enviar el correo electrónico. Inténtalo de nuevo más tarde.",
+    "namerequired": "Nombre obligatorio",
+    "subjectrequired": "Asunto obligatorio",
+    "messagerequired": "Mensaje obligatorio",
+    "emailerror": "Error al enviar el correo. Inténtalo de nuevo más tarde.",
     "loading": "Enviando...",
-    "emailsucess": "¡Correo electrónico enviado correctamente!",
+    "emailsucess": "¡Correo enviado con éxito!",
     "cardTitle": "¿Te gustó mi trabajo? Envíame un mensaje",
-    "cardSubtitle": "Ponte en contacto enviando un mensaje o a través de mis redes sociales.",
-    "socialText": "O contáctame a través de",
+    "cardSubtitle": "Contacta conmigo enviando un mensaje o a través de mis redes sociales.",
+    "socialText": "O escríbeme por",
     "eyebrow": "Contacto",
     "description": "No dudes en ponerte en contacto rellenando el formulario de abajo.",
     "emailrequired": "Introduce tu correo electrónico.",
     "invalidemail": "Introduce una dirección de correo electrónico válida.",
-    "captcha-not-ready": "El captcha todavía no está listo.",
-    "captcha-failed": "La validación del captcha ha fallado. Inténtalo de nuevo."
+    "captcha-not-ready": "el captcha no está listo",
+    "captcha-failed": "error en el captcha. inténtalo de nuevo."
   },
   "NotFound": {
-    "p": "Lo sentimos, no hemos podido encontrar esta página.",
+    "p": "Lo sentimos, no hemos encontrado esta página.",
     "button": "Volver al Inicio"
   },
   "Cookies": {
-    "title": "Utilizamos cookies",
+    "title": "Usamos cookies",
     "accept": "Aceptar",
     "decline": "Rechazar",
-    "message": "Utilizamos cookies para mejorar tu experiencia.",
+    "message": "Usamos cookies para mejorar tu experiencia.",
     "privacyLink": "Lee nuestra Política de Privacidad",
     "error": "Error al aceptar las cookies"
   },
@@ -214,16 +214,17 @@
     "tryAgain": "Intentar de nuevo"
   },
   "Error": {
-    "title": "Algo ha salido mal",
-    "description": "Se ha producido un error inesperado al cargar esta página. No te preocupes — hemos sido notificados y puedes continuar navegando con normalidad.",
+    "title": "Algo salió mal",
+    "description": "Se produjo un error inesperado al cargar esta página. No te preocupes: hemos sido notificados y puedes seguir navegando con normalidad.",
     "return-home": "Volver al Inicio"
   },
+
   "CommandPalette": {
     "searchPlaceholder": "Buscar páginas...",
     "pressToNavigate": "Pulsa ⌘K para navegar",
     "command": {
       "navigate": "Navegación",
-      "settings": "Configuración",
+      "settings": "Ajustes",
       "empty": "No se encontraron resultados",
       "description": "Descripción de la página",
       "navigation": "Navegación"
@@ -235,18 +236,18 @@
       "projects": "Proyectos",
       "blog": "Blog",
       "contact": "Contacto",
-      "settings": "Configuración",
-      "dashboard": "Dashboard",
+      "settings": "Ajustes",
+      "dashboard": "Panel",
       "posts": {
         "index": "Posts",
         "new": "Nuevo post",
-        "tags": "Tags"
+        "tags": "Etiquetas"
       },
       "tags": {
-        "new": "Nueva tag"
+        "new": "Nueva etiqueta"
       },
       "analytics": {
-        "title": "Analytics",
+        "title": "Analíticas",
         "overview": "Resumen",
         "traffic": "Tráfico",
         "security": "Seguridad"
@@ -260,12 +261,12 @@
     "emailLabel": "Correo electrónico",
     "emailPlaceholder": "m@ejemplo.com",
     "passwordLabel": "Contraseña",
-    "forgotPassword": "¿Has olvidado tu contraseña?",
-    "submit": "Iniciar sesión",
-    "orContinueWith": "O continuar con",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "submit": "Entrar",
+    "orContinueWith": "O continúa con",
     "github": "Iniciar sesión con GitHub",
     "noAccount": "¿No tienes una cuenta?",
-    "signup": "Crear cuenta",
+    "signup": "Regístrate",
     "invalidemail": "Correo electrónico no válido",
     "passwordrequired": "La contraseña es obligatoria",
     "emailrequired": "Introduce tu correo electrónico.",
@@ -274,38 +275,38 @@
     "backToHome": "Volver al Inicio",
     "signinFailed": "Error al iniciar sesión",
     "error401": "Correo electrónico o contraseña incorrectos.",
-    "error403": "Tu acceso está bloqueado. Ponte en contacto con soporte.",
-    "captcha-not-ready": "El captcha todavía no está listo.",
-    "captcha-failed": "La validación del captcha ha fallado. Inténtalo de nuevo.",
+    "error403": "Tu acceso está bloqueado. Ponte en contacto con el soporte.",
+    "captcha-not-ready": "el captcha no está listo",
+    "captcha-failed": "error en el captcha. inténtalo de nuevo.",
     "loading": "Cargando..."
   },
   "SignUp": {
     "title": "Crear cuenta",
-    "subtitle": "Crea tu cuenta de administrador para acceder al dashboard.",
-    "title-card": "Crear cuenta",
+    "subtitle": "Crea tu cuenta de administrador para acceder al panel.",
+    "title-card": "Registro",
     "nameLabel": "Nombre",
     "emailLabel": "Correo electrónico",
     "passwordLabel": "Contraseña",
     "confirmPasswordLabel": "Confirmar contraseña",
     "submit": "Crear cuenta",
     "creatingAccount": "Creando cuenta...",
-    "nameMin": "El nombre debe contener al menos 2 caracteres.",
-    "nameMax": "El nombre debe contener como máximo 100 caracteres.",
+    "nameMin": "El nombre debe tener al menos 2 caracteres.",
+    "nameMax": "El nombre debe tener como máximo 100 caracteres.",
     "emailRequired": "El correo electrónico es obligatorio.",
     "invalidEmail": "Introduce una dirección de correo electrónico válida.",
-    "passwordMin": "La contraseña debe contener al menos 6 caracteres.",
-    "passwordMax": "La contraseña debe contener como máximo 100 caracteres.",
+    "passwordMin": "La contraseña debe tener al menos 6 caracteres.",
+    "passwordMax": "La contraseña debe tener como máximo 100 caracteres.",
     "confirmPasswordRequired": "Confirma tu contraseña.",
     "passwordMismatch": "Las contraseñas no coinciden.",
-    "captcha-not-ready": "El reCAPTCHA todavía no está listo.",
-    "captcha-failed": "No se ha podido validar el reCAPTCHA.",
-    "signupSuccess": "Cuenta creada correctamente.",
-    "signupFailed": "No se ha podido crear la cuenta.",
-    "unexpectedError": "Se ha producido un error inesperado al crear la cuenta.",
+    "captcha-not-ready": "reCAPTCHA aún no está listo.",
+    "captcha-failed": "No se pudo validar reCAPTCHA.",
+    "signupSuccess": "Cuenta creada con éxito.",
+    "signupFailed": "No se pudo crear la cuenta.",
+    "unexpectedError": "Se produjo un error inesperado al crear la cuenta.",
     "error403": "El registro no está disponible.",
     "error429": "Demasiados intentos. Espera e inténtalo de nuevo.",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "signIn": "Iniciar sesión",
+    "signIn": "Inicia sesión",
     "verificationEmailSent": "Hemos enviado un enlace de verificación a tu correo electrónico."
   },
   "VerifyEmail": {
@@ -316,79 +317,79 @@
     "checkSpam": "¿No encuentras el correo? Revisa también tu carpeta de spam.",
     "resend": "Reenviar correo",
     "resending": "Reenviando...",
-    "resendSuccess": "Correo de verificación reenviado correctamente.",
-    "resendFailed": "No se ha podido reenviar el correo de verificación.",
-    "missingEmail": "No se ha podido identificar la dirección de correo electrónico.",
+    "resendSuccess": "Correo de verificación reenviado con éxito.",
+    "resendFailed": "No se pudo reenviar el correo de verificación.",
+    "missingEmail": "No se pudo identificar la dirección de correo electrónico.",
     "backToSignIn": "Volver a iniciar sesión",
-    "captcha-not-ready": "El reCAPTCHA todavía no está listo.",
-    "captcha-failed": "No se ha podido validar el reCAPTCHA.",
+    "captcha-not-ready": "reCAPTCHA aún no está listo.",
+    "captcha-failed": "No se pudo validar reCAPTCHA.",
     "error429": "Demasiados intentos. Espera e inténtalo de nuevo.",
-    "unexpectedError": "Se ha producido un error inesperado. Inténtalo de nuevo.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtalo de nuevo.",
     "verificationEmailSent": "Hemos enviado un enlace de verificación a tu correo electrónico."
   },
   "ForgotPassword": {
     "title": "Recuperar contraseña",
-    "subtitle": "Introduce tu dirección de correo electrónico para recibir un enlace de recuperación de contraseña.",
-    "title-card": "¿Has olvidado tu contraseña?",
+    "subtitle": "Introduce tu correo electrónico para recibir un enlace de recuperación de contraseña.",
+    "title-card": "¿Olvidaste tu contraseña?",
     "description": "Introduce el correo electrónico asociado a tu cuenta. Si existe una cuenta, te enviaremos un enlace para restablecer tu contraseña.",
     "emailPlaceholder": "tu@ejemplo.com",
     "invalidEmail": "Introduce una dirección de correo electrónico válida.",
     "submit": "Enviar enlace de recuperación",
     "sending": "Enviando...",
     "backToSignIn": "Volver a iniciar sesión",
-    "requestSuccess": "Si existe una cuenta con este correo electrónico, enviaremos instrucciones para restablecer tu contraseña.",
-    "requestFailed": "No se ha podido solicitar el restablecimiento de contraseña.",
-    "unexpectedError": "Se ha producido un error inesperado. Inténtalo de nuevo.",
+    "requestSuccess": "Si existe una cuenta con este correo electrónico, te enviaremos instrucciones para restablecer tu contraseña.",
+    "requestFailed": "No se pudo solicitar el restablecimiento de la contraseña.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtalo de nuevo.",
     "error429": "Demasiados intentos. Espera un momento antes de volver a intentarlo.",
-    "captcha-not-ready": "La verificación de seguridad todavía no está lista. Inténtalo de nuevo.",
-    "captcha-failed": "No se ha podido completar la verificación de seguridad."
+    "captcha-not-ready": "La verificación de seguridad aún no está lista. Inténtalo de nuevo.",
+    "captcha-failed": "No se pudo completar la verificación de seguridad."
   },
   "ResetPassword": {
     "title": "Restablecer contraseña",
     "subtitle": "Crea una nueva contraseña para acceder a tu cuenta.",
-    "title-card": "Crear una nueva contraseña",
+    "title-card": "Crea una nueva contraseña",
     "passwordPlaceholder": "Nueva contraseña",
-    "confirmPasswordPlaceholder": "Confirmar nueva contraseña",
+    "confirmPasswordPlaceholder": "Confirma la nueva contraseña",
     "passwordMin": "Tu contraseña debe tener al menos 8 caracteres.",
     "confirmPasswordRequired": "Confirma tu nueva contraseña.",
     "passwordMismatch": "Las contraseñas no coinciden.",
     "submit": "Restablecer contraseña",
     "resetting": "Restableciendo...",
     "backToSignIn": "Volver a iniciar sesión",
-    "resetSuccess": "Tu contraseña se ha restablecido correctamente.",
-    "resetFailed": "No se ha podido restablecer tu contraseña.",
-    "unexpectedError": "Se ha producido un error inesperado. Inténtalo de nuevo.",
+    "resetSuccess": "Tu contraseña se ha restablecido con éxito.",
+    "resetFailed": "No se pudo restablecer tu contraseña.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtalo de nuevo.",
     "invalidToken": "Este enlace de recuperación no es válido o ha caducado.",
     "invalidOrExpiredToken": "El enlace de recuperación no es válido o ha caducado. Solicita un nuevo enlace.",
     "invalidTokenTitle": "Enlace no válido o caducado",
     "invalidTokenDescription": "Este enlace de recuperación ya no es válido. Solicita un nuevo enlace para restablecer tu contraseña.",
-    "requestNewLink": "Solicitar nuevo enlace"
+    "requestNewLink": "Solicitar un nuevo enlace"
   },
   "twoFactor": {
     "title": "Verificación en dos pasos",
-    "subtitle": "Introduce a continuación el código de tu aplicación de autenticación",
-    "codeLabel": "Código del autenticador",
-    "codeLength": "El código debe contener exactamente 6 dígitos",
+    "subtitle": "Introduce abajo el código de tu aplicación Google Authenticator",
+    "codeLabel": "Código de Google Authenticator",
+    "codeLength": "El código debe tener exactamente 6 dígitos",
     "verify": "Verificar",
     "secureNote": "Tu cuenta está protegida con autenticación de dos factores",
     "backToLogin": "Volver al inicio de sesión",
     "codeExpires": "El código caduca en 30 segundos",
     "invalidCode": "Código no válido",
-    "successVerified": "2FA verificado correctamente",
+    "successVerified": "2FA verificado con éxito",
     "onlyNumbers": "Solo se permiten números",
-    "recoveryTitle": "Usar un código de recuperación",
+    "recoveryTitle": "Usa un código de recuperación",
     "recoveryCodeLabel": "Código de recuperación",
     "recoveryCodeRequired": "Introduce un código de recuperación",
     "invalidRecoveryCode": "Código de recuperación no válido o ya utilizado",
     "verifyRecovery": "Verificar código de recuperación",
     "useRecoveryCode": "Usar un código de recuperación",
-    "useAuthenticator": "Usar aplicación de autenticación",
+    "useAuthenticator": "Usar Google Authenticator",
     "verifying": "Verificando..."
   },
   "twoFactorSetup": {
-    "passwordMinLength": "La contraseña debe contener al menos 6 caracteres.",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
     "passwordMaxLength": "La contraseña es demasiado larga.",
-    "codeLength": "El código debe contener 6 dígitos.",
+    "codeLength": "El código debe tener 6 dígitos.",
     "onlyNumbers": "El código debe contener solo números.",
     "status": {
       "title": "Autenticación de dos factores",
@@ -396,7 +397,7 @@
       "disabled": "Desactivada",
       "enabledDescription": "Tu cuenta está protegida con una aplicación de autenticación.",
       "disabledDescription": "Protege tu cuenta de administrador con una aplicación de autenticación.",
-      "replaceAuthenticator": "Sustituir autenticador",
+      "replaceAuthenticator": "Reemplazar autenticador",
       "enable": "Activar autenticación de dos factores"
     },
     "password": {
@@ -410,7 +411,7 @@
     },
     "recovery": {
       "title": "Guarda tus códigos de recuperación",
-      "description": "Guarda estos códigos en un lugar seguro. Cada código de recuperación solo puede utilizarse una vez.",
+      "description": "Guarda estos códigos en un lugar seguro. Cada código de recuperación solo se puede usar una vez.",
       "copy": "Copiar códigos de recuperación",
       "saved": "He guardado mis códigos de recuperación"
     },
@@ -424,26 +425,26 @@
       "preparing": "Preparando...",
       "verifying": "Verificando...",
       "verifyAuthenticator": "Verificar autenticador",
-      "done": "Finalizar"
+      "done": "Listo"
     },
     "errors": {
-      "replaceAuthenticator": "No se ha podido sustituir el autenticador actual.",
-      "startSetup": "No se ha podido iniciar la configuración de la autenticación de dos factores.",
-      "configure": "No se ha podido configurar la autenticación de dos factores.",
-      "createTotp": "No se ha podido crear el autenticador TOTP.",
-      "unexpectedSetup": "Se ha producido un error inesperado al configurar la autenticación de dos factores.",
+      "replaceAuthenticator": "No se pudo reemplazar el autenticador actual.",
+      "startSetup": "No se pudo iniciar la configuración de la autenticación de dos factores.",
+      "configure": "No se pudo configurar la autenticación de dos factores.",
+      "createTotp": "No se pudo crear el autenticador TOTP.",
+      "unexpectedSetup": "Se produjo un error inesperado al configurar la autenticación de dos factores.",
       "invalidAuthenticatorCode": "El código del autenticador no es válido.",
-      "unexpectedVerification": "Se ha producido un error inesperado al verificar el autenticador.",
-      "copyRecoveryCodes": "No se han podido copiar los códigos de recuperación."
+      "unexpectedVerification": "Se produjo un error inesperado al verificar el autenticador.",
+      "copyRecoveryCodes": "No se pudieron copiar los códigos de recuperación."
     },
     "success": {
-      "authenticatorConfigured": "Autenticador configurado correctamente.",
+      "authenticatorConfigured": "Autenticador configurado con éxito.",
       "recoveryCodesCopied": "Códigos de recuperación copiados."
     }
   },
   "dashboard": {
-    "title": "Dashboard",
-    "description": "Resumen del contenido y de la actividad de publicación de tu blog.",
+    "title": "Panel",
+    "description": "Resumen del contenido del blog y de la actividad de publicación.",
     "logout": "Cerrar sesión",
     "stats": {
       "totalPosts": "Total de posts",
@@ -451,30 +452,81 @@
       "drafts": "Borradores"
     },
     "analytics": {
-      "title": "Analytics",
-      "description": "Resumen del contenido y de la actividad de publicación de tu blog.",
+      "title": "Análisis",
+      "description": "Resumen del contenido del blog, tráfico del sitio web y actividad de seguridad.",
       "cards": {
-        "totalPosts": "Total de Posts",
-        "publishedPosts": "Publicados",
+        "totalPosts": "Total de publicaciones",
+        "publishedPosts": "Publicadas",
         "draftPosts": "Borradores",
-        "totalTags": "Tags"
+        "totalTags": "Etiquetas"
       },
       "posts": {
-        "title": "Posts Publicados",
-        "description": "Número de posts publicados a lo largo del tiempo."
+        "title": "Publicaciones realizadas",
+        "description": "Número de publicaciones realizadas a lo largo del tiempo."
       },
       "tags": {
-        "title": "Principales Tags",
-        "description": "Tags más utilizadas en los posts publicados."
+        "title": "Principales etiquetas",
+        "description": "Etiquetas más utilizadas en las publicaciones."
       },
       "translations": {
         "title": "Traducciones",
-        "description": "Traducciones disponibles de los posts agrupadas por idioma."
+        "description": "Traducciones disponibles de las publicaciones agrupadas por idioma."
+      },
+      "traffic": {
+        "title": "Análisis de tráfico",
+        "description": "Supervisa el tráfico del sitio web, los visitantes y la distribución geográfica.",
+        "cards": {
+          "pageViews": "Vistas de página",
+          "visitors": "Visitantes",
+          "countries": "Países",
+          "topPath": "Página más visitada"
+        },
+        "charts": {
+          "traffic": "Tráfico a lo largo del tiempo",
+          "topPaths": "Páginas más visitadas",
+          "pageViews": "Vistas de página",
+          "visitors": "Visitantes",
+          "views": "Vistas"
+        },
+        "map": {
+          "title": "Visitantes por país",
+          "visitors": "{count, plural, =0 {Ningún visitante} one {# visitante} other {# visitantes}}",
+          "legend": {
+            "noData": "Sin datos",
+            "low": "Bajo",
+            "medium": "Medio",
+            "high": "Alto"
+          }
+        }
+      },
+      "security": {
+        "title": "Análisis de seguridad",
+        "description": "Supervisa la actividad del firewall y los eventos de seguridad.",
+        "cards": {
+          "events": "Eventos de seguridad",
+          "denied": "Bloqueados",
+          "challenged": "Desafiados",
+          "rateLimited": "Limitados"
+        },
+        "charts": {
+          "firewall": "Actividad del firewall",
+          "denied": "Bloqueados",
+          "challenged": "Desafiados",
+          "rateLimited": "Limitados"
+        },
+        "actions": {
+          "title": "Acciones del firewall",
+          "rule": "Regla",
+          "action": "Acción",
+          "host": "Host",
+          "count": "Cantidad",
+          "empty": "No se encontraron acciones del firewall."
+        }
       }
     },
     "profile": {
       "title": "Perfil",
-      "description": "Administra tu información personal y foto de perfil.",
+      "description": "Gestiona tu información personal y tu foto de perfil.",
       "name": "Nombre",
       "email": "Correo electrónico",
       "namePlaceholder": "Tu nombre",
@@ -482,23 +534,31 @@
       "removePhoto": "Eliminar",
       "photoHint": "JPG, PNG o WebP. Máximo 5 MB.",
       "saveChanges": "Guardar cambios",
-      "profileUpdated": "Perfil actualizado correctamente.",
-      "profileUpdatedError": "No se ha podido actualizar el perfil.",
+      "profileUpdated": "Perfil actualizado con éxito.",
+      "profileUpdatedError": "No se pudo actualizar el perfil.",
       "validation": {
-        "nameMin": "El nombre debe contener al menos 2 caracteres.",
+        "nameMin": "El nombre debe tener al menos 2 caracteres.",
         "invalidEmail": "Introduce una dirección de correo electrónico válida."
       }
     },
     "security": {
       "title": "Seguridad",
-      "description": "Administra tu configuración de autenticación y recuperación de cuenta."
+      "description": "Gestiona tus ajustes de autenticación y recuperación de cuenta.",
+      "actions": {
+        "title": "Acciones del Firewall",
+        "rule": "Regla",
+        "action": "Acción",
+        "host": "Host",
+        "count": "Cantidad",
+        "empty": "No se encontraron acciones del firewall."
+      }
     },
     "settings": {
-      "title": "Configuración",
-      "description": "Personaliza la apariencia y las preferencias del dashboard administrativo.",
+      "title": "Ajustes",
+      "description": "Personaliza la apariencia y las preferencias del panel de administración.",
       "preferences": {
         "title": "Preferencias",
-        "description": "Personaliza tu experiencia en el dashboard administrativo."
+        "description": "Personaliza tu experiencia en el panel de administración."
       },
       "theme": {
         "title": "Tema",
@@ -520,7 +580,7 @@
       },
       "language": {
         "title": "Idioma",
-        "description": "Elige el idioma utilizado por la aplicación.",
+        "description": "Elige el idioma que usa la aplicación.",
         "options": {
           "pt": {
             "title": "Portugués",
@@ -537,12 +597,19 @@
         }
       }
     },
+    "traffic": {
+      "title": "Analítica de Tráfico",
+      "description": "Supervisa el tráfico del sitio web, los visitantes y la distribución geográfica.",
+      "map": {
+        "title": "Visitantes por país"
+      }
+    },
     "tags": {
-      "title": "Tags",
-      "new": "Nueva tag",
-      "search": "Buscar tags...",
+      "title": "Etiquetas",
+      "new": "Nueva etiqueta",
+      "search": "Buscar etiquetas...",
       "columns": "Columnas",
-      "empty": "No se encontraron tags.",
+      "empty": "No se encontraron etiquetas.",
       "posts": "Posts",
       "table": {
         "name": "Nombre",
@@ -556,26 +623,26 @@
         "next": "Siguiente"
       },
       "actions": {
-        "delete": "Eliminar tag"
+        "delete": "Eliminar etiqueta"
       },
       "form": {
-        "title": "Nueva Tag",
+        "title": "Nueva Etiqueta",
         "name": "Nombre",
         "slug": "Slug",
         "save": "Guardar",
         "cancel": "Cancelar",
-        "create": "Crear tag",
+        "create": "Crear etiqueta",
         "namePlaceholder": "Nombre",
         "slugPlaceholder": "Slug",
-        "created": "Tag creada correctamente.",
-        "error": "Error al crear la tag.",
+        "created": "Etiqueta creada con éxito.",
+        "error": "Error al crear la etiqueta.",
         "namerequired": "El nombre es obligatorio",
         "slugrequired": "El slug es obligatorio",
-        "sluginvalid": "El slug debe contener solo letras minúsculas, números y guiones"
+        "sluginvalid": "El slug solo puede contener letras minúsculas, números y guiones"
       },
       "toast": {
-        "deleted": "Tag eliminada correctamente.",
-        "deleteError": "Error al eliminar la tag."
+        "deleted": "Etiqueta eliminada con éxito.",
+        "deleteError": "Error al eliminar la etiqueta."
       }
     },
     "table-tags": {
@@ -631,12 +698,12 @@
         "confirm": "Eliminar"
       },
       "empty": {
-        "title": "Todavía no hay posts.",
+        "title": "Aún no hay posts.",
         "cta": "Crea tu primer post"
       },
       "table": {
         "title": "Título",
-        "tags": "Tags",
+        "tags": "Etiquetas",
         "year": "Año",
         "created": "Creado",
         "status": "Estado",
@@ -649,16 +716,16 @@
       },
       "form": {
         "slug": "Slug",
-        "slugPlaceholder": "mi-post-slug",
+        "slugPlaceholder": "slug-de-mi-post",
         "year": "Año",
         "photo": "URL de la imagen de portada",
         "photoPlaceholder": "https://...",
         "title": "Título",
         "titlePlaceholder": "Título en {locale}",
         "description": "Descripción",
-        "descriptionPlaceholder": "Descripción breve en {locale}",
+        "descriptionPlaceholder": "Breve descripción en {locale}",
         "content": "Contenido",
-        "tags": "Tags",
+        "tags": "Etiquetas",
         "cancel": "Cancelar",
         "create": "Crear post",
         "save": "Guardar cambios"

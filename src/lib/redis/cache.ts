@@ -30,7 +30,7 @@ export async function invalidatePostCache(params?: {
   slug?: string;
   locales?: string[];
 }) {
-  const keys: string[] = [cacheKeys.sitemap(), cacheKeys.analytics()];
+  const keys: string[] = [cacheKeys.sitemap()];
 
   const locales = params?.locales ?? ["pt", "en", "es"];
 

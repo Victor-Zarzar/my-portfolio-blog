@@ -75,21 +75,16 @@ export default function CommandPalette({
       >
         <SearchIcon size={20} />
       </Button>
-
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="overflow-hidden p-0">
           <DialogTitle className="sr-only">{t("command.navigate")}</DialogTitle>
-
           <DialogDescription className="sr-only">
             {t("command.description")}
           </DialogDescription>
-
           <Command>
             <CommandInput placeholder={t("searchPlaceholder")} />
-
             <CommandList>
               <CommandEmpty>{t("command.empty")}</CommandEmpty>
-
               <CommandGroup heading={t("command.navigate")}>
                 {links.map((item) => (
                   <CommandItem
