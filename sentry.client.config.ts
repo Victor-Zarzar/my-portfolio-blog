@@ -10,8 +10,6 @@ Sentry.init({
   enabled: true,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
-  enableLogs: true,
-  sendDefaultPii: true,
   integrations: [
     Sentry.replayIntegration({
       maskAllText: false,

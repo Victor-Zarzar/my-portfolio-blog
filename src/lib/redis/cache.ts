@@ -22,6 +22,10 @@ export async function cacheWithRedis<T>({
   return fresh;
 }
 
+export async function invalidateAnalyticsCache() {
+  await redis.del(cacheKeys.analytics());
+}
+
 export async function invalidatePostCache(params?: {
   slug?: string;
   locales?: string[];
@@ -38,7 +42,5 @@ export async function invalidatePostCache(params?: {
     }
   }
 
-  if (keys.length) {
-    await redis.del(keys);
-  }
+  await redis.del(keys);
 }

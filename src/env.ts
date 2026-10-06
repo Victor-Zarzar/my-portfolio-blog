@@ -27,6 +27,9 @@ const env = createEnv({
     CLOUDINARY_CLOUD_NAME: z.string(),
     CLOUDINARY_API_KEY: z.string(),
     CLOUDINARY_API_SECRET: z.string(),
+    VERCEL_TOKEN: z.string(),
+    VERCEL_PROJECT_ID: z.string(),
+    VERCEL_TEAM_ID: z.string().optional(),
   },
 
   client: {
@@ -80,6 +83,9 @@ const env = createEnv({
     CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    VERCEL_TOKEN: process.env.VERCEL_TOKEN,
+    VERCEL_PROJECT_ID: process.env.VERCEL_PROJECT_ID,
+    VERCEL_TEAM_ID: process.env.VERCEL_TEAM_ID,
   },
 
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,

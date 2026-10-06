@@ -1,15 +1,23 @@
 import {
+  BarChart,
   BookOpen,
+  BrickWallFire,
+  ChartNoAxesCombined,
   FolderKanban,
+  Gauge,
   Home,
   LayoutDashboard,
   Mail,
-  Shield,
+  Rss,
+  StickyNotePlus,
+  Tags,
   User,
-  Users,
 } from "lucide-react";
 
-import type { CommandLink } from "@/app/shared/types/command/command";
+import type {
+  AdminNavItem,
+  CommandLink,
+} from "@/app/shared/types/command/command";
 
 const iconClass = "mr-0.5 h-4 w-4";
 
@@ -46,7 +54,7 @@ export const publicCommandLinks: CommandLink[] = [
   },
 ];
 
-export const adminCommandLinks: CommandLink[] = [
+export const adminNavigation: AdminNavItem[] = [
   {
     id: "dashboard",
     labelKey: "nav.dashboard",
@@ -57,19 +65,19 @@ export const adminCommandLinks: CommandLink[] = [
     id: "posts",
     labelKey: "nav.posts.index",
     href: "/admin/posts",
-    icon: <Users className={iconClass} />,
+    icon: <Rss className={iconClass} />,
   },
   {
     id: "posts-new",
     labelKey: "nav.posts.new",
     href: "/admin/posts/new",
-    icon: <FolderKanban className={iconClass} />,
+    icon: <StickyNotePlus className={iconClass} />,
   },
   {
     id: "posts-tags",
     labelKey: "nav.posts.tags",
     href: "/admin/tags",
-    icon: <Shield className={iconClass} />,
+    icon: <Tags className={iconClass} />,
   },
   {
     id: "tags-new",
@@ -77,4 +85,33 @@ export const adminCommandLinks: CommandLink[] = [
     href: "/admin/tags/new",
     icon: <FolderKanban className={iconClass} />,
   },
+  {
+    id: "analytics",
+    labelKey: "nav.analytics.title",
+    icon: <BarChart className={iconClass} />,
+    items: [
+      {
+        id: "analytics-overview",
+        labelKey: "nav.analytics.overview",
+        href: "/admin/analytics",
+        icon: <Gauge className={iconClass} />,
+      },
+      {
+        id: "analytics-traffic",
+        labelKey: "nav.analytics.traffic",
+        href: "/admin/analytics/traffic",
+        icon: <ChartNoAxesCombined className={iconClass} />,
+      },
+      {
+        id: "analytics-security",
+        labelKey: "nav.analytics.security",
+        href: "/admin/analytics/security",
+        icon: <BrickWallFire className={iconClass} />,
+      },
+    ],
+  },
 ];
+
+export const adminCommandLinks: CommandLink[] = adminNavigation.flatMap(
+  (item) => ("items" in item ? item.items : [item]),
+);

@@ -1,6 +1,9 @@
 # Makefile - My-Portfolio-Blog
 DOCKER_IMAGE_NAME = my-portfolio-blog
 DOCKER_CONTAINER_NAME = my-portfolio-blog
+DOCKER_TAG = $(shell node -p "require('./package.json').version")
+E2E_IMAGE_NAME = my-portfolio-blog-e2e
+E2E_IMAGE_TAG = $(shell node -p "require('./package.json').version")
 PORT = 3000
 DE = docker exec -it
 DL = docker logs -f
@@ -8,7 +11,6 @@ REDIS_IMAGE_NAME = redis
 REDIS_CONTAINER_NAME = redis
 REDIS_TAG = 8-alpine
 NETWORK_NAME = my-portfolio-network
-DOCKER_TAG = $(shell node -p "require('./package.json').version")
 
 check:
 	bun run check
@@ -33,6 +35,12 @@ create-network:
 
 build:
 	docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) .
+
+build-e2e:
+	docker build \
+		-f Dockerfile.test \
+		-t $(E2E_IMAGE_NAME):$(E2E_IMAGE_TAG) \
+		.
 
 redis-server: create-network
 	docker run --rm -d \
@@ -61,10 +69,14 @@ stop:
 	docker rm $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
 	docker rm $(REDIS_CONTAINER_NAME) >/dev/null 2>&1 || true
 
+restart:
+	docker restart $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
+	docker restart $(REDIS_CONTAINER_NAME) >/dev/null 2>&1 || true
+
 clean: stop
 	docker rmi -f $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
 	docker rmi -f $(REDIS_IMAGE_NAME):$(REDIS_TAG) >/dev/null 2>&1 || true
-	rm -rf node_modules .next tsconfig.tsbuildinfo playwright-report test-results >/dev/null 2>&1 || true
+	rm -rf node_modules .next .vercel tsconfig.tsbuildinfo playwright-report test-results >/dev/null 2>&1 || true
 
 logs:
 	$(DL) $(DOCKER_CONTAINER_NAME)
@@ -92,16 +104,17 @@ test-unit: build redis-server
 		$(DOCKER_IMAGE_NAME):$(DOCKER_TAG) \
 		sh -c "bun install --frozen-lockfile && bun run test:unit"
 
-test-e2e: build redis-server
+test-e2e: build-e2e redis-server
 	docker run --rm \
 		--name $(DOCKER_CONTAINER_NAME)-test \
 		--network $(NETWORK_NAME) \
+		-e CI=true \
 		-e REDIS_URL=redis://$(REDIS_CONTAINER_NAME):6379 \
 		-v $(PWD):/app \
 		-v /app/node_modules \
 		-w /app \
-		$(DOCKER_IMAGE_NAME):$(DOCKER_TAG) \
-		sh -c "bun install --frozen-lockfile && bunx playwright install --with-deps chromium webkit && bun run test:e2e"
+		$(E2E_IMAGE_NAME):$(E2E_IMAGE_TAG) \
+		bun run test:e2e
 
 test-integration: build redis-server
 	docker run --rm \
@@ -131,14 +144,15 @@ help:
 	@echo ""
 	@echo "Docker Commands:"
 	@echo "  make build              Build the Docker image"
+	@echo "  make build-e2e          Build the E2E Docker image (Dockerfile.test)"
 	@echo "  make run                Run the Docker container"
 	@echo "  make generate           Generate database schema"
 	@echo "  make migrate            Run database migrations"
 	@echo "  make studio             Open Drizzle Studio"
 	@echo "  make stop               Stop and remove the container"
-	@echo "  make test-unit          Run the automated tests Units (Isolated Docker container)"
-	@echo "  make test-e2e           Run the automated tests E2E (Isolated Docker container)"
-	@echo "  make test-integration   Run the automated tests Integration (Isolated Docker container)"
+	@echo "  make test-unit          Run Unit tests (Isolated Docker container)"
+	@echo "  make test-e2e           Run E2E tests with Playwright + Chromium (Isolated Docker container, any OS)"
+	@echo "  make test-integration   Run Integration tests (Isolated Docker container)"
 	@echo "  make clean              Remove image and clean environment"
 	@echo "  make logs               Show container logs"
 	@echo "  make shell              Access container shell"

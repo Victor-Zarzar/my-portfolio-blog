@@ -16,3 +16,7 @@ export type SlackContactPayload = {
   userAgent?: string;
   source?: string;
 };
+
+export type TwoFactorSetupFormProps = {
+  twoFactorEnabled: boolean;
+};

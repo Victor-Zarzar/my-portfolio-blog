@@ -40,7 +40,7 @@ const authOptions = {
   },
   emailAndPassword: {
     enabled: true,
-    disableSignUp: false,
+    disableSignUp: true,
     requireEmailVerification: true,
     resetPasswordTokenExpiresIn: 60 * 15,
     revokeSessionsOnPasswordReset: true,

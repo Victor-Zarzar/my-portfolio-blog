@@ -13,7 +13,8 @@
     "hello": "Hello,",
     "signOut": "Sign out",
     "profile": "Profile",
-    "settings": "Settings"
+    "settings": "Settings",
+    "security": "Security"
   },
   "Navbar": {
     "titlenavbar": "Victor Zarzar",
@@ -109,7 +110,7 @@
       "title": "Freelance Projects",
       "role": "Full Stack Developer",
       "achievements": "Main responsibilities and achievements:",
-      "description": "Working as a Full Stack Developer on freelance projects, building modern front-end and back-end applications using React, Next.js, TypeScript, Python, APIs, databases, and service integrations, with a stronger focus on front-end development.",
+      "description": "Working as a Full Stack Developer on freelance projects, building modern front-end and back-end applications using React, Next.js, TypeScript, Tanstack, Flutter, Dart, Docker, PostgreSQL, MySQL, Python, APIs, databases, and service integrations, with a stronger focus on front-end development.",
       "local": "Novo Hamburgo, RS, Brazil · Remote"
     },
     "ahanguera1": {
@@ -217,14 +218,17 @@
     "description": "An unexpected error occurred while loading this page. Don't worry — we've been notified and you can continue browsing normally.",
     "return-home": "Back to Homepage"
   },
+
   "CommandPalette": {
     "searchPlaceholder": "Search pages...",
     "pressToNavigate": "Press ⌘K to navigate",
     "command": {
+      "title": "Dashboard - Portfolio Blog",
       "navigate": "Navigation",
       "settings": "Settings",
       "empty": "No results found",
-      "description": "Page description"
+      "description": "Page description",
+      "navigation": "Navigation"
     },
     "nav": {
       "home": "Home",
@@ -242,6 +246,12 @@
       },
       "tags": {
         "new": "New tag"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "overview": "Overview",
+        "traffic": "Traffic",
+        "security": "Security"
       }
     }
   },
@@ -268,7 +278,8 @@
     "error401": "Incorrect email or password.",
     "error403": "Your access is blocked. Please contact support.",
     "captcha-not-ready": "captcha is not ready",
-    "captcha-failed": "captcha failed. please try again."
+    "captcha-failed": "captcha failed. please try again.",
+    "loading": "Loading..."
   },
   "SignUp": {
     "title": "Create account",
@@ -376,12 +387,143 @@
     "useAuthenticator": "Use Google Authenticator",
     "verifying": "Verifying..."
   },
+  "twoFactorSetup": {
+    "passwordMinLength": "Password must contain at least 6 characters.",
+    "passwordMaxLength": "Password is too long.",
+    "codeLength": "The code must contain 6 digits.",
+    "onlyNumbers": "The code must contain only numbers.",
+    "status": {
+      "title": "Two-factor authentication",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "enabledDescription": "Your account is protected with an authenticator app.",
+      "disabledDescription": "Protect your administrator account with an authenticator app.",
+      "replaceAuthenticator": "Replace authenticator",
+      "enable": "Enable two-factor authentication"
+    },
+    "password": {
+      "title": "Confirm your password",
+      "label": "Password"
+    },
+    "authenticator": {
+      "title": "Set up authenticator",
+      "scanDescription": "Scan this QR code with your authenticator app.",
+      "codeLabel": "Authenticator code"
+    },
+    "recovery": {
+      "title": "Save your recovery codes",
+      "description": "Store these codes somewhere safe. Each recovery code can only be used once.",
+      "copy": "Copy recovery codes",
+      "saved": "I saved my recovery codes"
+    },
+    "completed": {
+      "title": "Two-factor authentication configured",
+      "description": "Your authenticator is ready to protect your administrator account."
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "preparing": "Preparing...",
+      "verifying": "Verifying...",
+      "verifyAuthenticator": "Verify authenticator",
+      "done": "Done"
+    },
+    "errors": {
+      "replaceAuthenticator": "Unable to replace the current authenticator.",
+      "startSetup": "Unable to start two-factor authentication setup.",
+      "configure": "Unable to configure two-factor authentication.",
+      "createTotp": "Unable to create TOTP authenticator.",
+      "unexpectedSetup": "An unexpected error occurred while configuring two-factor authentication.",
+      "invalidAuthenticatorCode": "The authenticator code is invalid.",
+      "unexpectedVerification": "An unexpected error occurred while verifying the authenticator.",
+      "copyRecoveryCodes": "Unable to copy recovery codes."
+    },
+    "success": {
+      "authenticatorConfigured": "Authenticator successfully configured.",
+      "recoveryCodesCopied": "Recovery codes copied."
+    }
+  },
   "dashboard": {
     "title": "Dashboard",
+    "description": "Overview of your blog content and publishing activity.",
+    "logout": "Logout",
     "stats": {
       "totalPosts": "Total posts",
       "published": "Published",
       "drafts": "Drafts"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Overview of blog content, website traffic, and security activity.",
+      "cards": {
+        "totalPosts": "Total Posts",
+        "publishedPosts": "Published",
+        "draftPosts": "Drafts",
+        "totalTags": "Tags"
+      },
+      "posts": {
+        "title": "Published Posts",
+        "description": "Number of posts published over time."
+      },
+      "tags": {
+        "title": "Top Tags",
+        "description": "Most used tags in published posts."
+      },
+      "translations": {
+        "title": "Translations",
+        "description": "Available post translations grouped by language."
+      },
+      "traffic": {
+        "title": "Traffic Analytics",
+        "description": "Monitor website traffic, visitors, and geographic distribution.",
+        "cards": {
+          "pageViews": "Page views",
+          "visitors": "Visitors",
+          "countries": "Countries",
+          "topPath": "Top path"
+        },
+        "charts": {
+          "traffic": "Traffic over time",
+          "topPaths": "Top paths",
+          "pageViews": "Page views",
+          "visitors": "Visitors",
+          "views": "Views"
+        },
+        "map": {
+          "title": "Visitors by country",
+          "visitors": "{count, plural, =0 {No visitors} one {# visitor} other {# visitors}}",
+          "legend": {
+            "noData": "No data",
+            "low": "Low",
+            "medium": "Medium",
+            "high": "High"
+          }
+        }
+      },
+      "security": {
+        "title": "Security Analytics",
+        "description": "Monitor firewall activity and security events.",
+        "cards": {
+          "events": "Security events",
+          "denied": "Denied",
+          "challenged": "Challenged",
+          "rateLimited": "Rate limited"
+        },
+        "charts": {
+          "firewall": "Firewall activity",
+          "denied": "Denied",
+          "challenged": "Challenged",
+          "rateLimited": "Rate limited"
+        },
+        "actions": {
+          "title": "Firewall Actions",
+          "rule": "Rule",
+          "action": "Action",
+          "host": "Host",
+          "count": "Count",
+          "empty": "No firewall actions found."
+        }
+      }
     },
     "profile": {
       "title": "Profile",
@@ -402,7 +544,66 @@
     },
     "security": {
       "title": "Security",
-      "description": "Manage your authentication and account recovery settings."
+      "description": "Manage your authentication and account recovery settings.",
+      "actions": {
+        "title": "Firewall Actions",
+        "rule": "Rule",
+        "action": "Action",
+        "host": "Host",
+        "count": "Count",
+        "empty": "No firewall actions found."
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Customize the appearance and preferences of the admin dashboard.",
+      "preferences": {
+        "title": "Preferences",
+        "description": "Customize your admin dashboard experience."
+      },
+      "theme": {
+        "title": "Theme",
+        "description": "Choose the application appearance.",
+        "options": {
+          "system": {
+            "title": "System",
+            "description": "Use system preference"
+          },
+          "light": {
+            "title": "Light",
+            "description": "Use light theme"
+          },
+          "dark": {
+            "title": "Dark",
+            "description": "Use dark theme"
+          }
+        }
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose the language used by the application.",
+        "options": {
+          "pt": {
+            "title": "Portuguese",
+            "description": "Português"
+          },
+          "en": {
+            "title": "English",
+            "description": "English"
+          },
+          "es": {
+            "title": "Spanish",
+            "description": "Español"
+          }
+        }
+      }
+    },
+    "traffic": {
+      "title": "Traffic Analytics",
+      "description": "Monitor website traffic, visitors and geographic distribution.",
+      "map": {
+        "title": "Visitors by country"
+      }
     },
     "tags": {
       "title": "Tags",

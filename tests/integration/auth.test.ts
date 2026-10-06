@@ -170,16 +170,50 @@ describe("auth integration", () => {
     expect(oAuthProxyMock).toHaveBeenCalledTimes(1);
     expect(lastLoginMethodMock).toHaveBeenCalledTimes(1);
 
-    expect(twoFactorMock).toHaveBeenCalledWith({
-      issuer: "Portfolio Blog",
-    });
-
     expect(captchaMock).toHaveBeenCalledWith({
       provider: "google-recaptcha",
       secretKey: "recaptcha-secret",
     });
 
     expect(customSessionMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("configures two-factor authentication with Portfolio Blog issuer", async () => {
+    await import("@/lib/auth/auth");
+
+    expect(twoFactorMock).toHaveBeenCalledTimes(1);
+
+    expect(twoFactorMock).toHaveBeenCalledWith({
+      issuer: "Portfolio Blog",
+    });
+  });
+
+  it("registers two-factor authentication plugin in better-auth", async () => {
+    await import("@/lib/auth/auth");
+
+    const config = betterAuthMock.mock.calls[0]?.[0] as AuthConfigUnderTest;
+
+    expect(config.plugins).toEqual(
+      expect.arrayContaining([
+        {
+          id: "two-factor",
+          options: {
+            issuer: "Portfolio Blog",
+          },
+        },
+      ]),
+    );
+  });
+
+  it("configures rate limiting for two-factor authentication routes", async () => {
+    await import("@/lib/auth/auth");
+
+    const config = betterAuthMock.mock.calls[0]?.[0] as AuthConfigUnderTest;
+
+    expect(config.rateLimit.customRules["/two-factor/*"]).toEqual({
+      window: 60,
+      max: 5,
+    });
   });
 
   it("configures email verification", async () => {
@@ -217,7 +251,7 @@ describe("auth integration", () => {
 
     expect(config.emailAndPassword).toMatchObject({
       enabled: true,
-      disableSignUp: false,
+      disableSignUp: true,
       requireEmailVerification: true,
       resetPasswordTokenExpiresIn: 60 * 15,
       revokeSessionsOnPasswordReset: true,

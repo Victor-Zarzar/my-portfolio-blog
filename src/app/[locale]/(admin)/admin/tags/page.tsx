@@ -30,7 +30,6 @@ export default async function TagsPage() {
         <FadeWrapper>
           <h1 className="text-center text-2xl font-bold">{t("tags.title")}</h1>
         </FadeWrapper>
-
         <div className="flex items-center gap-2">
           <Button
             asChild
@@ -39,7 +38,6 @@ export default async function TagsPage() {
           >
             <Link href="/admin/posts">{t("tags.posts")}</Link>
           </Button>
-
           <Button
             asChild
             className="w-full border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
@@ -49,7 +47,6 @@ export default async function TagsPage() {
           </Button>
         </div>
       </div>
-
       <TagsDataTable data={data} />
     </div>
   );
