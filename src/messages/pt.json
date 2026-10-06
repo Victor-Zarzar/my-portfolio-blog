@@ -609,6 +609,7 @@
       "title": "Tags",
       "new": "Nova tag",
       "search": "Buscar tags...",
+      "searchButton": "Buscar",
       "columns": "Colunas",
       "empty": "Nenhuma tag encontrada.",
       "posts": "Posts",
@@ -669,6 +670,7 @@
     },
     "posts-form": {
       "searchPlaceholder": "Buscar posts...",
+      "searchButton": "Buscar",
       "columns": "Colunas",
       "noResults": "Nenhum resultado encontrado.",
       "pagination": {
