@@ -5,13 +5,18 @@ import * as Sentry from "@sentry/nextjs";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/app/shared/ui/button";
 import { Card, CardContent } from "@/app/shared/ui/card";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/app/shared/ui/field";
 import { Input } from "@/app/shared/ui/input";
-import { Label } from "@/app/shared/ui/label";
 import { useRouter } from "@/i18n/navigation";
 import { createTag } from "./tag-actions";
 
@@ -19,8 +24,6 @@ export function TagForm() {
   const router = useRouter();
   const t = useTranslations("dashboard.tags.form");
   const [isPending, startTransition] = useTransition();
-
-  type FormValues = z.infer<typeof formSchema>;
 
   const formSchema = z.object({
     name: z.string().min(1, t("namerequired")),
@@ -30,11 +33,9 @@ export function TagForm() {
       .regex(/^[a-z0-9-]+$/, t("sluginvalid")),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
+  type FormValues = z.infer<typeof formSchema>;
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -42,16 +43,14 @@ export function TagForm() {
     },
   });
 
-  function onSubmit(values: FormValues) {
+  function handleSubmit(values: FormValues) {
     startTransition(async () => {
       const result = await createTag(values);
-
       if (!result.success) {
         toast.error(t("error"));
         Sentry.captureException(result.error);
         return;
       }
-
       toast.success(t("created"));
       router.push("/admin/tags");
     });
@@ -60,31 +59,54 @@ export function TagForm() {
   return (
     <Card className="max-w-xl mx-auto">
       <CardContent className="pt-6">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="name">{t("name")}</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder={t("namePlaceholder")}
-              {...register("name")}
+        <form
+          noValidate
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="space-y-6"
+        >
+          <FieldGroup>
+            <Controller
+              name="name"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("name")}</FieldLabel>
+                  <Input
+                    {...field}
+                    id={field.name}
+                    type="text"
+                    placeholder={t("namePlaceholder")}
+                    aria-invalid={fieldState.invalid}
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
             />
-            {errors.name && (
-              <p className="text-sm text-destructive">{errors.name.message}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="slug">{t("slug")}</Label>
-            <Input
-              id="slug"
-              type="text"
-              placeholder={t("slugPlaceholder")}
-              {...register("slug")}
+            <Controller
+              name="slug"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={field.name}>{t("slug")}</FieldLabel>
+                  <Input
+                    {...field}
+                    id={field.name}
+                    type="text"
+                    placeholder={t("slugPlaceholder")}
+                    aria-invalid={fieldState.invalid}
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
             />
-            {errors.slug && (
-              <p className="text-sm text-destructive">{errors.slug.message}</p>
+            {form.formState.errors.root && (
+              <FieldError errors={[form.formState.errors.root]} />
             )}
-          </div>
+          </FieldGroup>
           <div className="flex justify-end gap-3">
             <Button
               type="button"

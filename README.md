@@ -374,11 +374,19 @@ make clean
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/15a16382-e75d-4b16-97a0-7d70377687ba" width="1000" height="600" alt="Projects Section">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_113655_rinxc4.png" width="1000" height="600" alt="landing page">
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/88348b29-d069-48ac-9f9f-73b883f05037" alt="Dark Mode" width="1000" height="500">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_112743_qj1bb1.png" width="1000" height="600" alt="dashboard">
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_112907_pjfjad.png" width="1000" height="600" alt="dashboard">
+</p>
+
+<p align="center">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_112959_zsqmzo.png" width="1000" height="600" alt="dashboard">
 </p>
 
 ---

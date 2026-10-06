@@ -37,6 +37,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  SidebarSeparator,
   useSidebar,
 } from "@/app/shared/ui/sidebar";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -51,11 +52,11 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton size="lg" asChild className="justify-center">
               <Link href="/admin">
-                <ChartNoAxesCombined className="size-4 mx-auto" />
+                <ChartNoAxesCombined className="size-4 shrink-0" />
                 {(state !== "collapsed" || isMobile) && (
-                  <div className="grid flex-1 text-left text-sm leading-tight">
+                  <div className="grid flex-none text-left text-sm leading-tight">
                     <span className="truncate font-semibold">{user.name}</span>
                     <span className="truncate text-xs text-muted-foreground">
                       {t("command.title")}
@@ -67,7 +68,8 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="group-data-[collapsible=icon]:mt-5">
+      <SidebarSeparator className="mx-0 w-full border-b supports-backdrop-filter:bg-background/60" />
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="mx-auto w-full max-w-40">
             {t("command.navigation")}
@@ -128,6 +130,7 @@ function SidebarMenuLink({
         asChild
         isActive={checkIsActive(pathname, item)}
         tooltip={t(item.labelKey)}
+        className="border border-transparent data-[active=true]:border-sidebar-border"
       >
         <Link href={item.href} onClick={() => setOpenMobile(false)}>
           {item.icon}
@@ -172,6 +175,7 @@ function SidebarMenuCollapsible({
                 <SidebarMenuSubButton
                   asChild
                   isActive={checkIsActive(pathname, subItem)}
+                  className="border border-transparent data-[active=true]:border-sidebar-border"
                 >
                   <Link
                     href={subItem.href}

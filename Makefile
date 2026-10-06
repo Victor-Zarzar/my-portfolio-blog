@@ -69,10 +69,14 @@ stop:
 	docker rm $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
 	docker rm $(REDIS_CONTAINER_NAME) >/dev/null 2>&1 || true
 
+restart:
+	docker restart $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
+	docker restart $(REDIS_CONTAINER_NAME) >/dev/null 2>&1 || true
+
 clean: stop
 	docker rmi -f $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
 	docker rmi -f $(REDIS_IMAGE_NAME):$(REDIS_TAG) >/dev/null 2>&1 || true
-	rm -rf node_modules .next tsconfig.tsbuildinfo playwright-report test-results >/dev/null 2>&1 || true
+	rm -rf node_modules .next .vercel tsconfig.tsbuildinfo playwright-report test-results >/dev/null 2>&1 || true
 
 logs:
 	$(DL) $(DOCKER_CONTAINER_NAME)

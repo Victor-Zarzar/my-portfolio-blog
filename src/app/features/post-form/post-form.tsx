@@ -6,12 +6,17 @@ import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/app/shared/ui/button";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/app/shared/ui/field";
 import { Input } from "@/app/shared/ui/input";
-import { Label } from "@/app/shared/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui/tabs";
 import { useRouter } from "@/i18n/navigation";
 import { createPost, updatePost } from "./post-actions";
@@ -19,7 +24,6 @@ import { createPost, updatePost } from "./post-actions";
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 const LOCALES = ["pt", "en", "es"] as const;
-type Locale = (typeof LOCALES)[number];
 
 const translationSchema = z.object({
   locale: z.enum(LOCALES),
@@ -31,7 +35,7 @@ const translationSchema = z.object({
 const formSchema = z.object({
   slug: z
     .string()
-    .min(1)
+    .min(1, "Required")
     .regex(/^[a-z0-9-]+$/, "Lowercase, numbers and hyphens only"),
   year: z.number().int().positive().optional(),
   photo: z.union([z.string().url(), z.literal("")]).optional(),
@@ -59,13 +63,7 @@ export function PostForm({
   const [isPending, startTransition] = useTransition();
   const isEditing = !!postId;
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? {
       slug: "",
@@ -81,11 +79,7 @@ export function PostForm({
     },
   });
 
-  function getTranslationIndex(locale: Locale) {
-    return LOCALES.indexOf(locale);
-  }
-
-  function onSubmit(values: FormValues) {
+  function handleSubmit(values: FormValues) {
     startTransition(async () => {
       const result = isEditing
         ? await updatePost(postId, values)
@@ -105,45 +99,82 @@ export function PostForm({
   return (
     <form
       noValidate
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit(handleSubmit)}
       className="space-y-8 max-w-4xl mx-auto py-8"
     >
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="slug">{t("form.slug")}</Label>
-          <Input
-            id="slug"
-            placeholder={t("form.slugPlaceholder")}
-            {...register("slug")}
+      <FieldGroup>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <Controller
+            name="slug"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>{t("form.slug")}</FieldLabel>
+                <Input
+                  {...field}
+                  id={field.name}
+                  placeholder={t("form.slugPlaceholder")}
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
           />
-          {errors.slug && (
-            <p className="text-sm text-destructive">{errors.slug.message}</p>
-          )}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="year">{t("form.year")}</Label>
-          <Input
-            id="year"
-            type="number"
-            placeholder={String(new Date().getFullYear())}
-            {...register("year", { valueAsNumber: true })}
+          <Controller
+            name="year"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>{t("form.year")}</FieldLabel>
+                <Input
+                  id={field.name}
+                  type="number"
+                  placeholder={String(new Date().getFullYear())}
+                  name={field.name}
+                  ref={field.ref}
+                  onBlur={field.onBlur}
+                  value={field.value ?? ""}
+                  onChange={(event) =>
+                    field.onChange(
+                      event.target.value === ""
+                        ? undefined
+                        : event.target.valueAsNumber,
+                    )
+                  }
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
+          />
+          <Controller
+            name="photo"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field
+                data-invalid={fieldState.invalid}
+                className="sm:col-span-2"
+              >
+                <FieldLabel htmlFor={field.name}>{t("form.photo")}</FieldLabel>
+                <Input
+                  {...field}
+                  value={field.value ?? ""}
+                  id={field.name}
+                  placeholder={t("form.photoPlaceholder")}
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
+            )}
           />
         </div>
-
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="photo">{t("form.photo")}</Label>
-          <Input
-            id="photo"
-            placeholder={t("form.photoPlaceholder")}
-            {...register("photo")}
-          />
-          {errors.photo && (
-            <p className="text-sm text-destructive">{errors.photo.message}</p>
-          )}
-        </div>
-      </div>
-
+      </FieldGroup>
       <Tabs defaultValue="pt">
         <TabsList>
           {LOCALES.map((locale) => (
@@ -152,92 +183,114 @@ export function PostForm({
             </TabsTrigger>
           ))}
         </TabsList>
-
-        {LOCALES.map((locale) => {
-          const i = getTranslationIndex(locale);
-          return (
-            <TabsContent key={locale} value={locale} className="space-y-6 pt-4">
-              <div className="space-y-2">
-                <Label>{t("form.title")}</Label>
-                <Input
-                  placeholder={`Title in ${locale}`}
-                  {...register(`translations.${i}.title`)}
-                />
-                {errors.translations?.[i]?.title && (
-                  <p className="text-sm text-destructive">
-                    {errors.translations[i].title?.message}
-                  </p>
+        {LOCALES.map((locale, index) => (
+          <TabsContent key={locale} value={locale} className="space-y-6 pt-4">
+            <FieldGroup>
+              <Controller
+                name={`translations.${index}.title`}
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      {t("form.title")}
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id={field.name}
+                      placeholder={`Title in ${locale}`}
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
                 )}
-              </div>
-
-              <div className="space-y-2">
-                <Label>{t("form.description")}</Label>
-                <Input
-                  placeholder={`Short description in ${locale}`}
-                  {...register(`translations.${i}.description`)}
-                />
-                {errors.translations?.[i]?.description && (
-                  <p className="text-sm text-destructive">
-                    {errors.translations[i].description?.message}
-                  </p>
+              />
+              <Controller
+                name={`translations.${index}.description`}
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      {t("form.description")}
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id={field.name}
+                      placeholder={`Short description in ${locale}`}
+                      aria-invalid={fieldState.invalid}
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
                 )}
-              </div>
+              />
+              <Controller
+                name={`translations.${index}.content`}
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel>{t("form.content")}</FieldLabel>
+                    <MDEditor
+                      value={field.value}
+                      onChange={(value) => field.onChange(value ?? "")}
+                      height={400}
+                      data-color-mode="dark"
+                    />
 
-              <div className="space-y-2">
-                <Label>{t("form.content")}</Label>
-                <MDEditor
-                  value={watch(`translations.${i}.content`)}
-                  onChange={(val) =>
-                    setValue(`translations.${i}.content`, val ?? "", {
-                      shouldValidate: true,
-                    })
-                  }
-                  height={400}
-                  data-color-mode="dark"
-                />
-                {errors.translations?.[i]?.content && (
-                  <p className="text-sm text-destructive">
-                    {errors.translations[i].content?.message}
-                  </p>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
                 )}
-              </div>
-            </TabsContent>
-          );
-        })}
+              />
+            </FieldGroup>
+          </TabsContent>
+        ))}
       </Tabs>
-
-      <div className="space-y-2">
-        <Label>{t("form.tags")}</Label>
-        <div className="flex flex-wrap gap-2 mt-3">
-          {availableTags?.map((tag) => {
-            const selected = watch("tagIds") ?? [];
-            const isChecked = selected.includes(tag.id);
-            return (
-              <button
-                key={tag.id}
-                type="button"
-                onClick={() => {
-                  const current = watch("tagIds") ?? [];
-                  setValue(
-                    "tagIds",
-                    isChecked
-                      ? current.filter((id) => id !== tag.id)
-                      : [...current, tag.id],
+      <Controller
+        name="tagIds"
+        control={form.control}
+        render={({ field, fieldState }) => {
+          const selected = field.value ?? [];
+          return (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel>{t("form.tags")}</FieldLabel>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {availableTags?.map((tag) => {
+                  const isChecked = selected.includes(tag.id);
+                  return (
+                    <button
+                      key={tag.id}
+                      type="button"
+                      onClick={() => {
+                        field.onChange(
+                          isChecked
+                            ? selected.filter((id) => id !== tag.id)
+                            : [...selected, tag.id],
+                        );
+                      }}
+                      className={`px-3 py-1 rounded-full border text-sm transition-colors ${
+                        isChecked
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-border text-muted-foreground"
+                      }`}
+                    >
+                      {tag.name}
+                    </button>
                   );
-                }}
-                className={`px-3 py-1 rounded-full border text-sm transition-colors ${
-                  isChecked
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-border text-muted-foreground"
-                }`}
-              >
-                {tag.name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+                })}
+              </div>
 
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          );
+        }}
+      />
+      {form.formState.errors.root && (
+        <FieldError errors={[form.formState.errors.root]} />
+      )}
       <div className="flex justify-end gap-3">
         <Button
           type="button"

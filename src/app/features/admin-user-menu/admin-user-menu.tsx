@@ -110,7 +110,7 @@ export function AdminUserMenu({ user }: AdminUserMenuProps) {
               onClick={logOut}
               className="text-destructive focus:bg-destructive/10 focus:text-destructive"
             >
-              <LogOut />
+              <LogOut className="mr-2 h-4 w-4" />
               <span>{t("signOut")}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
