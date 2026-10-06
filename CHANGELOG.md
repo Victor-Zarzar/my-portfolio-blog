@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/Victor-Zarzar/my-portfolio-blog/compare/v1.6.4...v1.7.0) (2026-10-06)
+
+
+### Features
+
+* add new tests and update makefile ([10a360a](https://github.com/Victor-Zarzar/my-portfolio-blog/commit/10a360a03717f43714a2546ed8e54e37f1a17847))
+
 ## [1.6.4](https://github.com/Victor-Zarzar/my-portfolio/compare/v1.6.3...v1.6.4) (2026-07-14)
 
 
