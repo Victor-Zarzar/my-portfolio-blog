@@ -86,7 +86,7 @@ export function SettingsCard() {
   }
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <div className="flex items-center gap-3">
           <div className="flex size-10 items-center justify-center rounded-lg border bg-muted">

@@ -1,16 +1,17 @@
 import {
   BarChart,
   BookOpen,
+  BrickWallFire,
   ChartNoAxesCombined,
   FolderKanban,
   Gauge,
   Home,
   LayoutDashboard,
   Mail,
-  Shield,
-  ShieldCheck,
+  Rss,
+  StickyNotePlus,
+  Tags,
   User,
-  Users,
 } from "lucide-react";
 
 import type {
@@ -64,19 +65,19 @@ export const adminNavigation: AdminNavItem[] = [
     id: "posts",
     labelKey: "nav.posts.index",
     href: "/admin/posts",
-    icon: <Users className={iconClass} />,
+    icon: <Rss className={iconClass} />,
   },
   {
     id: "posts-new",
     labelKey: "nav.posts.new",
     href: "/admin/posts/new",
-    icon: <FolderKanban className={iconClass} />,
+    icon: <StickyNotePlus className={iconClass} />,
   },
   {
     id: "posts-tags",
     labelKey: "nav.posts.tags",
     href: "/admin/tags",
-    icon: <Shield className={iconClass} />,
+    icon: <Tags className={iconClass} />,
   },
   {
     id: "tags-new",
@@ -105,7 +106,7 @@ export const adminNavigation: AdminNavItem[] = [
         id: "analytics-security",
         labelKey: "nav.analytics.security",
         href: "/admin/analytics/security",
-        icon: <ShieldCheck className={iconClass} />,
+        icon: <BrickWallFire className={iconClass} />,
       },
     ],
   },

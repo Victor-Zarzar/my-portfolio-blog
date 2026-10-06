@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, LayoutDashboard } from "lucide-react";
+import { ChartNoAxesCombined, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { AdminUserMenu } from "@/app/features/admin-user-menu/admin-user-menu";
 import { adminNavigation } from "@/app/shared/constants/command-links";
@@ -53,13 +53,15 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/admin">
-                <LayoutDashboard className="size-4" />
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Admin</span>
-                  <span className="truncate text-xs text-muted-foreground">
-                    Dashboard
-                  </span>
-                </div>
+                <ChartNoAxesCombined className="size-4 mx-auto" />
+                {(state !== "collapsed" || isMobile) && (
+                  <div className="grid flex-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">{user.name}</span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      {t("command.title")}
+                    </span>
+                  </div>
+                )}
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

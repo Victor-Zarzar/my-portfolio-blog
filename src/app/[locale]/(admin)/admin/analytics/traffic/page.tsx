@@ -11,7 +11,7 @@ export default async function TrafficAnalyticsPage() {
   const analytics = await getTrafficAnalytics();
 
   return (
-    <div className="mx-auto max-w-7xl space-y-6 px-4 py-8">
+    <div className="space-y-6">
       <div className="mb-8 text-center">
         <FadeWrapper>
           <h1 className="text-2xl font-bold">{t("title")}</h1>

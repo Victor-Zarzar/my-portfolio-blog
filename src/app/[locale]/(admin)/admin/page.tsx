@@ -45,7 +45,7 @@ export default async function AdminDashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-12">
+    <div className="space-y-6">
       <div className="text-center mb-8">
         <FadeWrapper>
           <h1 className=" text-2xl font-bold">{t("title")}</h1>

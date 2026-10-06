@@ -161,7 +161,7 @@ export function TwoFactorSetupForm({
 
   if (step === "status") {
     return (
-      <Card className="border-black dark:border-gray-400">
+      <Card className="w-full">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <ShieldCheck className="size-5" />

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { formatChartDate } from "@/app/shared/helpers/format-date";
 import type { FirewallChartProps } from "@/app/shared/types/analytics/analytics";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import {
@@ -34,12 +35,20 @@ export function FirewallChart({ data }: FirewallChartProps) {
         <ChartContainer config={chartConfig} className="h-80 w-full">
           <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="date" tickLine={false} axisLine={false} />
+            <XAxis
+              dataKey="date"
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => formatChartDate(String(value), true)}
+            />
             <YAxis tickLine={false} axisLine={false} width={35} />
             <ChartTooltip
               cursor={false}
               content={
-                <ChartTooltipContent className="border-border bg-popover text-popover-foreground shadow-md" />
+                <ChartTooltipContent
+                  className="border-border bg-popover text-popover-foreground shadow-md"
+                  labelFormatter={(value) => formatChartDate(String(value))}
+                />
               }
             />
             <Bar

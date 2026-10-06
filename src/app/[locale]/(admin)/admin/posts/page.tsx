@@ -39,7 +39,7 @@ export default async function AdminPostsPage({
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="space-y-6">
       <div className="mb-8 flex items-center justify-between">
         <FadeWrapper>
           <h1 className="text-center text-2xl font-bold">{t("posts.title")}</h1>

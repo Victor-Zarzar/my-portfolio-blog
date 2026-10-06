@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { formatChartDate } from "@/app/shared/helpers/format-date";
 import type { TrafficChartProps } from "@/app/shared/types/analytics/analytics";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import {
@@ -45,12 +46,16 @@ export function TrafficChart({ data }: TrafficChartProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              tickFormatter={(value) => formatChartDate(String(value), true)}
             />
             <YAxis tickLine={false} axisLine={false} width={35} />
             <ChartTooltip
               cursor={false}
               content={
-                <ChartTooltipContent className="border-border bg-popover text-popover-foreground shadow-md" />
+                <ChartTooltipContent
+                  className="border-border bg-popover text-popover-foreground shadow-md"
+                  labelFormatter={(value) => formatChartDate(String(value))}
+                />
               }
             />
             <Area

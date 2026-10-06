@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import { formatChartMonth } from "@/app/shared/helpers/format-date";
 import type { PostsChartProps } from "@/app/shared/types/analytics/analytics";
 import {
   Card,
@@ -52,6 +53,7 @@ export function PostsChart({ data }: PostsChartProps) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              tickFormatter={(value) => formatChartMonth(String(value))}
             />
             <YAxis
               allowDecimals={false}
@@ -62,7 +64,10 @@ export function PostsChart({ data }: PostsChartProps) {
             <ChartTooltip
               cursor={false}
               content={
-                <ChartTooltipContent className="border-border bg-popover text-popover-foreground shadow-md" />
+                <ChartTooltipContent
+                  className="border-border bg-popover text-popover-foreground shadow-md"
+                  labelFormatter={(value) => formatChartMonth(String(value))}
+                />
               }
             />
             <Line

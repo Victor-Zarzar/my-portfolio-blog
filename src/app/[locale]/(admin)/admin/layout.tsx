@@ -21,12 +21,19 @@ export default async function AdminLayout({
   const session = await requireAdmin();
 
   return (
-    <SidebarProvider>
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
       <AdminSidebar user={session.user} />
       <SidebarInset className="min-w-0">
         <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center border-b bg-background">
-          <div className="flex w-full items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1 size-8" />
+          <div className="flex w-full items-center gap-2 px-4 lg:px-6">
+            <SidebarTrigger className="-ml-1 size-4" />
             <Separator
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
@@ -40,8 +47,8 @@ export default async function AdminLayout({
           </div>
         </header>
         <DevToolsGuard unauthorizedPath="/admin/unauthorized" />
-        <main className="flex flex-1 flex-col">
-          <div className="mx-auto w-full max-w-350 flex-1 p-4 md:p-6 lg:p-8">
+        <main className="@container/main flex flex-1 flex-col">
+          <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-6 lg:px-6">
             {children}
           </div>
         </main>

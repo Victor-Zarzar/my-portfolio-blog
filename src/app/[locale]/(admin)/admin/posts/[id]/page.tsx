@@ -34,7 +34,7 @@ export default async function EditPostPage({
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="space-y-6">
       <FadeWrapper>
         <h1 className="text-center text-2xl font-bold mb-8">{t("editPost")}</h1>
       </FadeWrapper>

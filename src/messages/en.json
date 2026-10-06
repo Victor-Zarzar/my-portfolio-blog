@@ -223,6 +223,7 @@
     "searchPlaceholder": "Search pages...",
     "pressToNavigate": "Press ⌘K to navigate",
     "command": {
+      "title": "Dashboard - Portfolio Blog",
       "navigate": "Navigation",
       "settings": "Settings",
       "empty": "No results found",

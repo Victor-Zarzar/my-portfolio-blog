@@ -92,7 +92,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
   }
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardContent className="pt-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
