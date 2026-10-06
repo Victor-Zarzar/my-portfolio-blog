@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { Props } from "@/app/shared/types/post/post";
 import { Button } from "@/app/shared/ui/button";
+import { ButtonGroup } from "@/app/shared/ui/button-group";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -37,15 +38,18 @@ export function PostsTable({ data }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Input
-          placeholder={t("searchPlaceholder")}
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-
+        <ButtonGroup className="max-w-sm">
+          <Input
+            id="post-search"
+            placeholder={t("searchPlaceholder")}
+            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("title")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          <Button variant="outline">{t("searchButton")}</Button>
+        </ButtonGroup>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

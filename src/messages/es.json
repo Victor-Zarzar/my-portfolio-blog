@@ -609,6 +609,7 @@
       "title": "Etiquetas",
       "new": "Nueva etiqueta",
       "search": "Buscar etiquetas...",
+      "searchButton": "Buscar",
       "columns": "Columnas",
       "empty": "No se encontraron etiquetas.",
       "posts": "Posts",
@@ -669,6 +670,7 @@
     },
     "posts-form": {
       "searchPlaceholder": "Buscar posts...",
+      "searchButton": "Buscar",
       "columns": "Columnas",
       "noResults": "No se encontraron resultados.",
       "pagination": {

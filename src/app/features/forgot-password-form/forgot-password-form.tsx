@@ -114,7 +114,7 @@ export default function ForgotPasswordForm() {
       </CardHeader>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form noValidate onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent className="space-y-4">
             <p className="text-sm text-center text-muted-foreground">
               {t("description")}

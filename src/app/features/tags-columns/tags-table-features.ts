@@ -4,6 +4,7 @@ import {
   createFilteredRowModel,
   createPaginatedRowModel,
   createSortedRowModel,
+  filterFn_includesString,
   rowPaginationFeature,
   rowSortingFeature,
   tableFeatures,
@@ -14,8 +15,10 @@ export const tagsTableFeatures = tableFeatures({
   columnVisibilityFeature,
   rowSortingFeature,
   rowPaginationFeature,
-
   filteredRowModel: createFilteredRowModel(),
+  filterFns: {
+    includesString: filterFn_includesString,
+  },
   sortedRowModel: createSortedRowModel(),
   paginatedRowModel: createPaginatedRowModel(),
 });

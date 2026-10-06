@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { TagsDataTableProps } from "@/app/shared/types/tags/tags";
 import { Button } from "@/app/shared/ui/button";
+import { ButtonGroup } from "@/app/shared/ui/button-group";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -37,15 +38,17 @@ export function TagsDataTable({ data }: TagsDataTableProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <Input
-          placeholder={t("search")}
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-
+        <ButtonGroup className="max-w-sm">
+          <Input
+            id="tag-search"
+            placeholder={t("search")}
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+          />
+          <Button variant="outline">{t("searchButton")}</Button>
+        </ButtonGroup>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
