@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { TwoFactorSetupForm } from "@/app/features/two-factor-setup-form/two-factor-setup-form";
 import { requireSession } from "@/lib/auth/guard";
 import { db } from "@/lib/db";
-import { user } from "@/lib/db/auth-schema";
+import { user } from "@/lib/db/schemas/auth";
 
 export default async function SecurityPage() {
   const session = await requireSession();

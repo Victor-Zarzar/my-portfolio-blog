@@ -76,6 +76,7 @@ restart:
 clean: stop
 	docker rmi -f $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
 	docker rmi -f $(REDIS_IMAGE_NAME):$(REDIS_TAG) >/dev/null 2>&1 || true
+	docker rmi -f $(E2E_IMAGE_NAME):$(E2E_TAG) >/dev/null 2>&1 || true
 	rm -rf node_modules .next .vercel tsconfig.tsbuildinfo playwright-report test-results >/dev/null 2>&1 || true
 
 logs:
@@ -108,6 +109,7 @@ test-e2e: build-e2e redis-server
 	docker run --rm \
 		--name $(DOCKER_CONTAINER_NAME)-test \
 		--network $(NETWORK_NAME) \
+		--env-file .env \
 		-e CI=true \
 		-e REDIS_URL=redis://$(REDIS_CONTAINER_NAME):6379 \
 		-v $(PWD):/app \

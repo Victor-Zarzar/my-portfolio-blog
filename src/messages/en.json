@@ -734,6 +734,39 @@
         "save": "Save changes"
       }
     },
-    "editPost": "Edit post"
+    "editPost": "Edit post",
+    "notifications": {
+      "title": "Notifications",
+      "unread": "{count, plural, one {# unread notification} other {# unread notifications}}",
+      "markAllAsRead": "Mark all as read",
+      "viewAll": "View all notifications",
+      "empty": {
+        "title": "No notifications",
+        "description": "You're all caught up."
+      },
+      "errors": {
+        "markAsRead": "Unable to mark notification as read.",
+        "markAllAsRead": "Unable to mark notifications as read."
+      },
+      "events": {
+        "post": {
+          "published": "Post \"{title}\" was published.",
+          "unpublished": "Post \"{title}\" was unpublished."
+        },
+        "contact": {
+          "received": "New message received from {name}."
+        },
+        "security": {
+          "firewallSpike": "{count} requests were blocked by the firewall.",
+          "twoFactorEnabled": "Two-factor authentication was enabled.",
+          "twoFactorDisabled": "Two-factor authentication was disabled.",
+          "passwordChanged": "Your password was changed."
+        },
+        "integration": {
+          "vercelError": "An error occurred while communicating with Vercel.",
+          "cloudinaryError": "An error occurred while communicating with Cloudinary."
+        }
+      }
+    }
   }
 }

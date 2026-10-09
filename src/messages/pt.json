@@ -734,6 +734,39 @@
         "save": "Salvar alterações"
       }
     },
-    "editPost": "Editar post"
+    "editPost": "Editar post",
+    "notifications": {
+      "title": "Notificações",
+      "unread": "{count, plural, one {# notificação não lida} other {# notificações não lidas}}",
+      "markAllAsRead": "Marcar todas como lidas",
+      "viewAll": "Ver todas as notificações",
+      "empty": {
+        "title": "Nenhuma notificação",
+        "description": "Você está em dia."
+      },
+      "errors": {
+        "markAsRead": "Não foi possível marcar a notificação como lida.",
+        "markAllAsRead": "Não foi possível marcar as notificações como lidas."
+      },
+      "events": {
+        "post": {
+          "published": "O post \"{title}\" foi publicado.",
+          "unpublished": "O post \"{title}\" foi despublicado."
+        },
+        "contact": {
+          "received": "Nova mensagem recebida de {name}."
+        },
+        "security": {
+          "firewallSpike": "{count} requisições foram bloqueadas pelo firewall.",
+          "twoFactorEnabled": "A autenticação de dois fatores foi habilitada.",
+          "twoFactorDisabled": "A autenticação de dois fatores foi desabilitada.",
+          "passwordChanged": "Sua senha foi alterada."
+        },
+        "integration": {
+          "vercelError": "Ocorreu um erro na comunicação com a Vercel.",
+          "cloudinaryError": "Ocorreu um erro na comunicação com o Cloudinary."
+        }
+      }
+    }
   }
 }

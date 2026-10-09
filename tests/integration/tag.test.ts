@@ -57,7 +57,7 @@ beforeEach(() => {
     },
   }));
 
-  mock.module("@/lib/db/schema", () => ({
+  mock.module("@/lib/db/schemas/schema", () => ({
     tags: {
       slug: "tags.slug",
     },

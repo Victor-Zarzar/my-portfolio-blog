@@ -83,7 +83,7 @@ beforeEach(() => {
     },
   }));
 
-  mock.module("@/lib/db/schema", () => ({
+  mock.module("@/lib/db/schemas/schema", () => ({
     posts: {
       id: "posts.id",
       slug: "posts.slug",

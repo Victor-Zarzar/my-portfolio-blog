@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
-import { posts } from "@/lib/db/schema";
+import { posts } from "@/lib/db/schemas/schema";
 
 export default async function AdminDashboardPage() {
   const [allPosts, recentPosts] = await Promise.all([

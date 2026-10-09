@@ -1,3 +1,4 @@
+import { AdminNotificationBell } from "@/app/features/admin-notifications/admin-notifications-bell";
 import { AdminProfileMenu } from "@/app/features/admin-profile-menu/admin-profile-menu";
 import CommandPalette from "@/app/features/command-palette/command-palette";
 import LanguageToggle from "@/app/features/lang-toggle/lang-toggle";
@@ -42,6 +43,7 @@ export default async function AdminLayout({
               <CommandPalette links={adminCommandLinks} showSettings={false} />
               <LanguageToggle />
               <ModeToggle />
+              <AdminNotificationBell />
               <AdminProfileMenu user={session.user} />
             </div>
           </div>

@@ -4,7 +4,7 @@ import { PostForm } from "@/app/features/post-form/post-form";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { auth } from "@/lib/auth/auth";
 import { db } from "@/lib/db";
-import { tags } from "@/lib/db/schema";
+import { tags } from "@/lib/db/schemas";
 
 export default async function NewPostPage() {
   const session = await auth.api.getSession({ headers: await headers() });

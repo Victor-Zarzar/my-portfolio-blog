@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { posts, postTags, postTranslations } from "@/lib/db/schema";
+import { posts, postTags, postTranslations } from "@/lib/db/schemas/schema";
 import { invalidatePostCache } from "@/lib/redis/cache";
 
 const translationSchema = z.object({
