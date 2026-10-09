@@ -35,7 +35,7 @@ mock.module("drizzle-orm", () => ({
   eq: eqSpy,
 }));
 
-mock.module("@/lib/db/schema", () => ({
+mock.module("@/lib/db/schemas/schema", () => ({
   tags: {
     slug: "tags.slug",
   },

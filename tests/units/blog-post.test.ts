@@ -99,7 +99,7 @@ mock.module("drizzle-orm", () => ({
   inArray: mock((a: unknown, b: unknown) => ({ type: "inArray", a, b })),
 }));
 
-mock.module("@/lib/db/schema", () => ({
+mock.module("@/lib/db/schemas/schema", () => ({
   posts: {
     id: "posts.id",
     slug: "posts.slug",

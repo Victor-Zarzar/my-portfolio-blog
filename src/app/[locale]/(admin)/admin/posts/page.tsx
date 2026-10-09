@@ -5,7 +5,7 @@ import { Button } from "@/app/shared/ui/button";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
-import { posts } from "@/lib/db/schema";
+import { posts } from "@/lib/db/schemas/schema";
 
 export default async function AdminPostsPage({
   params,

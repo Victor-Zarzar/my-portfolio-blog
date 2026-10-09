@@ -96,6 +96,7 @@ mock.module("@/env", () => ({
     GOOGLE_RECAPTCHA_SECRET_KEY: "recaptcha-secret",
     ADMIN_EMAIL: "admin@gmail.com",
     REDIS_URL: "redis://localhost:6379",
+    AUTH_DISABLE_SIGNUP: true,
   },
 }));
 
@@ -103,7 +104,7 @@ mock.module("@/lib/db", () => ({
   db: { __db: true },
 }));
 
-mock.module("@/lib/db/auth-schema", () => ({
+mock.module("@/lib/db/schemas/auth", () => ({
   user: {},
   session: {},
   account: {},

@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { tags } from "@/lib/db/schema";
+import { tags } from "@/lib/db/schemas/schema";
 
 const schema = z.object({
   name: z.string().min(1),

@@ -30,6 +30,10 @@ const env = createEnv({
     VERCEL_TOKEN: z.string(),
     VERCEL_PROJECT_ID: z.string(),
     VERCEL_TEAM_ID: z.string().optional(),
+    AUTH_DISABLE_SIGNUP: z
+      .enum(["true", "false"])
+      .default("true")
+      .transform((value) => value === "true"),
   },
 
   client: {
@@ -86,6 +90,7 @@ const env = createEnv({
     VERCEL_TOKEN: process.env.VERCEL_TOKEN,
     VERCEL_PROJECT_ID: process.env.VERCEL_PROJECT_ID,
     VERCEL_TEAM_ID: process.env.VERCEL_TEAM_ID,
+    AUTH_DISABLE_SIGNUP: process.env.AUTH_DISABLE_SIGNUP,
   },
 
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,

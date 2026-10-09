@@ -5,7 +5,7 @@ import { Button } from "@/app/shared/ui/button";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
-import { tags } from "@/lib/db/schema";
+import { tags } from "@/lib/db/schemas/schema";
 
 export default async function TagsPage() {
   const t = await getTranslations("dashboard");

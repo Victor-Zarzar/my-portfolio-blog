@@ -11,7 +11,7 @@ import {
 } from "better-auth/plugins";
 import env from "@/env";
 import { db } from "@/lib/db";
-import * as authSchema from "@/lib/db/auth-schema";
+import * as authSchema from "@/lib/db/schemas/auth";
 import { sendVerificationEmail } from "@/lib/email/send-verification";
 import { redis } from "@/lib/redis/client";
 import { sendResetPasswordEmail } from "../email/send-reset-password";
@@ -40,7 +40,7 @@ const authOptions = {
   },
   emailAndPassword: {
     enabled: true,
-    disableSignUp: true,
+    disableSignUp: env.AUTH_DISABLE_SIGNUP,
     requireEmailVerification: true,
     resetPasswordTokenExpiresIn: 60 * 15,
     revokeSessionsOnPasswordReset: true,

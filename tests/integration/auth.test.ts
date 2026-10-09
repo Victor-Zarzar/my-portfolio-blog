@@ -71,6 +71,7 @@ beforeEach(() => {
       BETTER_AUTH_URL: "http://localhost:3000",
       GOOGLE_RECAPTCHA_SECRET_KEY: "recaptcha-secret",
       ADMIN_EMAIL: "admin@example.com",
+      AUTH_DISABLE_SIGNUP: true,
     },
   }));
 
@@ -88,7 +89,7 @@ beforeEach(() => {
     },
   }));
 
-  mock.module("@/lib/db/auth-schema", () => ({
+  mock.module("@/lib/db/schemas/auth", () => ({
     user: {},
     session: {},
     account: {},

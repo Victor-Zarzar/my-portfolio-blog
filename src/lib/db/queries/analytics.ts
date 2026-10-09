@@ -1,7 +1,12 @@
 import { and, asc, count, eq, sql } from "drizzle-orm";
 import type { AnalyticsData } from "@/app/shared/types/analytics/analytics";
 import { db } from "@/lib/db";
-import { posts, postTags, postTranslations, tags } from "@/lib/db/schema";
+import {
+  posts,
+  postTags,
+  postTranslations,
+  tags,
+} from "@/lib/db/schemas/schema";
 import { cacheWithRedis } from "@/lib/redis/cache";
 import { cacheKeys } from "@/lib/redis/keys";
 
