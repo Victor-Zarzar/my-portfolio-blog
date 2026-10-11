@@ -1,7 +1,7 @@
 import "server-only";
 
 import { captureServerError } from "@/app/shared/helpers/capture-server-error";
-import env from "@/env";
+import { env } from "@/env/server";
 
 const VERCEL_API_URL = "https://api.vercel.com";
 

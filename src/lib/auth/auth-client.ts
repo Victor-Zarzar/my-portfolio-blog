@@ -4,7 +4,7 @@ import {
   twoFactorClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-import env from "@/env";
+import { env } from "@/env/client";
 import type { auth } from "@/lib/auth/auth";
 
 export const authClient = createAuthClient({

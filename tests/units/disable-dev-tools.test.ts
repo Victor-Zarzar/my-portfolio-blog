@@ -13,8 +13,8 @@ mock.module("@/i18n/navigation", () => ({
   usePathname: () => mockPathname,
 }));
 
-mock.module("@/env", () => ({
-  default: {
+mock.module("@/env/client", () => ({
+  env: {
     NEXT_PUBLIC_DISABLE_DEVTOOLS: true,
   },
 }));

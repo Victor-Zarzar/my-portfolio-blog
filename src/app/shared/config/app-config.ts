@@ -1,4 +1,4 @@
-import env from "@/env";
+import { env } from "@/env/client";
 
 export const SITE_FIRST_NAME = "Victor";
 export const SITE_LAST_NAME = "Zarzar";

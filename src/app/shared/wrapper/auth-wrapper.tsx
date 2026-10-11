@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import env from "@/env";
+import { env } from "@/env/client";
 
 export default function AuthWrapper({ children }: { children: ReactNode }) {
   return (

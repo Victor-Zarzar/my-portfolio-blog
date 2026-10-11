@@ -1,6 +1,6 @@
 "use server";
 
-import { cloudinary } from "./client";
+import { cloudinary } from "./server";
 
 export async function uploadAvatar(file: File, userId: string) {
   const buffer = Buffer.from(await file.arrayBuffer());

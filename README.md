@@ -25,6 +25,7 @@
 
 <h2 id="table-of-contents">Table of Contents</h2>
 
+- [Admin Dashboard](#admin-dashboard)
 - [Tech Stack](#stack)
 - [Prerequisites](#prerequisites)
 - [Installation & Setup](#installation)
@@ -64,13 +65,21 @@
 - **Drizzle ORM** - Type-safe ORM for PostgreSQL
 - **PostgreSQL** - Serverless PostgreSQL database for blog content
 - **Docker** - Optional containerized deployment (Development and Testing)
+- **TanStack Table v9** - Headless table engine for the admin dashboard
+- **react-simple-maps** - SVG world map for geographic traffic visualization
+- **Recharts** - Composable charting library for the admin dashboard analytics
 
 ### Features & Integrations
 
 - **Blog powered by PostgreSQL** - Articles stored and served via Neon serverless database
+- **T3 Env + Zod** - Type-safe, validated environment variables split into `src/env/client.ts` and `src/env/server.ts`
 - **Drizzle ORM + Drizzle Kit** - Database schema management and migrations
-- **Better Auth** - Authentication with session management and secure credential handling
-- **Two Factor Auth** - TOTP-based 2FA via Better Auth, with QR code setup flow and backup codes support
+- **Better Auth** - Authentication with session management, secure credential handling, password reset and email verification
+- **Two Factor Auth (2FA)** - TOTP-based 2FA via Better Auth. Users can enable or disable it in the profile settings panel, with a QR code setup flow ([react-qr-code](https://github.com/rosskhanas/react-qr-code)) and backup codes support
+- **Admin Dashboard** - Protected admin panel with post analytics charts, most-visited paths, a global visitors map ([react-simple-maps](https://www.react-simple-maps.io/)) and security settings
+- **Profile Settings** - Per-user preferences for theme (light/dark), language (EN / PT-BR / ES), password change and 2FA management
+- **TanStack Table** - Headless, type-safe tables for dashboard data (posts, traffic, sessions)
+- **T3 Env + Zod** - Type-safe, validated environment variables split into `src/env/client.ts` and `src/env/server.ts`
 - **Google reCAPTCHA v3** - Invisible bot protection via react-google-recaptcha-v3
 - **Redis** - In-memory cache layer for session storage and performance optimization
 - **Zod & React Hook Form** - Form validation and management
@@ -86,6 +95,7 @@
 - **Sentry** - Error tracking and performance monitoring
 - **GitHub Actions** - Continuous integration and deployment
 - **Argon2** - Standard secure password hashing
+- **Admin Dashboard** - Protected admin panel with post analytics charts ([Recharts](https://recharts.org/)), most-visited paths, a global visitors map ([react-simple-maps](https://www.react-simple-maps.io/)) and security settings
 
 ---
 
@@ -123,6 +133,29 @@ Copy the example environment file and configure your credentials:
 
 ```bash
 cp .env-example .env
+```
+
+Then edit `.env` with your actual values. The `.env-example` file contains detailed comments explaining each variable and how to obtain the necessary credentials.
+
+#### Type-safe environment variables (T3 Env)
+
+Environment variables are validated at build/start time with [T3 Env](https://env.t3.gg/) and [Zod](https://zod.dev/), following the official T3 architecture:
+
+```
+src/
+└── env/
+    ├── client.ts   # NEXT_PUBLIC_* variables (exposed to the browser)
+    └── server.ts   # Server-only secrets (never bundled for the client)
+```
+
+Always import from these files instead of reading `process.env` directly:
+
+```ts
+// Client Components
+import { env } from "@/env/client";
+
+// Server Components, Route Handlers, Server Actions
+import { env } from "@/env/server";
 ```
 
 Then edit `.env` with your actual values. The `.env-example` file contains detailed comments explaining each variable and how to obtain the necessary credentials.
@@ -364,6 +397,38 @@ Remove containers, images, and build artifacts:
 ```bash
 make clean
 ```
+
+---
+
+<h2 id="admin-dashboard">Admin Dashboard</h2>
+
+The admin dashboard is a protected area, available only to authenticated users (see `ADMIN_EMAIL` and `AUTH_DISABLE_SIGNUP` in the environment configuration).
+
+### Analytics
+
+- **Posts monitoring** - Charts with views and performance per blog post, built with `Recharts`
+- **Traffic by path** - Ranking of the most visited routes, visualized with `Recharts`
+- **Global map** - Visitors by country, rendered with `react-simple-maps`
+
+### Security & Authentication
+
+- **Password reset** - Reset flow with a tokenized link sent by email (Nodemailer)
+- **Email verification** - Password changes and sensitive actions require email confirmation
+- **Two-Factor Authentication** - Enable or disable 2FA from the profile settings
+  1. Scan the QR code (rendered with `react-qr-code`) in your authenticator app
+  2. Confirm with a 6-digit TOTP code
+  3. Save the generated **backup codes** in a safe place; each one can be used once if you lose access to your authenticator
+
+### Profile Settings
+
+| Setting  | Options                 |
+| -------- | ----------------------- |
+| Theme    | Light / Dark / System   |
+| Language | EN / PT-BR / ES         |
+| Password | Change with email check |
+| 2FA      | Enabled / Disabled      |
+
+> Theme and language preferences are applied through Next Themes and Next Intl.
 
 ---
 

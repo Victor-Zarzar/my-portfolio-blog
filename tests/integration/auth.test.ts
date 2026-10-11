@@ -65,18 +65,19 @@ beforeEach(() => {
     twoFactor: twoFactorMock,
   }));
 
-  mock.module("@/env", () => ({
-    default: {
+  mock.module("@/env/client", () => ({
+    env: {
       NEXT_PUBLIC_WEBSITE_URL: "http://localhost:3000",
+    },
+  }));
+
+  mock.module("@/env/server", () => ({
+    env: {
       BETTER_AUTH_URL: "http://localhost:3000",
       GOOGLE_RECAPTCHA_SECRET_KEY: "recaptcha-secret",
       ADMIN_EMAIL: "admin@example.com",
       AUTH_DISABLE_SIGNUP: true,
     },
-  }));
-
-  mock.module("@/lib/db", () => ({
-    db: { name: "test-db" },
   }));
 
   mock.module("@/lib/redis/client", () => ({
@@ -89,11 +90,16 @@ beforeEach(() => {
     },
   }));
 
+  mock.module("@/lib/db", () => ({
+    db: { name: "test-db" },
+  }));
+
   mock.module("@/lib/db/schemas/auth", () => ({
     user: {},
     session: {},
     account: {},
     verification: {},
+    twoFactor: {},
   }));
 
   mock.module("@/lib/email/send-verification", () => ({
@@ -131,6 +137,7 @@ describe("auth integration", () => {
           session: {},
           account: {},
           verification: {},
+          twoFactor: {},
         },
         usePlural: false,
       },

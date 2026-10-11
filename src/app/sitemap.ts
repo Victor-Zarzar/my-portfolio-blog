@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import env from "@/env";
+import { env } from "@/env/client";
 import { routing } from "@/i18n/routing";
 import { getAllPostsForSitemap } from "@/lib/db/queries/blog";
 

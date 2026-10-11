@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import type { SendEmailOptions } from "@/app/shared/types/email/email";
-import env from "@/env";
+import { env } from "@/env/server";
 
 const transporter = nodemailer.createTransport({
   host: env.SMTP_HOST,

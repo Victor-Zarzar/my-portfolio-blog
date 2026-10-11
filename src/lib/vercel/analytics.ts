@@ -14,7 +14,7 @@ import type {
 } from "@/app/shared/types/vercel/vercel-types";
 import { cacheWithRedis } from "@/lib/redis/cache";
 import { cacheKeys } from "@/lib/redis/keys";
-import { vercelFetch } from "./client";
+import { vercelFetch } from "./server";
 
 const VISITS_COUNT_ENDPOINT = "/v1/query/web-analytics/visits/count";
 

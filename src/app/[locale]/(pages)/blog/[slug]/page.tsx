@@ -19,7 +19,7 @@ import type {
   PageProps,
 } from "@/app/shared/types/post/post";
 import { HeroImageClient } from "@/app/shared/wrapper/hero-image-client";
-import env from "@/env";
+import { env } from "@/env/client";
 import { getAllPostsForSitemap, getPostBySlug } from "@/lib/db/queries/blog";
 
 const components = {
