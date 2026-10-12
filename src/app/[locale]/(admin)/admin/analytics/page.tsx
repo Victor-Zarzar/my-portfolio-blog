@@ -1,9 +1,11 @@
+import { ChartColumn } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { AnalyticsCards } from "@/app/features/analytics/analytics-cards";
 import { PostsChart } from "@/app/features/analytics/posts-chart";
 import { TagsChart } from "@/app/features/analytics/tags-chart";
 import { TranslationsChart } from "@/app/features/analytics/translations-chart";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { getAnalytics } from "@/lib/db/queries/analytics";
 
 export default async function AnalyticsPage() {
@@ -11,11 +13,14 @@ export default async function AnalyticsPage() {
   const analytics = await getAnalytics();
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
+    <div className="mx-auto w-full max-w-7xl space-y-6">
+      <div className="mb-8 flex items-center justify-between">
         <FadeWrapper>
-          <h1 className=" text-2xl font-bold">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("description")}</p>
+          <AdminPageHeader
+            icon={ChartColumn}
+            title={t("title")}
+            description={t("description")}
+          />
         </FadeWrapper>
       </div>
       <AnalyticsCards data={analytics.summary} />

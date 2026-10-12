@@ -1,9 +1,11 @@
+import { ChartColumnIncreasing } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { TopPathsChart } from "@/app/features/analytics/traffic/top-paths-chart";
 import { TrafficCards } from "@/app/features/analytics/traffic/traffic-cards";
 import { TrafficChart } from "@/app/features/analytics/traffic/traffic-chart";
 import { VisitorsMap } from "@/app/features/analytics/traffic/visitors-map";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { getTrafficAnalytics } from "@/lib/vercel/analytics";
 
 export default async function TrafficAnalyticsPage() {
@@ -11,11 +13,14 @@ export default async function TrafficAnalyticsPage() {
   const analytics = await getTrafficAnalytics();
 
   return (
-    <div className="space-y-6">
-      <div className="mb-8 text-center">
+    <div className="mx-auto w-full max-w-7xl space-y-6">
+      <div className="mb-8 flex items-center justify-between">
         <FadeWrapper>
-          <h1 className="text-2xl font-bold">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("description")}</p>
+          <AdminPageHeader
+            icon={ChartColumnIncreasing}
+            title={t("title")}
+            description={t("description")}
+          />
         </FadeWrapper>
       </div>
       <TrafficCards data={analytics.summary} />

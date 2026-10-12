@@ -13,7 +13,6 @@ import { Button } from "@/app/shared/ui/button";
 import { ScrollArea } from "@/app/shared/ui/scroll-area";
 import { Separator } from "@/app/shared/ui/separator";
 import { Link, useRouter } from "@/i18n/navigation";
-
 import {
   markAllNotificationsAsReadAction,
   markNotificationAsReadAction,

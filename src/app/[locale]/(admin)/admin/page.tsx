@@ -1,8 +1,9 @@
 import { desc } from "drizzle-orm";
-import { FileCheck2, FileText, Text } from "lucide-react";
+import { FileCheck2, FileText, LayoutDashboard, Text } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/shared/ui/card";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
 import { posts } from "@/lib/db/schemas/schema";
@@ -45,13 +46,14 @@ export default async function AdminDashboardPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <FadeWrapper>
-          <h1 className=" text-2xl font-bold">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("description")}</p>
-        </FadeWrapper>
-      </div>
+    <div className="mx-auto w-full max-w-6xl space-y-6">
+      <FadeWrapper>
+        <AdminPageHeader
+          icon={LayoutDashboard}
+          title={t("posts.title")}
+          description={t("posts.description")}
+        />
+      </FadeWrapper>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
         {cards.map((card) => {
           const Icon = card.icon;

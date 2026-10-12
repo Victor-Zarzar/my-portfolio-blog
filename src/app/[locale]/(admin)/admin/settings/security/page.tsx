@@ -1,5 +1,7 @@
 import { eq } from "drizzle-orm";
+import { ShieldCheck } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { SettingsPageHeader } from "@/app/features/admin-settings/settings-page-header";
 import { TwoFactorSetupForm } from "@/app/features/two-factor-setup-form/two-factor-setup-form";
 import { requireSession } from "@/lib/auth/guard";
 import { db } from "@/lib/db";
@@ -18,11 +20,12 @@ export default async function SecurityPage() {
     .limit(1);
 
   return (
-    <section className="mx-auto w-full max-w-2xl space-y-6">
-      <div className="mb-10 space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">{t("title")}</h1>
-        <p className="text-sm text-muted-foreground">{t("description")}</p>
-      </div>
+    <section className="space-y-6">
+      <SettingsPageHeader
+        icon={ShieldCheck}
+        title={t("title")}
+        description={t("description")}
+      />
       <TwoFactorSetupForm
         twoFactorEnabled={currentUser?.twoFactorEnabled ?? false}
       />
