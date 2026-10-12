@@ -9,7 +9,8 @@ import {
   oAuthProxy,
   twoFactor,
 } from "better-auth/plugins";
-import env from "@/env";
+import { env as clientEnv } from "@/env/client";
+import { env as serverEnv } from "@/env/server";
 import { db } from "@/lib/db";
 import * as authSchema from "@/lib/db/schemas/auth";
 import { sendVerificationEmail } from "@/lib/email/send-verification";
@@ -18,14 +19,14 @@ import { sendResetPasswordEmail } from "../email/send-reset-password";
 
 const authOptions = {
   appName: "Victor Zarzar",
-  baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
+  baseURL: clientEnv.NEXT_PUBLIC_WEBSITE_URL,
   telemetry: { enabled: false },
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: authSchema,
     usePlural: false,
   }),
-  trustedOrigins: [env.BETTER_AUTH_URL],
+  trustedOrigins: [serverEnv.BETTER_AUTH_URL],
   emailVerification: {
     sendOnSignUp: true,
     expiresIn: 60 * 15,
@@ -40,7 +41,7 @@ const authOptions = {
   },
   emailAndPassword: {
     enabled: true,
-    disableSignUp: env.AUTH_DISABLE_SIGNUP,
+    disableSignUp: serverEnv.AUTH_DISABLE_SIGNUP,
     requireEmailVerification: true,
     resetPasswordTokenExpiresIn: 60 * 15,
     revokeSessionsOnPasswordReset: true,
@@ -123,7 +124,7 @@ const authOptions = {
     }),
     captcha({
       provider: "google-recaptcha",
-      secretKey: env.GOOGLE_RECAPTCHA_SECRET_KEY,
+      secretKey: serverEnv.GOOGLE_RECAPTCHA_SECRET_KEY,
     }),
   ],
 } satisfies BetterAuthOptions;
@@ -137,7 +138,7 @@ export const auth = betterAuth({
       return {
         user: {
           ...user,
-          isAdmin: user.email === env.ADMIN_EMAIL,
+          isAdmin: user.email === serverEnv.ADMIN_EMAIL,
         },
         session,
       };

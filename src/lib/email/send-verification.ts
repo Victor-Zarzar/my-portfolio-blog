@@ -1,5 +1,5 @@
 import type { SendVerificationEmailOptions } from "@/app/shared/types/email/email";
-import { sendEmail } from "@/lib/email/client";
+import { sendEmail } from "@/lib/email/server";
 
 export async function sendVerificationEmail({
   email,

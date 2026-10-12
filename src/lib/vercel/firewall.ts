@@ -13,7 +13,7 @@ import type {
 } from "@/app/shared/types/firewall/firewall";
 import { cacheWithRedis } from "@/lib/redis/cache";
 import { cacheKeys } from "@/lib/redis/keys";
-import { vercelFetch } from "./client";
+import { vercelFetch } from "./server";
 
 const FIREWALL_EVENTS_ENDPOINT = "/v1/security/firewall/events";
 

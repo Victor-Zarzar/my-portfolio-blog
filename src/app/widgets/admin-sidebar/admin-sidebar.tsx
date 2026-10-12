@@ -41,6 +41,10 @@ import {
   useSidebar,
 } from "@/app/shared/ui/sidebar";
 import { Link, usePathname } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+
+const menuButtonClassName = "h-9 text-[15px] [&>svg]:size-[18px]";
+const submenuButtonClassName = "h-8 text-[13px] [&>svg]:size-[17px]";
 
 export function AdminSidebar({ user }: AdminSidebarProps) {
   const t = useTranslations("CommandPalette");
@@ -130,7 +134,10 @@ function SidebarMenuLink({
         asChild
         isActive={checkIsActive(pathname, item)}
         tooltip={t(item.labelKey)}
-        className="border border-transparent data-[active=true]:border-sidebar-border"
+        className={cn(
+          menuButtonClassName,
+          "border border-transparent data-[active=true]:border-sidebar-border",
+        )}
       >
         <Link href={item.href} onClick={() => setOpenMobile(false)}>
           {item.icon}
@@ -162,6 +169,7 @@ function SidebarMenuCollapsible({
           <SidebarMenuButton
             tooltip={t(item.labelKey)}
             isActive={checkIsActive(pathname, item)}
+            className={menuButtonClassName}
           >
             {item.icon}
             <span>{t(item.labelKey)}</span>
@@ -175,7 +183,10 @@ function SidebarMenuCollapsible({
                 <SidebarMenuSubButton
                   asChild
                   isActive={checkIsActive(pathname, subItem)}
-                  className="border border-transparent data-[active=true]:border-sidebar-border"
+                  className={cn(
+                    submenuButtonClassName,
+                    "border border-transparent data-[active=true]:border-sidebar-border",
+                  )}
                 >
                   <Link
                     href={subItem.href}
@@ -211,6 +222,7 @@ function SidebarMenuCollapsedDropdown({
           <SidebarMenuButton
             tooltip={t(item.labelKey)}
             isActive={checkIsActive(pathname, item)}
+            className={menuButtonClassName}
           >
             {item.icon}
             <span>{t(item.labelKey)}</span>

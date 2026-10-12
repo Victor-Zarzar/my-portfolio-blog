@@ -1,7 +1,7 @@
 import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import env from "@/env";
+import { env } from "@/env/server";
 
 const csp = [
   "default-src 'self'",

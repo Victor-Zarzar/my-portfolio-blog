@@ -10,7 +10,7 @@ const destroySpy = mock(async (_publicId: string, _options: unknown) => ({
   result: "ok",
 }));
 
-mock.module("@/lib/cloudinary/client", () => ({
+mock.module("@/lib/cloudinary/server", () => ({
   cloudinary: {
     uploader: {
       upload: uploadSpy,

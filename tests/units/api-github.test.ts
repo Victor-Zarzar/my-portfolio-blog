@@ -1,8 +1,8 @@
 import type { Mock } from "bun:test";
 import { afterEach, beforeEach, describe, expect, it, mock } from "bun:test";
 
-mock.module("@/env", () => ({
-  default: {
+mock.module("@/env/server", () => ({
+  env: {
     GH_API_TOKEN: "test_token",
     GH_USERNAME: "fake-user",
     REDIS_URL: "redis://localhost:6379",

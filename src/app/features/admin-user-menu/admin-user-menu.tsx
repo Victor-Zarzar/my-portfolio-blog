@@ -88,13 +88,13 @@ export function AdminUserMenu({ user }: AdminUserMenuProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/admin/profile">
+              <Link href="/admin/settings/profile">
                 <User className="mr-2 h-4 w-4" />
                 <span>{t("profile")}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/admin/security">
+              <Link href="/admin/settings/security">
                 <Shield className="mr-2 h-4 w-4" />
                 <span>{t("security")}</span>
               </Link>

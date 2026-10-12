@@ -1,7 +1,9 @@
 "use client";
 
 import { LanguagesIcon } from "lucide-react";
+import Image from "next/image";
 import type { Locale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Button } from "@/app/shared/ui/button";
 import {
   DropdownMenu,
@@ -14,8 +16,15 @@ import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 export default function LanguageToggle() {
+  const t = useTranslations("Navbar");
   const pathname = usePathname();
   const router = useRouter();
+
+  const locales = {
+    en: { label: t("english"), image: "/static/en.svg" },
+    es: { label: t("spanish"), image: "/static/es.svg" },
+    pt: { label: t("portuguese"), image: "/static/pt.svg" },
+  };
 
   function setLanguage(language: Locale) {
     router.push(pathname, {
@@ -48,8 +57,15 @@ export default function LanguageToggle() {
               key={locale}
               onClick={() => setLanguage(locale)}
               data-umami-event="language-switcher-click"
+              className="flex items-center gap-2"
             >
-              {locale.toUpperCase()}
+              <Image
+                src={locales[locale].image}
+                alt=""
+                width={20}
+                height={20}
+              />
+              <span>{locales[locale].label}</span>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

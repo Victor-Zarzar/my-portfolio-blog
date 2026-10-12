@@ -89,9 +89,14 @@ mock.module("better-auth/plugins", () => ({
   twoFactor: twoFactorSpy,
 }));
 
-mock.module("@/env", () => ({
-  default: {
+mock.module("@/env/client", () => ({
+  env: {
     NEXT_PUBLIC_WEBSITE_URL: "http://localhost:3000",
+  },
+}));
+
+mock.module("@/env/server", () => ({
+  env: {
     BETTER_AUTH_URL: "http://localhost:3000",
     GOOGLE_RECAPTCHA_SECRET_KEY: "recaptcha-secret",
     ADMIN_EMAIL: "admin@gmail.com",

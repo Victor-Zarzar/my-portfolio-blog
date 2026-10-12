@@ -1,5 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
-import env from "@/env";
+import { env } from "@/env/client";
 
 const baseURL = env.NEXT_PUBLIC_WEBSITE_URL ?? "http://127.0.0.1:3000";
 

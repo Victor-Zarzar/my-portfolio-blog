@@ -11,8 +11,8 @@ mock.module("nodemailer", () => ({
   },
 }));
 
-mock.module("@/env", () => ({
-  default: {
+mock.module("@/env/server", () => ({
+  env: {
     SMTP_EMAIL: "test@example.com",
     SMTP_PASSWORD: "password123",
     SMTP_HOST: "smtp.example.com",

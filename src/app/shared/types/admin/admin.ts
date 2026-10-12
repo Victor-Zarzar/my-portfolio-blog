@@ -1,3 +1,6 @@
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
+
 export type AdminUser = {
   name: string;
   email: string;
@@ -19,4 +22,11 @@ export type AdminProfileMenuProps = {
     email: string;
     image?: string | null;
   };
+};
+
+export type AdminPageHeaderProps = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  actions?: ReactNode;
 };

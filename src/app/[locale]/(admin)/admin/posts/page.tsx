@@ -1,9 +1,9 @@
 import { desc } from "drizzle-orm";
+import { FileText } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { PostsTable } from "@/app/features/posts-columns/post-table";
-import { Button } from "@/app/shared/ui/button";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
-import { Link } from "@/i18n/navigation";
+import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { db } from "@/lib/db";
 import { posts } from "@/lib/db/schemas/schema";
 
@@ -39,31 +39,16 @@ export default async function AdminPostsPage({
   });
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-6">
       <div className="mb-8 flex items-center justify-between">
         <FadeWrapper>
-          <h1 className="text-center text-2xl font-bold">{t("posts.title")}</h1>
+          <AdminPageHeader
+            icon={FileText}
+            title={t("posts.title")}
+            description={t("posts.description")}
+          />
         </FadeWrapper>
-
-        <div className="flex items-center gap-2">
-          <Button
-            asChild
-            className="w-full border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
-            variant="secondary"
-          >
-            <Link href="/admin/tags">{t("tags.title")}</Link>
-          </Button>
-
-          <Button
-            asChild
-            className="w-full border border-neutral-700 bg-neutral-800 text-white hover:bg-neutral-700 hover:text-white dark:bg-neutral-800"
-            variant="secondary"
-          >
-            <Link href="/admin/posts/new">{t("posts.new")}</Link>
-          </Button>
-        </div>
       </div>
-
       <PostsTable data={allPosts} />
     </div>
   );

@@ -540,6 +540,18 @@
       "validation": {
         "nameMin": "Name must contain at least 2 characters.",
         "invalidEmail": "Enter a valid email address."
+      },
+      "password": {
+        "title": "Change password",
+        "current": "Current password",
+        "new": "New password",
+        "confirm": "Confirm new password",
+        "required": "This field is required.",
+        "minLength": "Password must be at least 8 characters long.",
+        "mismatch": "Passwords do not match.",
+        "success": "Password updated successfully.",
+        "error": "Unable to update password. Please try again.",
+        "save": "Update password"
       }
     },
     "security": {
@@ -561,21 +573,38 @@
         "title": "Preferences",
         "description": "Customize your admin dashboard experience."
       },
+      "notifications": {
+        "title": "Notifications",
+        "description": "View your notifications and stay up to date with recent activity."
+      },
+      "appearance": {
+        "title": "Appearance & Language",
+        "description": "Customize the dashboard theme and language."
+      },
+      "navigation": {
+        "title": "Settings navigation",
+        "account": "Account",
+        "preferences": "Preferences",
+        "profile": "Profile",
+        "security": "Security",
+        "appearance": "Appearance",
+        "notifications": "Notifications"
+      },
       "theme": {
         "title": "Theme",
         "description": "Choose the application appearance.",
         "options": {
           "system": {
             "title": "System",
-            "description": "Use system preference"
+            "description": "Follow system"
           },
           "light": {
             "title": "Light",
-            "description": "Use light theme"
+            "description": "Light theme"
           },
           "dark": {
             "title": "Dark",
-            "description": "Use dark theme"
+            "description": "Dark theme"
           }
         }
       },
@@ -607,7 +636,9 @@
     },
     "tags": {
       "title": "Tags",
+      "description": "Organize your blog content with tags.",
       "new": "New tag",
+      "newDescription": "Create a new tag to organize your content.",
       "search": "Search tags...",
       "searchButton": "Search",
       "columns": "Columns",
@@ -666,7 +697,10 @@
     },
     "posts": {
       "title": "Posts",
-      "new": "New post"
+      "description": "Manage published articles and blog drafts.",
+      "new": "New post",
+      "newDescription": "Create and publish a new blog post.",
+      "editDescription": "Update this article's content and translations."
     },
     "posts-form": {
       "searchPlaceholder": "Search posts...",
