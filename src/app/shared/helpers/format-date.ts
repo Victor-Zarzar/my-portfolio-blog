@@ -25,3 +25,21 @@ export function formatChartMonth(date: string, short = false) {
   }
   return short ? month : `${month}/${year}`;
 }
+
+export function formatDateUTC(
+  value: string | Date | null | undefined,
+  locale?: string,
+) {
+  if (!value) {
+    return "—";
+  }
+
+  return new Intl.DateTimeFormat(locale, {
+    dateStyle: "medium",
+    timeZone: "UTC",
+  }).format(new Date(value));
+}
+
+export function todayISO() {
+  return new Intl.DateTimeFormat("en-CA").format(new Date());
+}

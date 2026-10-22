@@ -1,7 +1,7 @@
 "use client";
 
 import { Terminal } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   BUN_VERSION,
   NODE_VERSION,
@@ -9,15 +9,28 @@ import {
   TERMINAL,
   TERMINAL_PROMPT,
 } from "@/app/shared/config/app-config";
-import { getCoursesData } from "@/app/shared/data/getCoursesData";
+import type { TerminalCoursesProps } from "@/app/shared/types/get-data/get-data";
 import { Card } from "@/app/shared/ui/card";
 import BunIcon from "@/app/shared/ui/icons/bun";
 import NodeIcon from "@/app/shared/ui/icons/node";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 
-export default function TerminalCourses() {
+export default function TerminalCourses({ courses }: TerminalCoursesProps) {
   const t = useTranslations("Courses");
-  const courses = getCoursesData({ t });
+
+  const locale = useLocale();
+
+  function formatDate(value: Date | string | null) {
+    if (!value) {
+      return null;
+    }
+
+    return new Intl.DateTimeFormat(locale, {
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(value));
+  }
 
   return (
     <main className="courses">
@@ -34,7 +47,7 @@ export default function TerminalCourses() {
       <section className="p-4 flex flex-col gap-4 items-center mb-20 md:mb-32">
         <Card
           className="border border-neutral-700 dark:border-stone-200 bg-white dark:bg-stone-950 text-neutral-800
-                    dark:text-neutral-200 rounded-lg shadow-lg w-full max-w-2xl mx-auto font-mono transition-transform duration-300
+                    dark:text-neutral-200 rounded-lg shadow-lg w-full max-w-3xl mx-auto font-mono transition-transform duration-300
                     hover:scale-[1.02] hover:shadow-xl overflow-hidden"
         >
           <div className="flex items-center gap-2 bg-white dark:bg-stone-950 px-3 py-1 border-b border-neutral-700 dark:border-stone-200">
@@ -73,18 +86,29 @@ export default function TerminalCourses() {
 
           <div className="px-4 py-3">
             <ul className="space-y-1 text-xs md:text-base">
-              {courses.map((course, index) => (
-                <li key={index}>
-                  <a
-                    href={course.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline transition-colors"
+              {courses.map((course, index) => {
+                const completedAt = formatDate(course.completedAt);
+                return (
+                  <li
+                    key={course.id}
+                    className="flex flex-wrap items-baseline gap-x-2"
                   >
-                    {`[${index + 1}]`} {course.title}
-                  </a>
-                </li>
-              ))}
+                    <a
+                      href={course.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline transition-colors"
+                    >
+                      {`[${index + 1}]`} {course.title}
+                    </a>
+                    {completedAt && (
+                      <span className="text-neutral-600 dark:text-neutral-400">
+                        # {completedAt}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Card>

@@ -239,6 +239,8 @@
       "contact": "Contacto",
       "settings": "Configuración",
       "dashboard": "Dashboard",
+      "courses": "Cursos",
+      "new-course": "Nuevo curso",
       "posts": {
         "index": "Posts",
         "new": "Nuevo post",
@@ -800,6 +802,64 @@
           "vercelError": "Se produjo un error en la comunicación con Vercel.",
           "cloudinaryError": "Se produjo un error en la comunicación con Cloudinary."
         }
+      }
+    },
+    "courses": {
+      "title": "Cursos",
+      "description": "Administra tus cursos y certificados.",
+      "new": "Nuevo curso",
+      "newDescription": "Añade un nuevo curso o certificado a tu portafolio.",
+      "edit": "Editar curso",
+      "editDescription": "Actualiza el certificado y las traducciones de este curso."
+    },
+    "courses-form": {
+      "searchPlaceholder": "Buscar cursos...",
+      "searchButton": "Buscar",
+      "columns": "Columnas",
+      "noResults": "No se encontraron cursos.",
+      "pagination": {
+        "show": "Mostrar {size}",
+        "previous": "Anterior",
+        "next": "Siguiente"
+      },
+      "table": {
+        "title": "Título",
+        "order": "Orden",
+        "completedAt": "Fecha de finalización",
+        "status": "Estado",
+        "certificate": "Certificado",
+        "actions": "Acciones",
+        "openCertificate": "Abrir certificado"
+      },
+      "status": {
+        "published": "Publicado",
+        "draft": "Borrador"
+      },
+      "dialog": {
+        "title": "¿Eliminar curso?",
+        "description": "Esto eliminará permanentemente {title} y todas sus traducciones. Esta acción no se puede deshacer.",
+        "cancel": "Cancelar",
+        "confirm": "Eliminar"
+      },
+      "form": {
+        "url": "URL del certificado",
+        "sortOrder": "Orden de visualización",
+        "completedAt": "Fecha de finalización",
+        "isPublished": "Publicado",
+        "title": "Título del curso",
+        "cancel": "Cancelar",
+        "save": "Guardar cambios",
+        "create": "Crear curso"
+      },
+      "toast": {
+        "error": "Error al guardar el curso.",
+        "created": "Curso creado con éxito.",
+        "updated": "Curso actualizado con éxito.",
+        "published": "Curso publicado",
+        "unpublished": "Curso despublicado",
+        "deleted": "Curso eliminado",
+        "errorUpdatePublish": "Error al actualizar el estado de publicación",
+        "errorDelete": "Error al eliminar el curso"
       }
     }
   }

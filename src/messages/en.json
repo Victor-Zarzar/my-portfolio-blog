@@ -239,6 +239,8 @@
       "contact": "Contact",
       "settings": "Settings",
       "dashboard": "Dashboard",
+      "courses": "Courses",
+      "new-course": "New Course",
       "posts": {
         "index": "Posts",
         "new": "New post",
@@ -800,6 +802,64 @@
           "vercelError": "An error occurred while communicating with Vercel.",
           "cloudinaryError": "An error occurred while communicating with Cloudinary."
         }
+      }
+    },
+    "courses": {
+      "title": "Courses",
+      "description": "Manage your courses and certificates.",
+      "new": "New course",
+      "newDescription": "Add a new course or certificate to your portfolio.",
+      "edit": "Edit course",
+      "editDescription": "Update this course's certificate and translations."
+    },
+    "courses-form": {
+      "searchPlaceholder": "Search courses...",
+      "searchButton": "Search",
+      "columns": "Columns",
+      "noResults": "No courses found.",
+      "pagination": {
+        "show": "Show {size}",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "table": {
+        "title": "Title",
+        "order": "Order",
+        "completedAt": "Completion date",
+        "status": "Status",
+        "certificate": "Certificate",
+        "actions": "Actions",
+        "openCertificate": "Open certificate"
+      },
+      "status": {
+        "published": "Published",
+        "draft": "Draft"
+      },
+      "dialog": {
+        "title": "Delete course?",
+        "description": "This will permanently delete {title} and all its translations. This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      },
+      "form": {
+        "url": "Certificate URL",
+        "sortOrder": "Display order",
+        "completedAt": "Completion date",
+        "isPublished": "Published",
+        "title": "Course title",
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "create": "Create course"
+      },
+      "toast": {
+        "error": "Failed to save course.",
+        "created": "Course created successfully.",
+        "updated": "Course updated successfully.",
+        "published": "Course published",
+        "unpublished": "Course unpublished",
+        "deleted": "Course deleted",
+        "errorUpdatePublish": "Failed to update publish status",
+        "errorDelete": "Failed to delete course"
       }
     }
   }
