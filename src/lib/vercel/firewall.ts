@@ -133,14 +133,15 @@ function createActions(events: VercelFirewallEvent[]): FirewallAction[] {
   return Array.from(actions.values()).sort((a, b) => b.count - a.count);
 }
 
-async function getFirewallEvents() {
+async function getFirewallEvents(since: Date, until: Date) {
   const response = await vercelFetch<VercelFirewallResponse>(
     FIREWALL_EVENTS_ENDPOINT,
     {
-      limit: 100,
+      startTimestamp: since.getTime(),
+      endTimestamp: until.getTime(),
     },
   );
-  return response.actions;
+  return response.actions ?? [];
 }
 
 export async function getFirewallAnalytics(
@@ -155,7 +156,7 @@ export async function getFirewallAnalytics(
         const since = new Date(until);
         since.setUTCDate(since.getUTCDate() - (days - 1));
         since.setUTCHours(0, 0, 0, 0);
-        const events = await getFirewallEvents();
+        const events = await getFirewallEvents(since, until);
         return {
           summary: createSummary(events),
           timeline: createTimeline(events, since, until),

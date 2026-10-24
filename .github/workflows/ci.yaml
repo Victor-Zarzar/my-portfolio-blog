@@ -4,8 +4,33 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    paths:
+      - "**"
+      - "!**.md"
+      - "!LICENSE"
+      - "!.editorconfig"
+      - "!.vscode/**"
+      - "!.cursor/**"
+      - "!.github/**"
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "!content/**"
+      - "!public/**"
+
   pull_request:
     branches: [main]
+    paths:
+      - "**"
+      - "!**.md"
+      - "!LICENSE"
+      - "!.editorconfig"
+      - "!.vscode/**"
+      - "!.cursor/**"
+      - "!.github/**"
+      - ".github/workflows/**"
+      - ".github/actions/**"
+      - "!content/**"
+      - "!public/**"
 
 env:
   NODE_ENV: test

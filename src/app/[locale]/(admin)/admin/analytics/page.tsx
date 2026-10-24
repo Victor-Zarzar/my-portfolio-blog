@@ -8,6 +8,8 @@ import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { getAnalytics } from "@/lib/db/queries/analytics";
 
+export const dynamic = "force-dynamic";
+
 export default async function AnalyticsPage() {
   const t = await getTranslations("dashboard.analytics");
   const analytics = await getAnalytics();

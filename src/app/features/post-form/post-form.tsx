@@ -84,13 +84,11 @@ export function PostForm({
       const result = isEditing
         ? await updatePost(postId, values)
         : await createPost({ ...values, authorId });
-
       if (!result.success) {
         toast.error(t("toast.error"));
         Sentry.captureException(result.error);
         return;
       }
-
       toast.success(isEditing ? t("toast.updated") : t("toast.created"));
       router.push("/admin/posts");
     });

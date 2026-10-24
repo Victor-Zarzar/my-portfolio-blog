@@ -36,6 +36,13 @@
       "when": 1791546690269,
       "tag": "0004_safe_radioactive_man",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792506371479,
+      "tag": "0005_fantastic_maestro",
+      "breakpoints": true
     }
   ]
 }

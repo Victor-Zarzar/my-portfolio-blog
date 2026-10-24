@@ -38,3 +38,12 @@ export type Experience = {
   local?: string;
   tags?: string[];
 };
+
+export type TerminalCoursesProps = {
+  courses: {
+    id: number;
+    title: string;
+    url: string;
+    completedAt: Date | string | null;
+  }[];
+};

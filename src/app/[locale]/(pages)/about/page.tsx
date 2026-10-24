@@ -1,7 +1,8 @@
 import Image from "next/image";
 import type { Metadata } from "next/types";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { TimelineLayout } from "@/app/features/timeline-layout/timeline-layout";
+import { getCourses } from "@/app/shared/data/getCoursesData";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import TerminalCourses from "@/app/widgets/terminal-courses/terminal-courses";
 import { routing } from "@/i18n/routing";
@@ -34,6 +35,8 @@ export async function generateMetadata({
 
 export default async function About() {
   const t = await getTranslations("About");
+  const locale = await getLocale();
+  const courses = await getCourses(locale);
 
   return (
     <section className="rounded-lg p-6">
@@ -51,7 +54,7 @@ export default async function About() {
 
       <TimelineLayout />
 
-      <TerminalCourses />
+      <TerminalCourses courses={courses} />
 
       <section className="rounded-lg p-6 mt-4">
         <FadeWrapper>

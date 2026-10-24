@@ -75,7 +75,6 @@ bun format
 ## Reporting Bugs
 
 Please include:
-
 - OS and browser version
 - Node.js / Bun version
 - Exact steps to reproduce
