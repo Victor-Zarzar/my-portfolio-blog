@@ -3,6 +3,7 @@
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { requireAdmin } from "@/lib/auth/guard";
 import { db } from "@/lib/db";
 import { posts, postTags, postTranslations } from "@/lib/db/schemas/schema";
 import { invalidatePostCache } from "@/lib/redis/cache";
@@ -43,6 +44,7 @@ function revalidatePosts() {
 export async function createPost(
   input: CreatePostInput,
 ): Promise<ActionResult<{ id: number }>> {
+  const { user } = await requireAdmin();
   const parsed = createPostSchema.safeParse(input);
   if (!parsed.success) {
     return {
@@ -51,7 +53,7 @@ export async function createPost(
     };
   }
 
-  const { slug, year, photo, authorId, translations, tagIds } = parsed.data;
+  const { slug, year, photo, translations, tagIds } = parsed.data;
 
   try {
     const [post] = await db
@@ -60,7 +62,7 @@ export async function createPost(
         slug,
         year,
         photo: photo || null,
-        authorId,
+        authorId: user.id,
         isPublished: false,
       })
       .returning();
@@ -103,6 +105,7 @@ export async function updatePost(
   id: number,
   input: UpdatePostInput,
 ): Promise<ActionResult> {
+  await requireAdmin();
   const parsed = updatePostSchema.safeParse(input);
   if (!parsed.success) {
     return {
@@ -178,6 +181,8 @@ export async function updatePost(
 }
 
 export async function deletePost(id: number): Promise<ActionResult> {
+  await requireAdmin();
+
   try {
     const existing = await db.query.posts.findFirst({
       where: eq(posts.id, id),
@@ -206,6 +211,8 @@ export async function togglePublish(
   id: number,
   published: boolean,
 ): Promise<ActionResult> {
+  await requireAdmin();
+
   try {
     await db
       .update(posts)
