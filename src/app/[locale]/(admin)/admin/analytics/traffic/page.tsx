@@ -8,6 +8,8 @@ import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-header";
 import { getTrafficAnalytics } from "@/lib/vercel/analytics";
 
+export const dynamic = "force-dynamic";
+
 export default async function TrafficAnalyticsPage() {
   const t = await getTranslations("dashboard.analytics.traffic");
   const analytics = await getTrafficAnalytics();
