@@ -17,7 +17,8 @@ export async function getAllPostsForSitemap() {
     fetcher: async () => {
       return db
         .select({
-          slug: posts.slug,
+          postId: posts.id,
+          slug: postTranslations.slug,
           locale: postTranslations.locale,
           publishedAt: posts.publishedAt,
           updatedAt: posts.updatedAt,
@@ -38,7 +39,7 @@ export async function getAllPosts(locale: string): Promise<DbPostMetadata[]> {
       const rows = await db
         .select({
           id: posts.id,
-          slug: posts.slug,
+          slug: postTranslations.slug,
           year: posts.year,
           photo: posts.photo,
           publishedAt: posts.publishedAt,
@@ -103,7 +104,7 @@ export async function getPostBySlug(locale: string, slug: string) {
       const rows = await db
         .select({
           id: posts.id,
-          slug: posts.slug,
+          slug: postTranslations.slug,
           year: posts.year,
           photo: posts.photo,
           publishedAt: posts.publishedAt,
@@ -117,27 +118,36 @@ export async function getPostBySlug(locale: string, slug: string) {
         .innerJoin(postTranslations, eq(postTranslations.postId, posts.id))
         .where(
           and(
-            eq(posts.slug, slug),
-            eq(posts.isPublished, true),
+            eq(postTranslations.slug, slug),
             eq(postTranslations.locale, locale),
+            eq(posts.isPublished, true),
           ),
         )
         .limit(1);
-
       const post = rows[0];
-
       if (!post) {
         return null;
       }
 
-      const tagsRows = await db
-        .select({
-          tagName: tags.name,
-        })
-        .from(postTags)
-        .innerJoin(tags, eq(tags.id, postTags.tagId))
-        .where(eq(postTags.postId, post.id))
-        .orderBy(asc(tags.name));
+      const [tagsRows, slugRows] = await Promise.all([
+        db
+          .select({ tagName: tags.name })
+          .from(postTags)
+          .innerJoin(tags, eq(tags.id, postTags.tagId))
+          .where(eq(postTags.postId, post.id))
+          .orderBy(asc(tags.name)),
+        db
+          .select({
+            locale: postTranslations.locale,
+            slug: postTranslations.slug,
+          })
+          .from(postTranslations)
+          .where(eq(postTranslations.postId, post.id)),
+      ]);
+
+      const slugs: Record<string, string> = Object.fromEntries(
+        slugRows.map((row) => [row.locale, row.slug]),
+      );
 
       return {
         metadata: {
@@ -151,6 +161,7 @@ export async function getPostBySlug(locale: string, slug: string) {
           tags: tagsRows.map((row) => row.tagName),
         },
         content: post.content,
+        slugs,
       };
     },
   });

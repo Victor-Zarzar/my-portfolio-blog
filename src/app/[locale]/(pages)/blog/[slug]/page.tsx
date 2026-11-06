@@ -104,6 +104,7 @@ export async function generateMetadata({
     tags,
     publishedAt,
     updatedAt,
+    slugs: post.slugs,
   });
 }
 

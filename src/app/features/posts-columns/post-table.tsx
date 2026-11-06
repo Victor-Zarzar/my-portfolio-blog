@@ -2,7 +2,7 @@
 
 import { flexRender, useTable } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { Props } from "@/app/shared/types/post/post";
 import { Button } from "@/app/shared/ui/button";
 import { ButtonGroup } from "@/app/shared/ui/button-group";
@@ -26,8 +26,8 @@ import { postsTableFeatures } from "./posts-table-features";
 
 export function PostsTable({ data }: Props) {
   const t = useTranslations("dashboard.posts-form");
-
-  const columns = getPostsColumns(t);
+  const locale = useLocale();
+  const columns = getPostsColumns(t, locale);
 
   const table = useTable({
     data,

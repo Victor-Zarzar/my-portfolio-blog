@@ -55,12 +55,18 @@ export type PageProps = {
 
 export type PostRow = {
   id: number;
+  // slug interno/admin (igual ao slug do pt); as URLs públicas usam translations[].slug
   slug: string;
   year: number | null;
   isPublished: boolean;
   publishedAt: Date | null;
   createdAt: Date;
-  translations: { title: string; description: string }[];
+  translations: {
+    locale: string;
+    slug: string;
+    title: string;
+    description: string;
+  }[];
   postTags: { tag: { name: string } }[];
 };
 

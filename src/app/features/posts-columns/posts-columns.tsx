@@ -4,9 +4,11 @@ import * as Sentry from "@sentry/nextjs";
 import type { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { ArrowUpDown, Edit, Eye, EyeOff, Loader2, Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 import { toast } from "sonner";
+import { DEFAULT_LOCALE, LOCALES } from "@/app/shared/config/app-config";
+import type { Locale } from "@/app/shared/types/locale/locale";
 import type { PostRow } from "@/app/shared/types/post/post";
 import {
   AlertDialog,
@@ -25,10 +27,27 @@ import { Link } from "@/i18n/navigation";
 import { deletePost, togglePublish } from "../post-form/post-actions";
 import type { PostsTableFeatures } from "./posts-table-features";
 
+function sortedTranslations(post: PostRow) {
+  return [...post.translations].sort(
+    (a, b) =>
+      LOCALES.indexOf(a.locale as Locale) - LOCALES.indexOf(b.locale as Locale),
+  );
+}
+
+function titleFor(post: PostRow, locale: string) {
+  const translation =
+    post.translations.find((tr) => tr.locale === locale) ??
+    post.translations.find((tr) => tr.locale === DEFAULT_LOCALE) ??
+    post.translations[0];
+
+  return translation?.title ?? post.slug;
+}
+
 function PostRowActions({ post }: { post: PostRow }) {
   const [isPending, startTransition] = useTransition();
 
   const t = useTranslations("dashboard.posts-form");
+  const locale = useLocale();
 
   function handleTogglePublish() {
     startTransition(async () => {
@@ -91,7 +110,7 @@ function PostRowActions({ post }: { post: PostRow }) {
             <AlertDialogTitle>{t("dialog.title")}</AlertDialogTitle>
             <AlertDialogDescription>
               {t("dialog.description", {
-                title: post.translations[0]?.title ?? post.slug,
+                title: titleFor(post, locale),
               })}
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -110,6 +129,7 @@ function PostRowActions({ post }: { post: PostRow }) {
 
 export function getPostsColumns(
   t: ReturnType<typeof useTranslations>,
+  locale: string,
 ): ColumnDef<PostsTableFeatures, PostRow>[] {
   return [
     {
@@ -127,20 +147,30 @@ export function getPostsColumns(
         const post = row.original;
 
         return (
-          <div>
-            <p className="font-medium">{post.translations[0]?.title ?? "—"}</p>
-            <p className="text-xs text-muted-foreground">{post.slug}</p>
+          <div className="space-y-1">
+            <p className="font-medium">{titleFor(post, locale)}</p>
+            <ul className="space-y-0.5">
+              {sortedTranslations(post).map((tr) => (
+                <li
+                  key={tr.locale}
+                  className="flex items-center gap-2 text-xs text-muted-foreground"
+                >
+                  <span className="w-5 font-medium uppercase">{tr.locale}</span>
+                  <span className="truncate">{tr.slug}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         );
       },
       filterFn: (row, _columnId, filterValue) => {
         const post = row.original;
-        const title = post.translations[0]?.title ?? "";
-        const slug = post.slug ?? "";
+        const text = [
+          post.slug,
+          ...post.translations.map((tr) => `${tr.title} ${tr.slug}`),
+        ].join(" ");
 
-        return `${title} ${slug}`
-          .toLowerCase()
-          .includes(String(filterValue).toLowerCase());
+        return text.toLowerCase().includes(String(filterValue).toLowerCase());
       },
     },
     {

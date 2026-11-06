@@ -10,6 +10,9 @@ const cacheWithRedisSpy = mock(
   }) => fetcher(),
 );
 
+const andSpy = mock((...args: unknown[]) => ({ type: "and", args }));
+const eqSpy = mock((a: unknown, b: unknown) => ({ type: "eq", a, b }));
+
 const limitSpy = mock(async () => [
   {
     id: 1,
@@ -42,6 +45,16 @@ const fromTagsSpy = mock(() => ({
   innerJoin: innerJoinTagsSpy,
 }));
 
+const whereSlugsSpy = mock(async () => [
+  { locale: "pt", slug: "arquitetura-limpa" },
+  { locale: "en", slug: "clean-architecture" },
+  { locale: "es", slug: "arquitectura-limpia" },
+]);
+
+const fromSlugsSpy = mock(() => ({
+  where: whereSlugsSpy,
+}));
+
 const wherePostSpy = mock(() => ({
   limit: limitSpy,
 }));
@@ -64,7 +77,11 @@ const selectPostSpy = mock((shape: Record<string, unknown>) => {
     return { from: fromTagsSpy };
   }
 
-  return { from: fromPostSpy };
+  if ("id" in shape) {
+    return { from: fromPostSpy };
+  }
+
+  return { from: fromSlugsSpy };
 });
 
 const dbMock = {
@@ -92,10 +109,10 @@ mock.module("@/lib/redis/keys", () => ({
 }));
 
 mock.module("drizzle-orm", () => ({
-  and: mock((...args: unknown[]) => ({ type: "and", args })),
+  and: andSpy,
   asc: mock((field: unknown) => ({ type: "asc", field })),
   desc: mock((field: unknown) => ({ type: "desc", field })),
-  eq: mock((a: unknown, b: unknown) => ({ type: "eq", a, b })),
+  eq: eqSpy,
   inArray: mock((a: unknown, b: unknown) => ({ type: "inArray", a, b })),
 }));
 
@@ -116,6 +133,7 @@ mock.module("@/lib/db/schemas/schema", () => ({
   postTranslations: {
     postId: "postTranslations.postId",
     locale: "postTranslations.locale",
+    slug: "postTranslations.slug",
     title: "postTranslations.title",
     description: "postTranslations.description",
     content: "postTranslations.content",
@@ -129,6 +147,8 @@ mock.module("@/lib/db/schemas/schema", () => ({
 describe("blog queries > getPostBySlug", () => {
   beforeEach(() => {
     cacheWithRedisSpy.mockClear();
+    andSpy.mockClear();
+    eqSpy.mockClear();
     selectPostSpy.mockClear();
     fromPostSpy.mockClear();
     innerJoinPostSpy.mockClear();
@@ -139,9 +159,11 @@ describe("blog queries > getPostBySlug", () => {
     innerJoinTagsSpy.mockClear();
     whereTagsSpy.mockClear();
     orderByTagsSpy.mockClear();
+    fromSlugsSpy.mockClear();
+    whereSlugsSpy.mockClear();
   });
 
-  it("should return cached post payload with metadata and tags", async () => {
+  it("should return cached post payload with metadata, tags and slugs of every locale", async () => {
     const { getPostBySlug } = await import("@/lib/db/queries/blog");
 
     const result = await getPostBySlug("en", "clean-architecture");
@@ -153,9 +175,11 @@ describe("blog queries > getPostBySlug", () => {
       fetcher: expect.any(Function),
     });
 
-    expect(selectPostSpy).toHaveBeenCalledTimes(2);
+    expect(selectPostSpy).toHaveBeenCalledTimes(3);
     expect(limitSpy).toHaveBeenCalledWith(1);
     expect(orderByTagsSpy).toHaveBeenCalledTimes(1);
+    expect(fromSlugsSpy).toHaveBeenCalledTimes(1);
+    expect(whereSlugsSpy).toHaveBeenCalledTimes(1);
 
     expect(result).toEqual({
       metadata: {
@@ -169,6 +193,23 @@ describe("blog queries > getPostBySlug", () => {
         tags: ["architecture", "flutter"],
       },
       content: "# markdown content",
+      slugs: {
+        pt: "arquitetura-limpa",
+        en: "clean-architecture",
+        es: "arquitectura-limpia",
+      },
     });
+  });
+
+  it("should look the post up by the translation slug and locale, not by posts.slug", async () => {
+    const { getPostBySlug } = await import("@/lib/db/queries/blog");
+    await getPostBySlug("en", "clean-architecture");
+    expect(eqSpy).toHaveBeenCalledWith(
+      "postTranslations.slug",
+      "clean-architecture",
+    );
+    expect(eqSpy).toHaveBeenCalledWith("postTranslations.locale", "en");
+    expect(eqSpy).toHaveBeenCalledWith("posts.isPublished", true);
+    expect(eqSpy).not.toHaveBeenCalledWith("posts.slug", "clean-architecture");
   });
 });
