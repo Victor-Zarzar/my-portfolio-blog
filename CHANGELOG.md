@@ -57,7 +57,6 @@
 - add new rulers typescript 6.0.2 ([df80e9f](https://github.com/Victor-Zarzar/my-portfolio/commit/df80e9ff30ce3947a0e157734cb2cac75d1a5cfe))
 - add new schema two factor auth (better auth) ([df80e9f](https://github.com/Victor-Zarzar/my-portfolio/commit/df80e9ff30ce3947a0e157734cb2cac75d1a5cfe))
 
-
 ### Bug Fixes
 
 - typescript errors ([df80e9f](https://github.com/Victor-Zarzar/my-portfolio/commit/df80e9ff30ce3947a0e157734cb2cac75d1a5cfe))

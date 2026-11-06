@@ -1,7 +1,7 @@
 {
   "Layout": {
     "title": "Victor Zarzar | Full Stack Developer",
-    "description": "Full Stack Developer with experience in React, Next.js, TypeScript, Python, FastAPI, SQL, Docker, and modern web application development.",
+    "seoDescription": "Portfolio of Victor Zarzar, a Full Stack Developer with experience in React, Next.js, TypeScript, Python, FastAPI, Flutter and web and mobile apps.",
     "ogDescription": "Professional portfolio featuring Full Stack development, web applications, APIs, databases, infrastructure, and software engineering projects."
   },
   "Manifest": {
@@ -50,6 +50,7 @@
   },
   "About": {
     "title": "Victor Zarzar | About",
+    "seoDescription": "Learn about Victor Zarzar's journey: a Full Stack Developer with web and mobile experience in React, Next.js, Flutter, Python and FastAPI.",
     "h1": "About",
     "p": "My first contact with programming was in 2009, using technologies such as SQL Server 2000 and MySQL to create, restore, and manage databases, as well as developing websites with PHP. I currently work as a Full Stack Developer, using modern technologies across both front-end and back-end development. I continuously seek to improve my knowledge, embrace the unknown, and evolve every day. New challenges are always welcome. I love learning new technologies and solving problems. Passionate about coffee, my vinyl records, Rock ’n’ Roll, and guitar. 🤘🏻🎸",
     "h2": "Languages",
@@ -71,6 +72,7 @@
   },
   "Services": {
     "title": "Victor Zarzar | Services",
+    "seoDescription": "Web, back-end and Full Stack development services: websites, APIs and complete applications with React, Next.js, Python and FastAPI.",
     "h1": "Services",
     "cardtitle1": "Web Development",
     "carddescription1": "Modern and responsive websites and web applications",
@@ -126,6 +128,7 @@
   },
   "Projects": {
     "title": "Victor Zarzar | Projects",
+    "seoDescription": "Projects by Victor Zarzar in Full Stack development: web and mobile apps, APIs and databases, with live GitHub stats.",
     "h1": "Projects",
     "h2": "Featured projects",
     "seeAll": "All Projects",
@@ -140,6 +143,7 @@
   },
   "PrivacyPolicy": {
     "title": "Victor Zarzar | Privacy Policy",
+    "seoDescription": "Privacy Policy for Victor Zarzar's website: how we collect, use and protect your information, cookies and your rights.",
     "h1": "Privacy Policy",
     "p": "How we collect, use, and protect your information.",
     "h2": "Last updated: March 2026",
@@ -160,6 +164,7 @@
   },
   "Contact": {
     "title": "Victor Zarzar | Contact",
+    "seoDescription": "Get in touch with Victor Zarzar, Full Stack Developer, about web and mobile projects, job opportunities or partnerships. Send a message.",
     "h1": "Get in touch ;)",
     "name": "Name",
     "email": "Email",
@@ -200,6 +205,7 @@
   },
   "Blog": {
     "title": "Victor Zarzar | Blog",
+    "seoDescription": "Technical articles by Victor Zarzar on React, Next.js, TypeScript, Python, FastAPI, Flutter and Full Stack web and mobile development.",
     "h1": "Articles & Publications",
     "h2": "Technical content I've written recently...",
     "p": "Read more",

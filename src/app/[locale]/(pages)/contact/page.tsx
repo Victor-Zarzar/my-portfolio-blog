@@ -1,6 +1,7 @@
 import type { Metadata } from "next/types";
 import { getTranslations } from "next-intl/server";
 import ContactForm from "@/app/features/contact-form/contact-form";
+import { pageMetadata } from "@/app/shared/helpers/seo";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { routing } from "@/i18n/routing";
 
@@ -15,20 +16,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Contact" });
-  const path = "/contact";
 
-  return {
+  return pageMetadata(locale, "/contact", {
     title: t("title"),
-    description: t("h1"),
-    alternates: {
-      canonical: `/${locale}${path}`,
-      languages: {
-        "pt-BR": `/pt${path}`,
-        "en-US": `/en${path}`,
-        "es-ES": `/es${path}`,
-      },
-    },
-  };
+    description: t("seoDescription"),
+  });
 }
 
 export default async function Contact() {

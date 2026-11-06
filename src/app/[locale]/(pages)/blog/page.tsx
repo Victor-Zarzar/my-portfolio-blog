@@ -1,6 +1,7 @@
 import type { Metadata } from "next/types";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
+import { pageMetadata } from "@/app/shared/helpers/seo";
 import type { PageProps } from "@/app/shared/types/post/post";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import LoadingSkeleton from "@/app/widgets/loading-skeleton/loading-skeleton";
@@ -19,19 +20,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Blog" });
-  const path = "/blog";
 
-  return {
+  return pageMetadata(locale, "/blog", {
     title: t("title"),
-    alternates: {
-      canonical: `/${locale}${path}`,
-      languages: {
-        "pt-BR": `/pt${path}`,
-        "en-US": `/en${path}`,
-        "es-ES": `/es${path}`,
-      },
-    },
-  };
+    description: t("seoDescription"),
+  });
 }
 
 export default async function BlogPage({ params }: PageProps) {

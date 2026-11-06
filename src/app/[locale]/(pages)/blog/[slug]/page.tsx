@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { PostAuthor } from "@/app/features/post-author/post-author";
 import { Tags } from "@/app/features/tags-blog/tags-blog";
+import { postMetadata } from "@/app/shared/helpers/seo";
 import type {
   MdxAnchorProps,
   MdxCodeProps,
@@ -93,33 +94,17 @@ export async function generateMetadata({
     return {};
   }
 
-  const { title, description, publishedAt, photo, tags } = post.metadata;
+  const { title, description, publishedAt, updatedAt, photo, tags } =
+    post.metadata;
 
-  const canonical = `${env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/blog/${slug}`;
-  const ogImage =
-    photo && photo.startsWith("http")
-      ? photo
-      : `${env.NEXT_PUBLIC_WEBSITE_URL}${photo ?? ""}`;
-
-  return {
+  return postMetadata(locale, slug, {
     title,
     description,
-    alternates: {
-      canonical,
-    },
-    keywords: tags,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime: publishedAt
-        ? new Date(publishedAt).toISOString()
-        : undefined,
-      url: canonical,
-      images: photo ? [{ url: ogImage }] : [],
-      tags,
-    },
-  };
+    image: photo,
+    tags,
+    publishedAt,
+    updatedAt,
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {

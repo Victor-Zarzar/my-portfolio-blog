@@ -10,6 +10,8 @@ import { auth } from "@/lib/auth/auth";
 import { db } from "@/lib/db";
 import { posts, tags } from "@/lib/db/schemas/schema";
 
+const LOCALES = ["pt", "en", "es"] as const;
+
 export default async function EditPostPage({
   params,
 }: {
@@ -35,6 +37,12 @@ export default async function EditPostPage({
     notFound();
   }
 
+  const translations = [...post.translations].sort(
+    (a, b) =>
+      LOCALES.indexOf(a.locale as (typeof LOCALES)[number]) -
+      LOCALES.indexOf(b.locale as (typeof LOCALES)[number]),
+  );
+
   return (
     <div className="mx-auto w-full max-w-4xl space-y-6">
       <FadeWrapper>
@@ -49,14 +57,14 @@ export default async function EditPostPage({
         postId={post.id}
         availableTags={availableTags}
         defaultValues={{
-          slug: post.slug,
           year: post.year ?? undefined,
           photo: post.photo ?? "",
-          translations: post.translations.map((t) => ({
-            locale: t.locale as "pt" | "en" | "es",
-            title: t.title,
-            description: t.description,
-            content: t.content,
+          translations: translations.map((tr) => ({
+            locale: tr.locale as "pt" | "en" | "es",
+            slug: tr.slug,
+            title: tr.title,
+            description: tr.description,
+            content: tr.content,
           })),
           tagIds: post.postTags.map((pt) => pt.tagId),
         }}

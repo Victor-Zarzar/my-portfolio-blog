@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { useRef, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -25,18 +25,33 @@ const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 const LOCALES = ["pt", "en", "es"] as const;
 
+const SLUG_REGEX = /^[a-z0-9-]+$/;
+const DIACRITICS_REGEX = /[\u0300-\u036f]/g;
+const NON_SLUG_CHARS_REGEX = /[^a-z0-9]+/g;
+const EDGE_HYPHENS_REGEX = /^-+|-+$/g;
+
+function slugify(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(DIACRITICS_REGEX, "")
+    .toLowerCase()
+    .trim()
+    .replace(NON_SLUG_CHARS_REGEX, "-")
+    .replace(EDGE_HYPHENS_REGEX, "");
+}
+
 const translationSchema = z.object({
   locale: z.enum(LOCALES),
+  slug: z
+    .string()
+    .min(1, "Required")
+    .regex(SLUG_REGEX, "Lowercase, numbers and hyphens only"),
   title: z.string().min(1, "Required"),
   description: z.string().min(1, "Required"),
   content: z.string().min(1, "Required"),
 });
 
 const formSchema = z.object({
-  slug: z
-    .string()
-    .min(1, "Required")
-    .regex(/^[a-z0-9-]+$/, "Lowercase, numbers and hyphens only"),
   year: z.number().int().positive().optional(),
   photo: z.union([z.string().url(), z.literal("")]).optional(),
   translations: z.array(translationSchema).length(3),
@@ -63,14 +78,18 @@ export function PostForm({
   const [isPending, startTransition] = useTransition();
   const isEditing = !!postId;
 
+  // Slug só é gerado a partir do título ao CRIAR e enquanto não for editado à mão.
+  // Ao editar um post existente nunca sobrescreve, pra não quebrar a URL publicada.
+  const slugTouched = useRef<Record<number, boolean>>({});
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? {
-      slug: "",
       year: new Date().getFullYear(),
       photo: "",
       translations: LOCALES.map((locale) => ({
         locale,
+        slug: "",
         title: "",
         description: "",
         content: "",
@@ -102,24 +121,6 @@ export function PostForm({
     >
       <FieldGroup>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <Controller
-            name="slug"
-            control={form.control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>{t("form.slug")}</FieldLabel>
-                <Input
-                  {...field}
-                  id={field.name}
-                  placeholder={t("form.slugPlaceholder")}
-                  aria-invalid={fieldState.invalid}
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
           <Controller
             name="year"
             control={form.control}
@@ -197,7 +198,44 @@ export function PostForm({
                       id={field.name}
                       placeholder={`Title in ${locale}`}
                       aria-invalid={fieldState.invalid}
+                      onChange={(event) => {
+                        field.onChange(event);
+                        if (!(isEditing || slugTouched.current[index])) {
+                          form.setValue(
+                            `translations.${index}.slug`,
+                            slugify(event.target.value),
+                            { shouldValidate: form.formState.isSubmitted },
+                          );
+                        }
+                      }}
                     />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name={`translations.${index}.slug`}
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      {t("form.slug")}
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id={field.name}
+                      placeholder={t("form.slugPlaceholder")}
+                      aria-invalid={fieldState.invalid}
+                      onChange={(event) => {
+                        slugTouched.current[index] = true;
+                        field.onChange(event);
+                      }}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      /{locale}/blog/{field.value || "..."}
+                    </p>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
                     )}

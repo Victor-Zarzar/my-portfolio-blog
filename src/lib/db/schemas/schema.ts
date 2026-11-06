@@ -47,6 +47,7 @@ export const postTranslations = pgTable(
       .notNull()
       .references(() => posts.id, { onDelete: "cascade" }),
     locale: varchar("locale", { length: 10 }).notNull(),
+    slug: varchar("slug", { length: 255 }).notNull(),
     title: varchar("title", { length: 255 }).notNull(),
     description: text("description").notNull(),
     content: text("content").notNull(),
@@ -61,6 +62,10 @@ export const postTranslations = pgTable(
     uniqueIndex("post_translations_post_locale_unique").on(
       table.postId,
       table.locale,
+    ),
+    uniqueIndex("post_translations_locale_slug_unique").on(
+      table.locale,
+      table.slug,
     ),
     index("post_translations_locale_idx").on(table.locale),
   ],

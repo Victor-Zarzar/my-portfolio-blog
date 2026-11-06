@@ -3,6 +3,7 @@ import type { Metadata } from "next/types";
 import { getLocale, getTranslations } from "next-intl/server";
 import { TimelineLayout } from "@/app/features/timeline-layout/timeline-layout";
 import { getCourses } from "@/app/shared/data/getCoursesData";
+import { pageMetadata } from "@/app/shared/helpers/seo";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import TerminalCourses from "@/app/widgets/terminal-courses/terminal-courses";
 import { routing } from "@/i18n/routing";
@@ -18,19 +19,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "About" });
-  const path = "/about";
 
-  return {
+  return pageMetadata(locale, "/about", {
     title: t("title"),
-    alternates: {
-      canonical: `/${locale}${path}`,
-      languages: {
-        "pt-BR": `/pt${path}`,
-        "en-US": `/en${path}`,
-        "es-ES": `/es${path}`,
-      },
-    },
-  };
+    description: t("seoDescription"),
+  });
 }
 
 export default async function About() {
