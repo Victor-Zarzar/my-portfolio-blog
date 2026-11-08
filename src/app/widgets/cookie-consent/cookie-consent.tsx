@@ -94,7 +94,7 @@ export default function CookieConsentComponent({
       <div className="dark:bg-stone-950 bg-gray-50 border-black dark:border-gray-200 rounded-md m-3 border shadow-lg">
         <div className="grid gap-2">
           <div className="border-b h-14 flex items-center justify-between p-4 border-black dark:border-gray-200">
-            <h1 className="text-lg font-medium"> {t("title")}</h1>
+            <p className="text-lg font-medium">{t("title")}</p>
             <CookieIcon className="h-[1.2rem] w-[1.2rem]" />
           </div>
           <div className="p-4">

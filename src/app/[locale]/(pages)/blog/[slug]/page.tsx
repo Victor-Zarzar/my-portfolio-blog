@@ -19,13 +19,14 @@ import type {
   MdxUlProps,
   PageProps,
 } from "@/app/shared/types/post/post";
+import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import { HeroImageClient } from "@/app/shared/wrapper/hero-image-client";
 import { env } from "@/env/client";
 import { getAllPostsForSitemap, getPostBySlug } from "@/lib/db/queries/blog";
 
 const components = {
   h1: (props: MdxHeadingProps) => (
-    <h1 className="text-4xl font-bold mt-8 mb-4" {...props} />
+    <h2 className="text-4xl font-bold mt-8 mb-4" {...props} />
   ),
   h2: (props: MdxHeadingProps) => (
     <h2 className="text-3xl font-bold mt-6 mb-3" {...props} />
@@ -165,51 +166,55 @@ export default async function BlogPostPage({ params }: PageProps) {
         }}
       />
 
-      <header className="mb-8">
-        {post.metadata.photo ? (
-          <div className="relative aspect-video w-full overflow-hidden rounded-lg mb-6">
-            <HeroImageClient
-              src={post.metadata.photo}
-              alt={post.metadata.title}
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 896px, 896px"
+      <GridSection>
+        <header className="mx-auto max-w-4xl">
+          {post.metadata.photo ? (
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg mb-6">
+              <HeroImageClient
+                src={post.metadata.photo}
+                alt={post.metadata.title}
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 896px, 896px"
+              />
+            </div>
+          ) : null}
+
+          {publishedDate ? (
+            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+              {publishedDate.toLocaleDateString(locale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+          ) : null}
+
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+            {post.metadata.title}
+          </h1>
+
+          <p className="text-xl text-neutral-600 dark:text-neutral-300">
+            {post.metadata.description}
+          </p>
+
+          <div className="flex flex-col gap-5 mt-6">
+            <Tags tags={post.metadata.tags} />
+
+            <PostAuthor
+              name={t("author")}
+              profession={t("profession")}
+              avatar="/static/profile.jpg"
             />
           </div>
-        ) : null}
+        </header>
+      </GridSection>
 
-        {publishedDate ? (
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-            {publishedDate.toLocaleDateString(locale, {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              timeZone: "UTC",
-            })}
-          </p>
-        ) : null}
-
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-          {post.metadata.title}
-        </h1>
-
-        <p className="text-xl text-neutral-600 dark:text-neutral-300">
-          {post.metadata.description}
-        </p>
-
-        <div className="flex flex-col gap-5 mt-6">
-          <Tags tags={post.metadata.tags} />
-
-          <PostAuthor
-            name={t("author")}
-            profession={t("profession")}
-            avatar="/static/profile.jpg"
-          />
+      <GridSection>
+        <div className="prose prose-neutral mx-auto max-w-4xl dark:prose-invert">
+          <MDXRemote source={post.content} components={components} />
         </div>
-      </header>
-
-      <div className="prose prose-neutral dark:prose-invert max-w-none">
-        <MDXRemote source={post.content} components={components} />
-      </div>
+      </GridSection>
     </article>
   );
 }

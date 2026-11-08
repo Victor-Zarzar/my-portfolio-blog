@@ -439,23 +439,23 @@ The admin dashboard is a protected area, available only to authenticated users (
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_113655_rinxc4.png" width="1000" height="600" alt="landing page">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_06.50.43_buujpy.png" width="1000" height="600" alt="landing page">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806549/Screenshot_20261012_085901_rs1stn.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132687/Screenshot_2026-11-08_at_07.00.49_yxnonk.png" width="1000" height="600" alt="dashboard">s
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806591/Screenshot_20261012_090301_ptskyk.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.01.37_nkohnp.png" width="1000" height="600" alt="dashboard">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806838/Screenshot_20261012_090707_n2zhh0.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.00.55_tyoh8x.png" width="1000" height="600" alt="dashboard">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806549/Screenshot_20261012_090001_ibrdab.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.00.37_oafewy.png" width="1000" height="600" alt="dashboard">
 </p>
 
 ---

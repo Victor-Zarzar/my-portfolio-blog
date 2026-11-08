@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import ContactForm from "@/app/features/contact-form/contact-form";
 import { pageMetadata } from "@/app/shared/helpers/seo";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -27,18 +28,18 @@ export default async function Contact() {
   const t = await getTranslations("Contact");
 
   return (
-    <section className="col-span-4 mx-auto p-6">
+    <GridSection>
       <FadeWrapper>
-        <header className="text-center mt-6 md:mt-10">
-          <h1 className="title-projects mb-4 font-extrabold leading-10 tracking-tight text-3xl md:text-4xl">
+        <header className="text-center">
+          <h1 className="title-projects mb-4 text-3xl font-extrabold leading-10 tracking-tight md:text-4xl">
             {t("h1")}
           </h1>
         </header>
       </FadeWrapper>
 
-      <div className="mt-10 md:mt-14 max-w-lg mx-auto mb-6 md:mb-10">
+      <div className="mx-auto mt-10 max-w-lg md:mt-14">
         <ContactForm />
       </div>
-    </section>
+    </GridSection>
   );
 }

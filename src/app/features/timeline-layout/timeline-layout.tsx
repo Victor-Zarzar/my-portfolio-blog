@@ -40,9 +40,9 @@ export const TimelineLayout = () => {
   return (
     <section className="mx-auto mt-28 mb-28 max-w-3xl px-4">
       <FadeWrapper>
-        <h1 className="title-about mb-16 font-extrabold leading-tight tracking-tight text-3xl md:text-4xl text-center mt-20 md:mt-36">
+        <h2 className="title-about mb-16 font-extrabold leading-tight tracking-tight text-3xl md:text-4xl text-center mt-20 md:mt-36">
           {t("h1")}
-        </h1>
+        </h2>
       </FadeWrapper>
 
       <div className="relative pl-8">

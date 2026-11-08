@@ -37,9 +37,9 @@ export default function TerminalCourses({ courses }: TerminalCoursesProps) {
       <section className="col-span-4 mx-auto">
         <header className="h1 p-6">
           <FadeWrapper>
-            <h1 className="title-projects mb-4 font-extrabold leading-10 tracking-tight text-3xl md:text-4xl text-center">
+            <h2 className="title-projects mb-4 font-extrabold leading-10 tracking-tight text-3xl md:text-4xl text-center">
               {t("h1")}
-            </h1>
+            </h2>
           </FadeWrapper>
         </header>
       </section>

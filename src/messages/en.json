@@ -868,5 +868,34 @@
         "errorDelete": "Failed to delete course"
       }
     }
+  },
+  "AboutTeaser": {
+    "h2": "About me",
+    "p": "My first contact with programming was in 2009, with SQL Server and PHP. Today I work as a Full Stack Developer, and I love learning new technologies, solving problems, coffee, vinyl records and Rock ’n’ Roll. 🤘🏻🎸",
+    "cta": "Learn more",
+    "since": "Programming since",
+    "focus": "Web & mobile",
+    "languages": "Languages"
+  },
+  "ProjectsTeaser": {
+    "h2": "Featured projects",
+    "cta": "See all projects"
+  },
+  "ContactTeaser": {
+    "h2": "Let's work together?",
+    "p": "Have a project, an opportunity or just want to talk about code? Send me a message.",
+    "cta": "Get in touch",
+    "available": "Available for new projects",
+    "social": "Or find me on"
+  },
+  "GitHubActivity": {
+    "contributions": "{count} contributions in the last year"
+  },
+  "Footer": {
+    "pages": "Pages",
+    "projects": "Projects",
+    "social": "Social",
+    "builtWith": "Built with",
+    "rights": "All rights reserved."
   }
 }

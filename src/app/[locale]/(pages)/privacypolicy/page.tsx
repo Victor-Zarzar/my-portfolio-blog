@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { privacyPolicySections } from "@/app/shared/data/getPrivacyData";
 import { pageMetadata } from "@/app/shared/helpers/seo";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -27,31 +28,34 @@ export default async function PrivacyPolicy() {
   const t = await getTranslations("PrivacyPolicy");
 
   return (
-    <main className="mt-6 md:mt-10 mx-auto max-w-3xl">
-      <section className="text-center mb-16">
-        <FadeWrapper>
-          <h1 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight mb-6">
-            {t("h1")}
-          </h1>
-        </FadeWrapper>
-        <p className="text-lg md:text-xl font-semibold leading-relaxed">
-          {t("p")}
-        </p>
-      </section>
+    <main>
+      <GridSection>
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <FadeWrapper>
+              <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl">
+                {t("h1")}
+              </h1>
+            </FadeWrapper>
+            <p className="text-lg font-semibold leading-relaxed md:text-xl">
+              {t("p")}
+            </p>
+          </div>
 
-      <section className="text-center mt-10">
-        <h2 className="text-lg md:text-3xl font-semibold tracking-tight mb-4">
-          {t("h2")}
-        </h2>
-      </section>
+          <h2 className="mt-16 text-center text-lg font-semibold tracking-tight md:text-3xl">
+            {t("h2")}
+          </h2>
 
-      {privacyPolicySections.map((section, index) => (
-        <section key={index} className="text-center mt-10">
-          <p className="text-lg md:text-xl font-semibold leading-relaxed">
-            {t(section)}
-          </p>
-        </section>
-      ))}
+          {privacyPolicySections.map((section) => (
+            <p
+              key={section}
+              className="mt-10 text-center text-lg font-semibold leading-relaxed md:text-xl"
+            >
+              {t(section)}
+            </p>
+          ))}
+        </div>
+      </GridSection>
     </main>
   );
 }

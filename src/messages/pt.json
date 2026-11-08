@@ -868,5 +868,36 @@
         "errorDelete": "Falha ao excluir o curso"
       }
     }
+  },
+  "AboutTeaser": {
+    "h2": "Sobre mim",
+    "p": "Meu primeiro contato com programação foi em 2009, com SQL Server e PHP. Hoje atuo como Desenvolvedor Full Stack e adoro aprender novas tecnologias, resolver problemas, café, discos de vinil e Rock ’n’ Roll. 🤘🏻🎸",
+    "cta": "Saiba mais",
+    "since": "Programando desde",
+    "focus": "Web e mobile",
+    "languages": "Idiomas"
+  },
+  "ProjectsTeaser": {
+    "h2": "Projetos em destaque",
+    "cta": "Ver todos os projetos",
+    "available": "Disponível para novos projetos",
+    "social": "Ou me encontre no"
+  },
+  "ContactTeaser": {
+    "h2": "Vamos trabalhar juntos?",
+    "p": "Tem um projeto, uma oportunidade ou quer apenas trocar uma ideia sobre código? Me mande uma mensagem.",
+    "cta": "Entrar em contato",
+    "available": "Disponível para novos projetos",
+    "social": "Ou me encontre no"
+  },
+  "GitHubActivity": {
+    "contributions": "{count} contribuições no último ano"
+  },
+  "Footer": {
+    "pages": "Páginas",
+    "projects": "Projetos",
+    "social": "Redes",
+    "builtWith": "Feito com",
+    "rights": "Todos os direitos reservados."
   }
 }
