@@ -34,7 +34,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "Layout" });
 
   const title = t("title");
-  const description = t("description");
+  const description = t("seoDescription");
   const ogDescription = t("ogDescription");
 
   return {
@@ -44,8 +44,7 @@ export async function generateMetadata({
     openGraph: {
       title: title,
       description: ogDescription,
-      url: `${env.NEXT_PUBLIC_WEBSITE_URL}/${locale}`,
-      siteName: "Victor Zarzar | Front-end Developer",
+      siteName: "Victor Zarzar | Full Stack Developer",
       images: [
         {
           url: "/static/og-image.png",
@@ -55,14 +54,6 @@ export async function generateMetadata({
       ],
       locale: ogLocaleMap[locale] ?? "en_US",
       type: "website",
-    },
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        "pt-BR": "/pt",
-        "en-US": "/en",
-        "es-ES": "/es",
-      },
     },
     icons: {
       icon: "/favicon.ico",

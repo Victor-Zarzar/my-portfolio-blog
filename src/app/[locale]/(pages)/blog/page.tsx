@@ -1,8 +1,10 @@
 import type { Metadata } from "next/types";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
+import { pageMetadata } from "@/app/shared/helpers/seo";
 import type { PageProps } from "@/app/shared/types/post/post";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import LoadingSkeleton from "@/app/widgets/loading-skeleton/loading-skeleton";
 import { routing } from "@/i18n/routing";
 import { getAllPosts } from "@/lib/db/queries/blog";
@@ -19,19 +21,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Blog" });
-  const path = "/blog";
 
-  return {
+  return pageMetadata(locale, "/blog", {
     title: t("title"),
-    alternates: {
-      canonical: `/${locale}${path}`,
-      languages: {
-        "pt-BR": `/pt${path}`,
-        "en-US": `/en${path}`,
-        "es-ES": `/es${path}`,
-      },
-    },
-  };
+    description: t("seoDescription"),
+  });
 }
 
 export default async function BlogPage({ params }: PageProps) {
@@ -40,26 +34,22 @@ export default async function BlogPage({ params }: PageProps) {
   const posts = await getAllPosts(locale);
 
   return (
-    <main className="container-articles">
-      <section className="col-span-4 mx-auto">
-        <header className="h1 p-6">
-          <FadeWrapper>
-            <h1 className="title-articles mb-4 font-extrabold leading-10 tracking-tight text-3xl md:text-4xl text-center mt-6 md:mt-10">
-              {t("h1")}
-            </h1>
-          </FadeWrapper>
-        </header>
-      </section>
+    <main>
+      <GridSection>
+        <FadeWrapper>
+          <h1 className="title-articles mb-4 text-center text-3xl font-extrabold leading-10 tracking-tight md:text-4xl">
+            {t("h1")}
+          </h1>
+        </FadeWrapper>
 
-      <section className="my-4 mt-8 md:mt-6">
-        <h2 className="title-skills font-extrabold leading-10 tracking-tight text-sm md:text-2xl lg:text-2xl mt-8 md:mt-4 mb-8 text-center">
+        <h2 className="title-skills mb-10 mt-4 text-center text-sm font-extrabold leading-10 tracking-tight md:text-2xl">
           {t("h2")}
         </h2>
-      </section>
 
-      <Suspense fallback={<LoadingSkeleton />}>
-        <BlogContent locale={locale} posts={posts} />
-      </Suspense>
+        <Suspense fallback={<LoadingSkeleton />}>
+          <BlogContent locale={locale} posts={posts} />
+        </Suspense>
+      </GridSection>
     </main>
   );
 }

@@ -7,21 +7,16 @@ import { AdminPageHeader } from "@/app/widgets/admin-page-header/admin-page-head
 import { db } from "@/lib/db";
 import { posts } from "@/lib/db/schemas/schema";
 
-export default async function AdminPostsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-
+export default async function AdminPostsPage() {
   const t = await getTranslations("dashboard");
 
   const allPosts = await db.query.posts.findMany({
     orderBy: [desc(posts.createdAt)],
     with: {
       translations: {
-        where: (translation, { eq }) => eq(translation.locale, locale),
         columns: {
+          locale: true,
+          slug: true,
           title: true,
           description: true,
         },
@@ -39,7 +34,7 @@ export default async function AdminPostsPage({
   });
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-7xl space-y-6">
       <div className="mb-8 flex items-center justify-between">
         <FadeWrapper>
           <AdminPageHeader

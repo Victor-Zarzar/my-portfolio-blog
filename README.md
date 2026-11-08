@@ -102,6 +102,7 @@
 <h2 id="prerequisites">Prerequisites</h2>
 
 Before starting, ensure you have the following installed:
+
 - [Bun](https://bun.sh/docs) (v1 or higher) – primary runtime & package manager
 - [Redis](https://redis.io) - In-memory cache layer for session storage and performance optimization
 - [Docker](https://www.docker.com/) – For local containerized development (Development and Testing)
@@ -160,6 +161,7 @@ import { env } from "@/env/server";
 Then edit `.env` with your actual values. The `.env-example` file contains detailed comments explaining each variable and how to obtain the necessary credentials.
 
 **Key configurations needed:**
+
 - **SMTP**: Gmail account and [App Password](https://support.google.com/accounts/answer/185833)
 - **Sentry**: DSN and authentication token from your [Sentry project](https://sentry.io/)
 - **Database**: Neon PostgreSQL connection string from [Neon Console](https://neon.tech/)
@@ -309,6 +311,7 @@ bun run format            # Format code
 This project uses **Lefthook** to automatically run quality checks before commits and pushes, keeping the local development workflow consistent and preventing broken code from being pushed.
 
 The hooks are configured in `lefthook.yml`:
+
 - **Pre-commit** — runs type checking, linting, unit tests, and integration tests.
 - **Pre-push** — runs the full E2E test suite inside an isolated Docker container, ensuring consistent results across operating systems.
 
@@ -436,23 +439,23 @@ The admin dashboard is a protected area, available only to authenticated users (
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791297949/Screenshot_20261006_113655_rinxc4.png" width="1000" height="600" alt="landing page">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_06.50.43_buujpy.png" width="1000" height="600" alt="landing page">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806549/Screenshot_20261012_085901_rs1stn.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132687/Screenshot_2026-11-08_at_07.00.49_yxnonk.png" width="1000" height="600" alt="dashboard">s
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806591/Screenshot_20261012_090301_ptskyk.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.01.37_nkohnp.png" width="1000" height="600" alt="dashboard">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806838/Screenshot_20261012_090707_n2zhh0.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.00.55_tyoh8x.png" width="1000" height="600" alt="dashboard">
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1791806549/Screenshot_20261012_090001_ibrdab.png" width="1000" height="600" alt="dashboard">
+  <img src="https://res.cloudinary.com/drdpurgob/image/upload/v1794132686/Screenshot_2026-11-08_at_07.00.37_oafewy.png" width="1000" height="600" alt="dashboard">
 </p>
 
 ---
@@ -471,6 +474,7 @@ The application is deployed on Vercel for production use, with Neon PostgreSQL a
 
 Prefer to host on your own server? I wrote a step-by-step guide covering how to deploy Next.js with Docker on a VPS:
 [Deploy Next.js with Docker on a VPS](https://www.victorzarzar.com.br/blog/deploy-nextjs-docker-vps)
+
 - **CI/CD Pipeline** - `.github/workflows/` with `ci.yaml`, `codeql-analysis.yaml`, `e2e.yaml`, `integration.yaml` and `release.yaml` for automated checks, security analysis, end-to-end tests and releases
 - **Dependabot** - Monthly dependency updates for GitHub Actions and Pub packages
 

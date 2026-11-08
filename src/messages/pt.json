@@ -1,7 +1,7 @@
 {
   "Layout": {
     "title": "Victor Zarzar | Desenvolvedor Full Stack",
-    "description": "Desenvolvedor Full Stack com experiência em React, Next.js, TypeScript, Python, FastAPI, SQL, Docker e desenvolvimento moderno de aplicações web.",
+    "seoDescription": "Portfólio de Victor Zarzar, desenvolvedor Full Stack com experiência em React, Next.js, TypeScript, Python, FastAPI, Flutter e aplicações web e mobile.",
     "ogDescription": "Portfólio profissional com desenvolvimento Full Stack, aplicações web, APIs, bancos de dados, infraestrutura e projetos de engenharia de software."
   },
   "Manifest": {
@@ -50,6 +50,7 @@
   },
   "About": {
     "title": "Victor Zarzar | Sobre",
+    "seoDescription": "Conheça a trajetória de Victor Zarzar: desenvolvedor Full Stack com experiência em web e mobile, React, Next.js, Flutter, Python e FastAPI.",
     "h1": "Sobre",
     "p": "Meu primeiro contato com programação foi em 2009, usando tecnologias como SQL Server 2000 e MySQL para criar, restaurar e gerenciar bancos de dados, além de desenvolver sites com PHP. Atualmente atuo como Desenvolvedor Full Stack, utilizando tecnologias modernas tanto no front-end quanto no back-end. Busco continuamente aprimorar meus conhecimentos, abraçar o desconhecido e evoluir todos os dias. Novos desafios são sempre bem-vindos. Adoro aprender novas tecnologias e resolver problemas. Apaixonado por café, meus discos de vinil, Rock ’n’ Roll e guitarra. 🤘🏻🎸",
     "h2": "Idiomas",
@@ -71,6 +72,7 @@
   },
   "Services": {
     "title": "Victor Zarzar | Serviços",
+    "seoDescription": "Serviços de desenvolvimento web, back-end e Full Stack: sites, APIs e aplicações completas com React, Next.js, Python e FastAPI.",
     "h1": "Serviços",
     "cardtitle1": "Desenvolvimento Web",
     "carddescription1": "Sites e aplicações web modernos e responsivos",
@@ -126,6 +128,7 @@
   },
   "Projects": {
     "title": "Victor Zarzar | Projetos",
+    "seoDescription": "Projetos de Victor Zarzar em desenvolvimento Full Stack: aplicações web e mobile, APIs e bancos de dados, com estatísticas do GitHub.",
     "h1": "Projetos",
     "h2": "Projetos em destaque",
     "seeAll": "Todos os Projetos",
@@ -140,6 +143,7 @@
   },
   "PrivacyPolicy": {
     "title": "Victor Zarzar | Política de Privacidade",
+    "seoDescription": "Política de Privacidade do site de Victor Zarzar: como coletamos, usamos e protegemos suas informações, cookies e seus direitos.",
     "h1": "Política de Privacidade",
     "p": "Como coletamos, usamos e protegemos suas informações.",
     "h2": "Última atualização: março de 2026",
@@ -160,6 +164,7 @@
   },
   "Contact": {
     "title": "Victor Zarzar | Contato",
+    "seoDescription": "Fale com Victor Zarzar, desenvolvedor Full Stack, sobre projetos web e mobile, vagas ou parcerias. Envie sua mensagem pelo formulário.",
     "h1": "Entre em contato ;)",
     "name": "Nome",
     "email": "E-mail",
@@ -200,6 +205,7 @@
   },
   "Blog": {
     "title": "Victor Zarzar | Blog",
+    "seoDescription": "Artigos técnicos de Victor Zarzar sobre React, Next.js, TypeScript, Python, FastAPI, Flutter e desenvolvimento Full Stack web e mobile.",
     "h1": "Artigos e Publicações",
     "h2": "Conteúdo técnico que escrevi recentemente...",
     "p": "Leia mais",
@@ -862,5 +868,36 @@
         "errorDelete": "Falha ao excluir o curso"
       }
     }
+  },
+  "AboutTeaser": {
+    "h2": "Sobre mim",
+    "p": "Meu primeiro contato com programação foi em 2009, com SQL Server e PHP. Hoje atuo como Desenvolvedor Full Stack e adoro aprender novas tecnologias, resolver problemas, café, discos de vinil e Rock ’n’ Roll. 🤘🏻🎸",
+    "cta": "Saiba mais",
+    "since": "Programando desde",
+    "focus": "Web e mobile",
+    "languages": "Idiomas"
+  },
+  "ProjectsTeaser": {
+    "h2": "Projetos em destaque",
+    "cta": "Ver todos os projetos",
+    "available": "Disponível para novos projetos",
+    "social": "Ou me encontre no"
+  },
+  "ContactTeaser": {
+    "h2": "Vamos trabalhar juntos?",
+    "p": "Tem um projeto, uma oportunidade ou quer apenas trocar uma ideia sobre código? Me mande uma mensagem.",
+    "cta": "Entrar em contato",
+    "available": "Disponível para novos projetos",
+    "social": "Ou me encontre no"
+  },
+  "GitHubActivity": {
+    "contributions": "{count} contribuições no último ano"
+  },
+  "Footer": {
+    "pages": "Páginas",
+    "projects": "Projetos",
+    "social": "Redes",
+    "builtWith": "Feito com",
+    "rights": "Todos os direitos reservados."
   }
 }

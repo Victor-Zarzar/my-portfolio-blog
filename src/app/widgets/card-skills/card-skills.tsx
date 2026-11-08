@@ -16,9 +16,9 @@ export default function CardSkills() {
                 <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-neutral-800 dark:bg-neutral-800 border border-neutral-700">
                   <CategoryIcon className="w-5 h-5 text-white" />
                 </div>
-                <h1 className="font-semibold text-sm tracking-tight">
+                <h3 className="font-semibold text-sm tracking-tight">
                   {category.title}
-                </h1>
+                </h3>
               </div>
               <div className="flex flex-wrap justify-center gap-1.5">
                 {category.skills.map((skill) => {

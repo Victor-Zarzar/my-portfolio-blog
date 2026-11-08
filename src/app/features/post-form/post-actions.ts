@@ -8,18 +8,25 @@ import { db } from "@/lib/db";
 import { posts, postTags, postTranslations } from "@/lib/db/schemas/schema";
 import { invalidatePostCache } from "@/lib/redis/cache";
 
+const LOCALES = ["pt", "en", "es"] as const;
+type PostLocale = (typeof LOCALES)[number];
+
+const PRIMARY_LOCALE: PostLocale = "pt";
+
+const slugSchema = z
+  .string()
+  .min(1, "Slug is required")
+  .regex(/^[a-z0-9-]+$/, "Slug must be lowercase, numbers and hyphens only");
+
 const translationSchema = z.object({
-  locale: z.enum(["pt", "en", "es"]),
+  locale: z.enum(LOCALES),
+  slug: slugSchema,
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
   content: z.string().min(1, "Content is required"),
 });
 
 const createPostSchema = z.object({
-  slug: z
-    .string()
-    .min(1)
-    .regex(/^[a-z0-9-]+$/, "Slug must be lowercase, numbers and hyphens only"),
   year: z.coerce.number().int().optional(),
   photo: z.union([z.string().url(), z.literal("")]).optional(),
   authorId: z.string().min(1),
@@ -36,9 +43,37 @@ type ActionResult<T = void> =
   | { success: true; data: T }
   | { success: false; error: string };
 
+type SlugEntry = { locale: string; slug: string };
+
 function revalidatePosts() {
   revalidatePath("/[locale]/(admin)/posts", "page");
   revalidatePath("/[locale]/(pages)/blog", "page");
+}
+
+function primarySlug(translations: SlugEntry[]): string | undefined {
+  return (
+    translations.find((t) => t.locale === PRIMARY_LOCALE) ?? translations[0]
+  )?.slug;
+}
+
+function isSlugConflict(err: unknown): boolean {
+  if (!(err instanceof Error)) {
+    return false;
+  }
+  const cause = err.cause instanceof Error ? err.cause.message : "";
+  return `${err.message} ${cause}`.includes("slug_unique");
+}
+
+async function invalidateSlugs(entries: SlugEntry[]) {
+  const seen = new Set<string>();
+  for (const { locale, slug } of entries) {
+    const key = `${locale}:${slug}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    await invalidatePostCache({ slug, locales: [locale as PostLocale] });
+  }
 }
 
 export async function createPost(
@@ -53,7 +88,11 @@ export async function createPost(
     };
   }
 
-  const { slug, year, photo, translations, tagIds } = parsed.data;
+  const { year, photo, translations, tagIds } = parsed.data;
+  const slug = primarySlug(translations);
+  if (!slug) {
+    return { success: false, error: "Slug is required" };
+  }
 
   try {
     const [post] = await db
@@ -71,15 +110,21 @@ export async function createPost(
       return { success: false, error: "Failed to create post" };
     }
 
-    await db.insert(postTranslations).values(
-      translations.map((t) => ({
-        postId: post.id,
-        locale: t.locale,
-        title: t.title,
-        description: t.description,
-        content: t.content,
-      })),
-    );
+    try {
+      await db.insert(postTranslations).values(
+        translations.map((t) => ({
+          postId: post.id,
+          locale: t.locale,
+          slug: t.slug,
+          title: t.title,
+          description: t.description,
+          content: t.content,
+        })),
+      );
+    } catch (err) {
+      await db.delete(posts).where(eq(posts.id, post.id));
+      throw err;
+    }
 
     if (tagIds?.length) {
       await db
@@ -87,17 +132,17 @@ export async function createPost(
         .values(tagIds.map((tagId) => ({ postId: post.id, tagId })));
     }
 
-    await invalidatePostCache({ slug, locales: ["pt", "en", "es"] });
+    await invalidateSlugs(translations);
     revalidatePosts();
     return { success: true, data: { id: post.id } };
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Failed to create post";
-
-    if (message.includes("posts_slug_unique")) {
+    if (isSlugConflict(err)) {
       return { success: false, error: "Slug already exists" };
     }
-    return { success: false, error: message };
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to create post",
+    };
   }
 }
 
@@ -114,9 +159,20 @@ export async function updatePost(
     };
   }
 
-  const { slug, year, photo, translations, tagIds } = parsed.data;
+  const { year, photo, translations, tagIds } = parsed.data;
 
   try {
+    const existing = await db.query.posts.findFirst({
+      where: eq(posts.id, id),
+      with: { translations: { columns: { locale: true, slug: true } } },
+    });
+
+    if (!existing) {
+      return { success: false, error: "Post not found" };
+    }
+
+    const slug = translations ? primarySlug(translations) : undefined;
+
     if (slug || year !== undefined || photo !== undefined) {
       await db
         .update(posts)
@@ -137,6 +193,7 @@ export async function updatePost(
           .onConflictDoUpdate({
             target: [postTranslations.postId, postTranslations.locale],
             set: {
+              slug: t.slug,
               title: t.title,
               description: t.description,
               content: t.content,
@@ -155,28 +212,17 @@ export async function updatePost(
       }
     }
 
-    const existing = await db.query.posts.findFirst({
-      where: eq(posts.id, id),
-      columns: { slug: true },
-    });
-
-    const oldSlug = existing?.slug;
-    const newSlug = slug ?? oldSlug;
-
-    await invalidatePostCache({
-      slug: newSlug,
-      locales: ["pt", "en", "es"],
-    });
-
+    await invalidateSlugs([...existing.translations, ...(translations ?? [])]);
     revalidatePosts();
     return { success: true, data: undefined };
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Failed to update post";
-    if (message.includes("posts_slug_unique")) {
+    if (isSlugConflict(err)) {
       return { success: false, error: "Slug already exists" };
     }
-    return { success: false, error: message };
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to update post",
+    };
   }
 }
 
@@ -186,7 +232,7 @@ export async function deletePost(id: number): Promise<ActionResult> {
   try {
     const existing = await db.query.posts.findFirst({
       where: eq(posts.id, id),
-      columns: { slug: true },
+      with: { translations: { columns: { locale: true, slug: true } } },
     });
 
     if (!existing) {
@@ -194,11 +240,7 @@ export async function deletePost(id: number): Promise<ActionResult> {
     }
 
     await db.delete(posts).where(eq(posts.id, id));
-
-    await invalidatePostCache({
-      slug: existing.slug,
-      locales: ["pt", "en", "es"],
-    });
+    await invalidateSlugs(existing.translations);
 
     revalidatePosts();
     return { success: true, data: undefined };
@@ -225,13 +267,10 @@ export async function togglePublish(
 
     const existing = await db.query.posts.findFirst({
       where: eq(posts.id, id),
-      columns: { slug: true },
+      with: { translations: { columns: { locale: true, slug: true } } },
     });
 
-    await invalidatePostCache({
-      slug: existing?.slug,
-      locales: ["pt", "en", "es"],
-    });
+    await invalidateSlugs(existing?.translations ?? []);
 
     revalidatePosts();
     return { success: true, data: undefined };

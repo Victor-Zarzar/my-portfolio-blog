@@ -16,7 +16,7 @@ export default async function BlogContent({ locale, posts }: BlogContentProps) {
   const t = await getTranslations("Blog");
 
   return (
-    <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-52 md:mb-72 items-stretch">
+    <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2">
       {posts.map((post, index) => (
         <ActionCard
           key={post.slug}
@@ -26,7 +26,7 @@ export default async function BlogContent({ locale, posts }: BlogContentProps) {
           priority={index < 2}
         />
       ))}
-    </section>
+    </div>
   );
 }
 
@@ -97,9 +97,9 @@ function ActionCard({
 
           <div className="flex flex-1 flex-col p-5">
             <div className="flex-1">
-              <h1 className="text-lg font-semibold leading-tight">
+              <h2 className="text-lg font-semibold leading-tight">
                 {post.title}
-              </h1>
+              </h2>
 
               <div className="mt-2 flex justify-end text-xs text-neutral-500 dark:text-neutral-400">
                 <p>{formattedReadingTime}</p>

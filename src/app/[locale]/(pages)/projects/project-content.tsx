@@ -29,7 +29,7 @@ export default async function ProjectsContent({ locale }: { locale: string }) {
   );
 
   return (
-    <section className="max-w-3xl mx-auto grid grid-cols-1 gap-6 px-4 mb-52 md:mb-72 my-4 mt-8 md:mt-6">
+    <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="w-full">
           <CardContent className="p-6">
@@ -175,7 +175,7 @@ export default async function ProjectsContent({ locale }: { locale: string }) {
       ))}
 
       <SeeAllProjects />
-    </section>
+    </div>
   );
 }
 

@@ -216,3 +216,150 @@ export async function getProjects(perPage = 20): Promise<GithubProject[]> {
     },
   });
 }
+
+export type ContributionDay = {
+  date: string;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4;
+};
+
+export type GithubContributions = {
+  days: ContributionDay[];
+  total: number;
+};
+
+const CONTRIBUTION_LEVELS = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
+} as const;
+
+const GITHUB_CONTRIBUTIONS_CACHE_KEY = "github:contributions:v2";
+const CONTRIBUTION_YEARS = 3;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+type ContributionCalendar = {
+  totalContributions: number;
+  weeks: {
+    contributionDays: {
+      date: string;
+      contributionCount: number;
+      contributionLevel: keyof typeof CONTRIBUTION_LEVELS;
+    }[];
+  }[];
+};
+
+type YearCollection = { contributionCalendar?: ContributionCalendar };
+
+type ContributionsResponse = {
+  errors?: unknown[];
+  data?: {
+    user?: {
+      y0?: YearCollection;
+      y1?: YearCollection;
+      y2?: YearCollection;
+    };
+  };
+};
+
+const CONTRIBUTIONS_QUERY = `
+  query contributionsInfo(
+    $login: String!
+    $from0: DateTime!, $to0: DateTime!
+    $from1: DateTime!, $to1: DateTime!
+    $from2: DateTime!, $to2: DateTime!
+  ) {
+    user(login: $login) {
+      y0: contributionsCollection(from: $from0, to: $to0) { ...CalendarFields }
+      y1: contributionsCollection(from: $from1, to: $to1) { ...CalendarFields }
+      y2: contributionsCollection(from: $from2, to: $to2) { ...CalendarFields }
+    }
+  }
+
+  fragment CalendarFields on ContributionsCollection {
+    contributionCalendar {
+      totalContributions
+      weeks {
+        contributionDays {
+          date
+          contributionCount
+          contributionLevel
+        }
+      }
+    }
+  }
+`;
+
+export async function getContributions(): Promise<GithubContributions | null> {
+  return cacheWithRedis({
+    key: GITHUB_CONTRIBUTIONS_CACHE_KEY,
+    ttl: 60 * 60 * 24,
+    fetcher: async () => {
+      try {
+        const now = Date.now();
+        const variables: Record<string, string> = { login: env.GH_USERNAME };
+
+        for (let i = 0; i < CONTRIBUTION_YEARS; i++) {
+          const end = now - i * 366 * DAY_MS;
+          const start = end - 365 * DAY_MS;
+          variables[`from${i}`] = new Date(start).toISOString();
+          variables[`to${i}`] = new Date(end).toISOString();
+        }
+
+        const res = await fetch(GITHUB_GRAPHQL_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${env.GH_API_TOKEN}`,
+          },
+          body: JSON.stringify({ query: CONTRIBUTIONS_QUERY, variables }),
+        });
+
+        if (!res.ok) {
+          return null;
+        }
+
+        const json = (await res.json()) as ContributionsResponse;
+        if (json.errors?.length) {
+          return null;
+        }
+
+        const user = json.data?.user;
+        const calendars = [user?.y0, user?.y1, user?.y2].map(
+          (year) => year?.contributionCalendar,
+        );
+
+        const current = calendars[0];
+        if (!current) {
+          return null;
+        }
+
+        const byDate = new Map<string, ContributionDay>();
+        for (const calendar of calendars) {
+          if (!calendar) {
+            continue;
+          }
+          for (const week of calendar.weeks) {
+            for (const day of week.contributionDays) {
+              byDate.set(day.date, {
+                date: day.date,
+                count: day.contributionCount,
+                level: CONTRIBUTION_LEVELS[day.contributionLevel],
+              });
+            }
+          }
+        }
+
+        const days = [...byDate.values()].sort((a, b) =>
+          a.date.localeCompare(b.date),
+        );
+
+        return { days, total: current.totalContributions };
+      } catch {
+        return null;
+      }
+    },
+  });
+}

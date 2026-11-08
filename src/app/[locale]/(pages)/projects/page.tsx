@@ -1,6 +1,8 @@
 import type { Metadata } from "next/types";
 import { getTranslations } from "next-intl/server";
+import { pageMetadata } from "@/app/shared/helpers/seo";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
+import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import { routing } from "@/i18n/routing";
 import ProjectsContent from "./project-content";
 
@@ -15,19 +17,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Projects" });
-  const path = "/projects";
 
-  return {
+  return pageMetadata(locale, "/projects", {
     title: t("title"),
-    alternates: {
-      canonical: `/${locale}${path}`,
-      languages: {
-        "pt-BR": `/pt${path}`,
-        "en-US": `/en${path}`,
-        "es-ES": `/es${path}`,
-      },
-    },
-  };
+    description: t("seoDescription"),
+  });
 }
 
 export default async function ProjectsPage({
@@ -39,18 +33,16 @@ export default async function ProjectsPage({
   const t = await getTranslations("Projects");
 
   return (
-    <main className="container-projects">
-      <section className="col-span-4 mx-auto">
-        <header className="h1 p-6">
-          <FadeWrapper>
-            <h1 className="title-projects mb-4 font-extrabold leading-10 tracking-tight text-3xl md:text-4xl text-center mt-6 md:mt-10">
-              {t("h1")}
-            </h1>
-          </FadeWrapper>
-        </header>
-      </section>
+    <main>
+      <GridSection>
+        <FadeWrapper>
+          <h1 className="title-projects mb-10 text-center text-3xl font-extrabold leading-10 tracking-tight md:text-4xl">
+            {t("h1")}
+          </h1>
+        </FadeWrapper>
 
-      <ProjectsContent locale={locale} />
+        <ProjectsContent locale={locale} />
+      </GridSection>
     </main>
   );
 }

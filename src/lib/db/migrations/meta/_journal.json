@@ -43,6 +43,13 @@
       "when": 1792506371479,
       "tag": "0005_fantastic_maestro",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793975226734,
+      "tag": "0006_late_revanche",
+      "breakpoints": true
     }
   ]
 }
