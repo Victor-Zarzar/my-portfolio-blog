@@ -899,5 +899,21 @@
     "social": "Redes",
     "builtWith": "Feito com",
     "rights": "Todos os direitos reservados."
+  },
+  "Newsletter": {
+    "h2": "Receba novos posts por e-mail",
+    "p": "Um e-mail a cada novo post. Sem spam, cancele quando quiser.",
+    "placeholder": "voce@exemplo.com",
+    "submit": "Inscrever-se",
+    "consent": "Ao se inscrever, você concorda em receber e-mails sobre novos posts.",
+    "loading": "Inscrevendo...",
+    "success": "Confira sua caixa de entrada para confirmar a inscrição.",
+    "error": "Não foi possível se inscrever. Tente novamente mais tarde.",
+    "captcha-not-ready": "o captcha ainda não está pronto",
+    "captcha-failed": "falha no captcha. tente novamente.",
+    "confirmed": "Inscrição confirmada. Obrigado!",
+    "invalid": "Este link de confirmação é inválido ou expirou.",
+    "emailrequired": "Informe seu e-mail.",
+    "invalidemail": "Informe um e-mail válido."
   }
 }

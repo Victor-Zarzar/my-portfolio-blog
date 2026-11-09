@@ -24,7 +24,6 @@ import { createPost, updatePost } from "./post-actions";
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 const LOCALES = ["pt", "en", "es"] as const;
-
 const SLUG_REGEX = /^[a-z0-9-]+$/;
 const DIACRITICS_REGEX = /[\u0300-\u036f]/g;
 const NON_SLUG_CHARS_REGEX = /[^a-z0-9]+/g;
@@ -77,9 +76,6 @@ export function PostForm({
   const t = useTranslations("dashboard.posts-form");
   const [isPending, startTransition] = useTransition();
   const isEditing = !!postId;
-
-  // Slug só é gerado a partir do título ao CRIAR e enquanto não for editado à mão.
-  // Ao editar um post existente nunca sobrescreve, pra não quebrar a URL publicada.
   const slugTouched = useRef<Record<number, boolean>>({});
 
   const form = useForm<FormValues>({

@@ -6,6 +6,7 @@ import type { PageProps } from "@/app/shared/types/post/post";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import GridSection from "@/app/shared/wrapper/grid-wrapper";
 import LoadingSkeleton from "@/app/widgets/loading-skeleton/loading-skeleton";
+import NewsletterSection from "@/app/widgets/newsletter-section/newsletter-section";
 import { routing } from "@/i18n/routing";
 import { getAllPosts } from "@/lib/db/queries/blog";
 import BlogContent from "./blog-content";
@@ -49,6 +50,10 @@ export default async function BlogPage({ params }: PageProps) {
         <Suspense fallback={<LoadingSkeleton />}>
           <BlogContent locale={locale} posts={posts} />
         </Suspense>
+      </GridSection>
+
+      <GridSection hatched>
+        <NewsletterSection />
       </GridSection>
     </main>
   );

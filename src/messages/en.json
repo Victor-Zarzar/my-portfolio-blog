@@ -897,5 +897,21 @@
     "social": "Social",
     "builtWith": "Built with",
     "rights": "All rights reserved."
+  },
+  "Newsletter": {
+    "h2": "Get new posts by email",
+    "p": "One email for each new post. No spam, cancel anytime.",
+    "placeholder": "you@example.com",
+    "submit": "Subscribe",
+    "consent": "By subscribing, you agree to receive emails about new posts.",
+    "loading": "Subscribing...",
+    "success": "Check your inbox to confirm your subscription.",
+    "error": "Could not subscribe. Please try again later.",
+    "captcha-not-ready": "captcha is not ready",
+    "captcha-failed": "captcha failed. please try again.",
+    "confirmed": "Subscription confirmed. Thank you!",
+    "invalid": "This confirmation link is invalid or has expired.",
+    "emailrequired": "Please enter your email.",
+    "invalidemail": "Please enter a valid email address."
   }
 }

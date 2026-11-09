@@ -1,4 +1,3 @@
-import { label } from "happy-dom/lib/PropertySymbol";
 import { getTranslations } from "next-intl/server";
 import {
   AiOutlineFacebook,
