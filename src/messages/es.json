@@ -871,9 +871,9 @@
   },
   "AboutTeaser": {
     "h2": "Sobre mí",
-    "p": "Mi primer contacto con la programación fue en 2009, con SQL Server y PHP. Hoy trabajo como Desarrollador Full Stack y me encanta aprender nuevas tecnologías, resolver problemas, el café, los discos de vinilo y el Rock ’n’ Roll. 🤘🏻🎸",
+    "p": "Mi primer contacto con la programación fue en 2009, con SQL Server y PHP. Desde 2022 trabajo profesionalmente como Desarrollador Full Stack, y me encanta aprender nuevas tecnologías, resolver problemas, el café, los discos de vinilo y el Rock ’n’ Roll. 🤘🏻🎸",
     "cta": "Saber más",
-    "since": "Programando desde",
+    "since": "Del primer código a la carrera",
     "focus": "Web y mobile",
     "languages": "Idiomas"
   },
@@ -897,5 +897,21 @@
     "social": "Redes",
     "builtWith": "Hecho con",
     "rights": "Todos los derechos reservados."
+  },
+  "Newsletter": {
+    "h2": "Recibe nuevos posts por correo",
+    "p": "Un correo por cada nuevo post. Sin spam, cancela cuando quieras.",
+    "placeholder": "tu@ejemplo.com",
+    "submit": "Suscribirse",
+    "consent": "Al suscribirte, aceptas recibir correos sobre nuevos posts.",
+    "loading": "Suscribiendo...",
+    "success": "Revisa tu bandeja de entrada para confirmar la suscripción.",
+    "error": "No se pudo suscribir. Inténtalo de nuevo más tarde.",
+    "captcha-not-ready": "el captcha aún no está listo",
+    "captcha-failed": "falló el captcha. inténtalo de nuevo.",
+    "confirmed": "Suscripción confirmada. ¡Gracias!",
+    "invalid": "Este enlace de confirmación no es válido o ha caducado.",
+    "emailrequired": "Introduce tu correo electrónico.",
+    "invalidemail": "Introduce un correo electrónico válido."
   }
 }
