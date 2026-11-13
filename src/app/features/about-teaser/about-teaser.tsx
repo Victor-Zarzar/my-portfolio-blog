@@ -35,7 +35,7 @@ export default async function AboutTeaser() {
             </p>
 
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-              <Highlight value="2009" label={t("since")} />
+              <Highlight value="2009 → 2022" label={t("since")} />
               <Highlight value="Full Stack" label={t("focus")} />
               <Highlight
                 label={t("languages")}

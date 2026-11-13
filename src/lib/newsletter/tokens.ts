@@ -6,7 +6,6 @@ import {
 } from "node:crypto";
 import { env } from "@/env/server";
 
-// Confirmação: token aleatório, só o hash vai para o banco
 export function hashToken(token: string) {
   return createHash("sha256").update(token).digest("hex");
 }
@@ -16,7 +15,6 @@ export function createToken() {
   return { token, hash: hashToken(token) };
 }
 
-// Cancelamento (fase 2): HMAC do id do assinante
 export function signUnsubscribe(subscriberId: string) {
   return createHmac("sha256", env.BETTER_AUTH_SECRET)
     .update(`newsletter:unsubscribe:${subscriberId}`)

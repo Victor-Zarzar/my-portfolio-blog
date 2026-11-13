@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { TwoFactorForm } from "@/app/features/two-factor-form/two-factor-form";
+import { Badge } from "@/app/shared/ui/badge";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 
 export default async function TwoFactorPage() {
@@ -8,10 +9,10 @@ export default async function TwoFactorPage() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       <div className="text-center mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-muted-foreground mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+        <Badge variant="outline" className="mb-4 gap-2 px-3 py-1 font-medium">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
           {t("secureNote")}
-        </div>
+        </Badge>
         <FadeWrapper>
           <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
         </FadeWrapper>

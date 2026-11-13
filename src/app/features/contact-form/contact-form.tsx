@@ -97,10 +97,7 @@ export default function ContactForm({
   }
 
   return (
-    <Card
-      className="w-full mx-auto transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg
-        dark:hover:shadow-stone-600 border-black dark:border-gray-400"
-    >
+    <Card>
       <CardHeader className="pb-4">
         <CardDescription className="text-sm md:text-base">
           {t("cardSubtitle")}

@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import NewsletterForm from "@/app/features/newsletter/newsletter-form";
-import { Card, CardContent } from "@/app/shared/ui/card";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import NewsletterStatus from "./newsletter-status";
 
@@ -17,14 +16,7 @@ export default async function NewsletterSection() {
       </FadeWrapper>
 
       <FadeWrapper>
-        <Card className="dark:bg-stone-950 bg-white">
-          <CardContent className="p-8 text-center md:p-12">
-            <p className="mx-auto mb-8 max-w-md text-neutral-600 dark:text-neutral-400">
-              {t("p")}
-            </p>
-            <NewsletterForm />
-          </CardContent>
-        </Card>
+        <NewsletterForm />
       </FadeWrapper>
 
       <Suspense>

@@ -52,7 +52,6 @@ export async function POST(request: Request) {
 
   try {
     await subscribe(parsed.data);
-    // resposta idêntica para e-mail novo, pendente ou já confirmado
     return NextResponse.json({ ok: true });
   } catch (error) {
     Sentry.captureException(error);

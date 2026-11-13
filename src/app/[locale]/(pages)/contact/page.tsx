@@ -37,9 +37,9 @@ export default async function Contact() {
         </header>
       </FadeWrapper>
 
-      <div className="mx-auto mt-10 max-w-lg md:mt-14">
+      <section className="mx-auto mt-6 max-w-lg md:mt-8">
         <ContactForm />
-      </div>
+      </section>
     </GridSection>
   );
 }

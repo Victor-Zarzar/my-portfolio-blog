@@ -100,11 +100,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <Card
-      className="w-full max-w-md mx-auto transition-transform duration-300
-      hover:scale-[1.02] hover:shadow-lg
-      dark:hover:shadow-stone-600 border-black dark:border-gray-400"
-    >
+    <Card className="w-full max-w-md mx-auto">
       <CardHeader className="text-center space-y-4">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-muted">
           <Mail className="size-6" />

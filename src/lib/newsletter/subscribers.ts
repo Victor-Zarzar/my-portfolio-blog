@@ -56,7 +56,6 @@ export async function subscribe({
         confirmTokenHash: hash,
         confirmSentAt: now,
       },
-      // nunca rebaixa quem já confirmou (corrida entre requisições)
       setWhere: ne(subscribers.status, "confirmed"),
     });
 
@@ -67,7 +66,6 @@ export async function subscribe({
       url: `${WEBSITE_URL}/api/newsletter/confirm?token=${token}`,
     });
   } catch (error) {
-    // sem e-mail enviado, o cooldown não pode bloquear a próxima tentativa
     await db
       .update(subscribers)
       .set({ confirmSentAt: null })

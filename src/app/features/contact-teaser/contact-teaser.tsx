@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { FaLinkedin } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
 import { SOCIAL_LINKS } from "@/app/shared/config/app-config";
+import { Badge } from "@/app/shared/ui/badge";
 import { Card, CardContent } from "@/app/shared/ui/card";
 import FadeWrapper from "@/app/shared/wrapper/fade-wrapper";
 import { Link } from "@/i18n/navigation";
@@ -24,15 +25,15 @@ export default async function ContactTeaser() {
       </FadeWrapper>
 
       <FadeWrapper>
-        <Card className="dark:bg-stone-950 bg-white">
+        <Card>
           <CardContent className="p-8 text-center md:p-12">
-            <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-xs font-medium text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
+            <Badge variant="outline" className="gap-2 px-3 py-1 font-medium">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neutral-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-neutral-900 dark:bg-white" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-stone-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-stone-900 dark:bg-white" />
               </span>
               {t("available")}
-            </span>
+            </Badge>
 
             <p className="mx-auto mt-6 max-w-md text-neutral-600 dark:text-neutral-400">
               {t("p")}

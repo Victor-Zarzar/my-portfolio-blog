@@ -114,11 +114,7 @@ export default function SignUpForm({
   }
 
   return (
-    <Card
-      className="w-full max-w-md mx-auto transition-transform duration-300
-        hover:scale-[1.02] hover:shadow-lg
-        dark:hover:shadow-stone-600 border-black dark:border-gray-400"
-    >
+    <Card className="w-full max-w-md mx-auto">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">{t("title-card")}</CardTitle>
       </CardHeader>

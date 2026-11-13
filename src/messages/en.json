@@ -871,9 +871,9 @@
   },
   "AboutTeaser": {
     "h2": "About me",
-    "p": "My first contact with programming was in 2009, with SQL Server and PHP. Today I work as a Full Stack Developer, and I love learning new technologies, solving problems, coffee, vinyl records and Rock ’n’ Roll. 🤘🏻🎸",
+    "p": "My first contact with programming was in 2009, with SQL Server and PHP. Since 2022 I've worked professionally as a Full Stack Developer, and I love learning new technologies, solving problems, coffee, vinyl records and Rock ’n’ Roll. 🤘🏻🎸",
     "cta": "Learn more",
-    "since": "Programming since",
+    "since": "From first code to career",
     "focus": "Web & mobile",
     "languages": "Languages"
   },
